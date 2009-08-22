@@ -85,6 +85,8 @@ body
     +width_constraints
     dl
       &.equation
+        +border_radius(!main_nav_radius)
+        background-color: rgba(192,192,192,.1)
         color: #ccc
         font:
           family: Georgia, Serif
@@ -135,17 +137,17 @@ body
               span.function
                 color: #fff
                 background-color: #777
-                background-color: rgba(192, 192, 192, .2)
-                +border_radius(!main_nav_radius)
+                background-color: rgba(0,0,0, .5)
+                
             &.yah
               span.function
                 color: #fff
                 background-color: #777
-                background-color: rgba(192, 192, 192, .5)
+                background-color: rgba(255, 255, 255, .2)
                 +border_radius(!main_nav_radius)
 
 #footer
-  margin-top: 30px
+  margin: 30px 0
   text-align: center
   font-size: 11px
   font-family: arial, sans-serif
@@ -155,7 +157,7 @@ blockquote.signage
   float: right
   margin-left: 1em
   position: relative
-  top: -150px
+  top: -170px
   z-index: 99
   p
     &.iya
@@ -168,6 +170,7 @@ blockquote.signage
         height: 204px
         text-indent: -800em
         width: 108px
+        -moz-box-shadow: 2px 2px 8px #000
     &.rumble
       font-size: 12px
       text-align: center
@@ -179,6 +182,12 @@ blockquote.signage
         width: 108px
 
 #content
+
+  #sidebar
+    width: 270px
+    float: right
+    margin-left: 40px
+    
   color: #fff
   +pie-clearfix
   font-family: 'Mank Sans', Georgia, 'Times New Roman', Serif
@@ -192,28 +201,41 @@ blockquote.signage
   /-webkit-column-gap: 1em
   /-webkit-column-width: 380px
   
+  #main
+    h2
+      font-weight: bold
+      font-size: 130%
 
-  h2
-    font-weight: bold
-    font-size: 130%
+    h3
+      margin: 0 0 1em 0
+      font-size: 120%
 
-  h3
-    margin: 0 0 1em 0
-    font-size: 120%
+    #disqus_thread #dsq-content h3
+      font-size: 100%      
 
-  dl, p, ul
-    text-shadow: 1px 1px 0 #000
+    dl, p, ul
+      text-shadow: 1px 1px 0 #000
 
-  ul
-    :padding-left 1em
-    
+    dd
+      ul, li, p
+        :margin-left 1em
+
+    #comments
+      clear: both
+      /position: relative
+      /top: -145px
+      background-color: #313771
+      padding: 1em
+      +border_radius(.5em)
+      dl, p, ul
+        text-shadow: none
+        
   p
     margin: 0 0 1em 0
-    text-shadow: 1px 1px 0 #000
-    
+    text-shadow: 1px 1px 2px #000
+  
   a
-    color: #a8d0e0
-    font-weight: bold
+    color: #3AC1FF
     text-decoration: none
     &:hover
       text-decoration: underline
@@ -255,3 +277,5 @@ fieldset
     :padding-left 0
     label
       :display block
+      
+    

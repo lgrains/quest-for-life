@@ -10,15 +10,17 @@
       display: none
       ul
         margin-left: 1em
+
 :javascript
   $(function(){
-    $('dt.bullet').click(function(e){
-      $(this).next().slideToggle();
-      })
+    $('dt.bullet a').click(function(e){
+      $(this).parent().next().slideToggle();
+    });
   })
 
 = partial @parameter
-
 = partial 'parameter_form', :parameter => @parameter
 
-= partial '/shared/disqus'
+#comments
+  %h3 Discussion
+  = partial '/shared/disqus'

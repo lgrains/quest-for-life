@@ -27,25 +27,27 @@
           = render :partial => '/home/equation'
       
       #content
-        
-        %blockquote.signage
-          %p.iya
-            %a{:href => 'http://astronomy2009.org/', :target => "_blank"}
-              The Universe: Yours to discover. International Year of Astronomy 2009
+
+        #sidebar
+          %blockquote.signage
+            %p.iya
+              %a{:href => 'http://astronomy2009.org/', :target => "_blank"}
+                The Universe: Yours to discover. International Year of Astronomy 2009
           
-          %p.rumble
-            %a{:href => 'http://blog.railsrumble.com/', :target => "_blank"}
-              %img{:src => image_path('rr09_badge_250.png')}
-              Vote for this site at Rails Rumble 2009
-        
-        %h2= yield :heading
+            %p.rumble
+              %a{:href => 'http://blog.railsrumble.com/', :target => "_blank"}
+                %img{:src => image_path('rr09_badge_250.png')}
+                Vote for this site at Rails Rumble 2009
+
+        #main
+          %h2= yield :heading
     
-        - if flash.any?
-          #flash
-            - flash.keys.each do |key|
-              %div{ :class => key }= flash[key]
+          - if flash.any?
+            #flash
+              - flash.keys.each do |key|
+                %div{ :class => key }= flash[key]
     
-        = yield
+          = yield
     
       #footer
         %p
