@@ -1,0 +1,7 @@
+%p
+  %a{:href => new_survey_path} Add a new survey
+
+- paginated_section current_objects do
+  = page_entries_info current_objects
+  %ol
+    = partial current_objects

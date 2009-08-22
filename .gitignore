@@ -7,3 +7,5 @@ doc/api
 doc/app
 tmp/**/
 .project*
+public/stylesheets/print.css
+public/stylesheets/ie.css

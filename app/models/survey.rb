@@ -12,7 +12,7 @@ class Survey < ActiveRecord::Base
 
   before_save :calculate_n
   
-  attr_accessible parameter_columns
+  attr_accessible *parameter_columns
   
   private
   
