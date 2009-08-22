@@ -1,21 +1,3 @@
-
-%style{ :type => "text/css" }
-  :sass
-    dt.bullet
-      margin-left: 1em
-      font-weight: bold
-      display: list-item
-      list-style-type: square
-      cursor: pointer
-    dd.detail
-      :display none
-:javascript
-  $(function(){
-    $('dt.bullet').click(function(e){
-      $(this).next().slideToggle();
-      })
-  })
-
 - title "Rate of Stellar Formation"
 
 %h3 How many stars form in our galaxy each year?
