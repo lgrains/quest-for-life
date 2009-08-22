@@ -1,0 +1,7 @@
+.content
+  %h2
+    Sign up
+  - semantic_form_for @user do |form|
+    = render :partial => 'form', :object => form
+    - form.buttons do 
+      = form.commit_button 'Sign up', :disable_with => 'Please wait...'

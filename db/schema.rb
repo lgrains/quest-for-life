@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822152049) do
+ActiveRecord::Schema.define(:version => 20090822183844) do
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20090822152049) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "survey_groups", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.string   "group_name"
+    t.integer  "age_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "survey_groups", ["user_id", "group_name"], :name => "index_survey_groups_on_user_id_and_group_name", :unique => true
 
   create_table "surveys", :force => true do |t|
     t.decimal  "r_star"

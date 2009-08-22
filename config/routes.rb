@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :survey_groups
+
   map.resources :surveys
   map.with_options :controller => 'surveys' do |s|
     s.survey_parameter '/surveys/:id/:parameter', :action => :edit, :requirements =>{:method => :get}
