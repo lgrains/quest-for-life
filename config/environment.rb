@@ -10,6 +10,7 @@ Rails::Initializer.run do |config|
 
   config.gem 'haml'
   config.gem 'binarylogic-settingslogic', :lib => 'settingslogic', :source => 'http://gems.github.com'
+  config.gem 'justinfrench-formtastic', :lib => 'formtastic', :source => 'http://gems.github.com'
   config.gem 'thoughtbot-clearance', :lib => 'clearance', :source => 'http://gems.github.com'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'ruby-openid', :lib => 'openid'
