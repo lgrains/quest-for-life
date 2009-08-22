@@ -6,6 +6,7 @@ log/*.log
 doc/api
 doc/app
 tmp/**/
+tmp/*
 .project*
 public/stylesheets/print.css
 public/stylesheets/ie.css
