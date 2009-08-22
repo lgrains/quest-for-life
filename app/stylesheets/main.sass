@@ -190,7 +190,7 @@ blockquote.signage
     
   color: #fff
   +pie-clearfix
-  font-family: 'Mank Sans', Georgia, 'Times New Roman', Serif
+  font-family: 'Mank Sans', Helvetica, 'Arial Narrow', Arial, Verdana, Georgia, 'Times New Roman', Serif
   position: relative
   +width_constraints
   margin: 0 auto 0 auto
@@ -209,6 +209,10 @@ blockquote.signage
     h3
       margin: 0 0 1em 0
       font-size: 120%
+      font-weight: bold
+      
+    em
+      font-style: italic
 
     #disqus_thread #dsq-content h3
       font-size: 100%      
@@ -219,6 +223,48 @@ blockquote.signage
     dd
       ul, li, p
         :margin-left 1em
+
+    p.start-survey-prompt
+      -moz-box-shadow: 4px 4px 16px #000
+      margin: 1em 0
+      background: #5c992e url(/images/gradient-green.png) repeat-x
+      border: 1px solid #5c992e
+      +border_radius(.5em)
+      width: 520px
+      font-weight: normal
+      font-family: Helvetica, 'Mank Sans', sans-serif
+      font-size: 140%
+      text-shadow: 0 1px 1px #E5E573
+
+      a
+        display: block
+        padding: .75em 1em
+        color: #3C791E
+        strong
+          display: block
+          margin-top: .25em
+          text-align: right
+          color: #222
+          text-shadow: 0 1px 1px #9c9
+          font-weight: bold
+        &:hover
+          text-decoration: none !important
+          strong
+            color: #000
+
+    input[type=submit]
+      font-size: 90%
+      font-family: Helvetica, 'Mank Sans', sans-serif
+      font-weight: bold
+      padding: 4px 8px 2px 8px
+      background: #5c992e url(/images/gradient-green-button.png) repeat-x
+      border: 1px solid #3C791E
+      color: #222
+      text-shadow: 0 1px 1px #e5e573
+      +border_radius(.5em)
+      &:hover
+        color: #000
+        
 
     #comments
       +border_radius(.5em)
@@ -239,6 +285,8 @@ blockquote.signage
     &:hover
       text-decoration: underline
 
+
+          
 /#parameter-symbol
 /  font:
 /    size: 72px
@@ -284,3 +332,4 @@ dt.bullet
   list-style-type: square
 dd.detail
   display: none
+

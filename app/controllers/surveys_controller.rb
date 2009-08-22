@@ -33,8 +33,8 @@ class SurveysController < ApplicationController
   
   def current_object
     @current_object ||= current_model.find_by_slug(params[:id]) if params[:id].present?
+    return @current_object
   end
-  
 
   private
   def next_parameter

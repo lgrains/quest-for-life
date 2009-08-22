@@ -2,6 +2,7 @@
   $(function(){
     $('dt.bullet a').click(function(e){
       $(this).parent().next().slideToggle();
+      e.preventDefault();
     });
   })
 
@@ -10,9 +11,7 @@
 - if current_object.present?
   = partial 'parameter_form', :parameter => @parameter
 - else
-  %h4 
-    PROMPT TO TAKE SURVEY
-    = link_to new_survey_path
+  = partial 'shared/survey_prompt'
   
 #comments
   %h3 Discussion
