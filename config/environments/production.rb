@@ -28,6 +28,6 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 # Clearance
-raise 'You need to set HOST and DO_NOT_REPLY for Clearance in config/environments/production.rb!'
-# HOST = "mydomain.com"
-# DO_NOT_REPLY = "donotreply@mydomain.com"
+# raise 'You need to set HOST and DO_NOT_REPLY for Clearance in config/environments/production.rb!'
+HOST = "quest-for-life.org"
+DO_NOT_REPLY = "donotreply@quest-for-life.org"
