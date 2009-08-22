@@ -20,12 +20,14 @@
       .banner
         %h1
           %a{:href => '/'}= Settings.app_name
-        %blockquote
-          %p
-            %a{:href => 'http://astronomy2009.org/', :target => "_blank"}
-              The Universe: Yours to discover. International Year of Astronomy 2009 
+         
       #header
         #main-nav
+          %blockquote
+            %p
+              %a{:href => 'http://astronomy2009.org/', :target => "_blank"}
+                The Universe: Yours to discover. International Year of Astronomy 2009
+          
           = render :partial => '/home/equation'
       
       #content

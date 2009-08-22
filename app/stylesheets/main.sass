@@ -52,26 +52,6 @@ body
       text-indent: -800em
       +width_constraints
 
-  blockquote
-    background:
-      image: url(/images/sprite.png)
-      position: 0 0
-      repeat: no-repeat
-    position: absolute
-    right: -108px
-    top: 0
-    p
-      a
-        background:
-          image: url(/images/sprite.png)
-          position: -905px -158px
-          repeat: no-repeat
-        display: block
-        height: 204px
-        text-indent: -800em
-        width: 108px
-
-
 #header
   background:
     color: rgba(255, 255, 255, .1)
@@ -137,6 +117,24 @@ body
                   width: 0 5px
                 +border_radius("20px")
                     
+    blockquote
+      background:
+        image: url(/images/sprite.png)
+        position: 0 0
+        repeat: no-repeat
+      position: absolute
+      right: -108px
+      top: 0
+      p
+        a
+          background:
+            image: url(/images/sprite.png)
+            position: -905px -158px
+            repeat: no-repeat
+          display: block
+          height: 204px
+          text-indent: -800em
+          width: 108px
                 
             
 
@@ -151,10 +149,10 @@ body
   font-family: 'Mank Sans', Georgia, 'Times New Roman', Serif
   margin: 5em auto 0
   +width_constraints
-  -moz-column-gap: 1em
-  -moz-column-width: 380px
-  -webkit-column-gap: 1em
-  -webkit-column-width: 380px
+  /-moz-column-gap: 1em
+  /-moz-column-width: 380px
+  /-webkit-column-gap: 1em
+  /-webkit-column-width: 380px
   
 
   h2
