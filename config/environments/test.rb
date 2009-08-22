@@ -29,6 +29,7 @@ config.action_mailer.delivery_method = :test
 config.gem 'redgreen'
 config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+config.gem 'jferris-mocha', :lib => 'mocha', :version => '0.9.5.0.1241126838' #Using Joe Ferris's mocha gem to get test spies
 
 # Clearance
 HOST = "localhost"
