@@ -1,8 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
-  def title title
+  def title title, heading=title
     content_for :title, title
+    content_for :heading, heading
   end
   
   def link_to(*args,&block)
@@ -33,37 +34,49 @@ module ApplicationHelper
         haml_tag(:sub, options[:sub]) if options[:sub]
         haml_tag(:sup, options[:sup]) if options[:sup]
       end
-      haml_tag(:span, options[:operator], :class => 'operator') if options[:operator]
+      # haml_tag(:span, options[:operator], :class => 'operator') if options[:operator]
     }
 
   end
   
+  def parameter_to_drake_component(parameter=@parameter)
+    method = {
+      'r_star' => :drake_stars
+    }[parameter]
+    
+    send(method)
+  end
+  
+  def drake_operator(op='&times;')
+    haml_tag :span, op, :class => 'operator'
+  end
+  
   def drake_number
-    drake_component('N', :operator => '=')
+    drake_component('N')
   end
   
   def drake_stars
-    drake_component('R', :sup => '*', :operator => '&times;')
+    drake_component('R', :sup => '*')
   end
   
   def drake_planets
-    drake_component('&#402;', :sub => 'p', :operator => '&times;')
+    drake_component('&#402;', :sub => 'p')
   end
   
   def drake_earthlike
-    drake_component('n', :sub => 'e', :operator => '&times;')
+    drake_component('n', :sub => 'e')
   end
   
   def drake_life
-    drake_component('&#402;', :sub => 'ℓ', :operator => '&times;')
+    drake_component('&#402;', :sub => 'ℓ')
   end
   
   def drake_intelligence
-    drake_component('&#402;', :sub => 'i', :operator => '&times;')
+    drake_component('&#402;', :sub => 'i')
   end
   
   def drake_communicate
-    drake_component('&#402;', :sub => 'c', :operator => '&times;')
+    drake_component('&#402;', :sub => 'c')
   end
   
   def drake_duration

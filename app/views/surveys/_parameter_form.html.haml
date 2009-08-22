@@ -1,4 +1,5 @@
-- title 'The Drake Equation'
+- title @parameter.humanize, parameter_to_drake_component
+
 %style{:type => 'text/css'}
   :sass
     select
@@ -8,7 +9,8 @@
       
   - form.inputs do
     = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient, :hint => 'a hint'
-  = form.buttons
+  - form.buttons do
+    = form.commit_button 'Next'
 
 :javascript
   $(function(){

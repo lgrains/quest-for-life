@@ -30,6 +30,6 @@ class SurveysController < ApplicationController
     Survey.next_parameter(current)
   end
   def find_parameter
-    @parameter = params[:parameter] || Survey.parameter_columns.first
+    @parameter = params[:parameter] || Survey.parameter_columns.first.to_s
   end
 end
