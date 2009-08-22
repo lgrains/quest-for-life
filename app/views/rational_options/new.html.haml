@@ -3,6 +3,6 @@
 - semantic_form_for current_object do |form|
   = form.error_messages
   = form.inputs :numerator, :denominator
-  = form.buttons
-  
-= link_to 'Cancel', rational_options_path
+  - form.buttons do
+    = form.commit_button 'Save'
+  = link_to 'Cancel', rational_options_path

@@ -5,10 +5,10 @@
       :display none
 
 - semantic_form_for current_object do |form|
-
+      
   - form.inputs do
     - for p in Survey.parameter_columns
-      = form.input p, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient
+      = form.input p, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient, :hint => 'a hint'
   = form.buttons
 
 :javascript
