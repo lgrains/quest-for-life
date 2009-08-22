@@ -5,6 +5,8 @@ class Survey < ActiveRecord::Base
       [:r_star, :fp, :ne, :fl, :fi, :fc, :l]
     end
   end
+
+  # belongs_to :
     
   validates_numericality_of parameter_columns, :n, :greater_than_or_equal_to => 0, :allow_nil => true
 

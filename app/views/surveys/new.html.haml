@@ -1,0 +1,7 @@
+- semantic_form_for current_object do |form|
+
+  - form.inputs do
+    - for p in Survey.parameter_columns
+      = form.input p, :collection => RationalOption.all, :as => :select, :label_method => :quotient_label, :value_method => :quotient
+
+  = form.buttons

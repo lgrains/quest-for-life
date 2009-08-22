@@ -1,4 +1,6 @@
 class RationalOption < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
   default_scope :order => 'quotient'
   
   validates_presence_of :numerator, :denominator, :quotient
@@ -10,6 +12,16 @@ class RationalOption < ActiveRecord::Base
   before_validation :calculate_quotient
   
   attr_accessible :numerator, :denominator
+  
+  def quotient_label
+    if self.denominator > 1
+      # Rational(self.numerator, self.denominator).to_s\
+      
+      "#{number_with_delimiter(self.numerator)} in #{number_with_delimiter(self.denominator)}"
+    else
+      number_with_delimiter(self.numerator)
+    end
+  end
   
   private
   

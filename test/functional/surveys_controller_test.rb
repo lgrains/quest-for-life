@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class SurveysControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "new" do
+    get :new
+    assert_response :ok
   end
 end
