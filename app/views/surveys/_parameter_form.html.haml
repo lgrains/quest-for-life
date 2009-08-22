@@ -7,7 +7,6 @@
       
 #form
   - semantic_form_for current_object do |form|
-      
     - form.inputs do
       = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient, :hint => 'a hint'
     - form.buttons do
@@ -15,6 +14,6 @@
 
 :javascript
   $(function(){
-    $('select').each(function(i,o){
+    $('#form select').each(function(i,o){
       $(o).selectToUISlider({labels: 0})});
   });
