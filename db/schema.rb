@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20090822001518) do
     t.string  "salt",       :null => false
   end
 
-  create_table "rationals", :force => true do |t|
+  create_table "rational_options", :force => true do |t|
     t.integer  "numerator",   :null => false
     t.integer  "denominator", :null => false
     t.decimal  "quotient",    :null => false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20090822001518) do
     t.string   "token",              :limit => 128
     t.datetime "token_expires_at"
     t.boolean  "email_confirmed",                   :default => false, :null => false
+    t.boolean  "admin",                             :default => false, :null => false
     t.string   "identity_url"
   end
 

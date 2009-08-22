@@ -14,6 +14,6 @@ class RationalOption < ActiveRecord::Base
   private
   
   def calculate_quotient
-    self.quotient = self.numerator.to_f / self.denominator.to_f
+    self.quotient = self.numerator.to_f / self.denominator.to_f unless self.denominator.to_i == 0
   end
 end
