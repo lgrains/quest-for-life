@@ -29,6 +29,10 @@ class Survey < ActiveRecord::Base
     slug
   end
   
+  def completed?
+    self.n.present?
+  end
+  
   private
   
   def calculate_n

@@ -1,4 +1,4 @@
 %script
   var disqus_identifier = #{@parameter.to_json};
-  var disqus_url = 'http://www.quest-for-life.org'
+  var disqus_url = #{[Settings.base_url, @parameter || 'results'].join('/').to_json};
   var disqus_developer = 1;

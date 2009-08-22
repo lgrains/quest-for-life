@@ -1,8 +1,10 @@
 defaults: &defaults
   app_name: The Quest for Life
+  base_url: http://www.quest-for-life.org
   
 development:
   <<: *defaults
+  base_url: http://localhost:3000
 
 test:
   <<: *defaults
