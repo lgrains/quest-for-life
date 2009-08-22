@@ -81,10 +81,18 @@ body
             display: inline
           html[lang~=EN] &
             display: inline-block
+        
+        span.operator
+          color: #ccc
+          font:
+            family: 'Arial Narrow', Helvetica, Sans-serif
+            size: 20px
+            style: normal
+        
           
         a
           &.drake
-            display: block
+            /display: block
             line-height: 2.0
             text-decoration: none
             span
@@ -96,13 +104,13 @@ body
                 min-height: 50px
                 min-width: 30px
                 padding: 0 .5em
-                
-              &.operator
-                color: #ccc
-                font:
-                  family: 'Arial Narrow', Helvetica, Sans-serif
-                  size: 20px
-                  style: normal
+              /
+                &.operator
+                  color: #ccc
+                  font:
+                    family: 'Arial Narrow', Helvetica, Sans-serif
+                    size: 20px
+                    style: normal
             &:hover
               span.function
                 background-color: #f1f1f1
