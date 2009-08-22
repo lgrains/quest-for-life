@@ -9,7 +9,7 @@ class SurveyGroupsControllerTest < ActionController::TestCase
   end
   
   test "create" do
-    post :create, :survey_group => {:group_name => 'test group'}
+    post :create, :survey_group => {:group_name => 'test group', :age_group => Factory(:age_group)}
 
     assert_redirected_to assigns(:current_object)
     assert_not_nil assigns(:current_object)
@@ -33,7 +33,8 @@ class SurveyGroupsControllerTest < ActionController::TestCase
   end
 
   test "edit a survey group that does not belong to to the current user" do
-    survey_group = Factory.create(:survey_group)
+    survey_group = Factory.create(:survey_group, :user => Factory(:user))
+    assert survey_group.user != @user
     get :edit, :id => survey_group
 
     assert_response :not_found

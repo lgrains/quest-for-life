@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :age_groups
+
   map.resources :survey_groups
 
   map.resources :surveys
