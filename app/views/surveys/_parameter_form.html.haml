@@ -1,16 +1,17 @@
-- title @parameter.humanize, parameter_to_drake_component
-
 %style{:type => 'text/css'}
   :sass
     select
       :display none
-
-- semantic_form_for current_object do |form|
+    #form
+      :margin-top 2em
       
-  - form.inputs do
-    = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient, :hint => 'a hint'
-  - form.buttons do
-    = form.commit_button 'Next'
+#form
+  - semantic_form_for current_object do |form|
+      
+    - form.inputs do
+      = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient, :hint => 'a hint'
+    - form.buttons do
+      = form.commit_button 'Next'
 
 :javascript
   $(function(){

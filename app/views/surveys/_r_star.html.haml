@@ -1,0 +1,46 @@
+
+%style{ :type => "text/css" }
+  :sass
+    h1.long-name
+      font-size: 200%
+    h2.description
+      font-size: 150%
+    dt.bullet
+      font-size: 125%
+      font-weight: bold
+      display: list-item
+      list-style-type: square
+      cursor: pointer
+    dd.detail
+      :display none
+:javascript
+  $(function(){
+    $('dt.bullet').click(function(e){
+      $(this).next().slideToggle();
+      })
+  })
+
+%h1.long-name Rate of Stellar Formation
+%h2.description How many stars form in our galaxy each year?
+
+%dl
+  %dt.bullet Only parameter that is well understood
+  %dd.detail We have a lot of observational evidence of star formation in action. We also have good evidence for the number of stars in the galaxy (400 billion) and its age (up to 13 billion years), this gives us several ways to calculate an average rate.
+  %dt.bullet Simple Calculation 400 billion stars/13 billion years
+  %dd.detail
+    %p Estimates of the number of stars in our galaxy are between 200 and 600 billion stars, it is hard to count them, so we estimate based on the observed weight of the galaxy. You can comfortably pick any number in this range, but 400 billion seems to be a commonly used value.
+    %p
+      The age of the galaxy is also difficult to pin down. The oldest known star in the galaxy is about 13.2 billion years old. The galactic disk is probably younger than that, 6-10 billion years. For our purposes a median value of 9 or 10 billion is probably OK. Divide the number of stars by this and you have a simple estimate of
+      = drake_stars
+
+  %dt.bullet Rate of Star Formation is not constant
+  %dd.detail The rate of star formation is not constant. In the galaxy's early days, there was a lot more star build material available so the rate of formation was much higher. As a result you might want to reduce the above estimate by 25 or 50 percent.
+
+  %dt.bullet Not All Stars are Suitable
+  %dd.detail Some stars are too hot and short lived to be candidates for life. On the other hand, many are too cool to have an appropriate habitable zone. Only about 25% of stars formed will be candidates for our search.
+
+  %dt.bullet More Information
+  %dd.detail
+    = link_to 'Why use the Rate of formation instead of the number of stars', 'http://www.setileague.org/askdr/rstar.htm'
+    = link_to "Wikipedia article discussion our galaxy's age and composition", 'http://en.wikipedia.org/wiki/Milky_Way'
+    = link_to "Stellar classification", 'http://en.wikipedia.org/wiki/Stellar_classification'
