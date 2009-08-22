@@ -4,7 +4,8 @@
 /     select
 /       :display none
 
-- semantic_form_for current_object do |form|
+
+- semantic_form_for [parent_object, current_object].compact do |form|
       
   / - form.inputs do
   /   - for p in Survey.parameter_columns

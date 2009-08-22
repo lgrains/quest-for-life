@@ -1,7 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :age_groups
 
-  map.resources :survey_groups
+  map.resources :survey_groups do |survey_groups|
+    survey_groups.resources :surveys
+  end
+
 
   map.resources :surveys
   map.with_options :controller => 'surveys' do |s|

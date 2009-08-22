@@ -14,7 +14,7 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  # belongs_to :
+  belongs_to :survey_group
     
   validates_numericality_of parameter_columns, :n, :greater_than_or_equal_to => 0, :allow_nil => true
   validates_presence_of :slug

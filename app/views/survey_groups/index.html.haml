@@ -1,5 +1,6 @@
-- title 'My Classes'
-%a{:href => new_survey_group_path} Add a new class
+
+- title 'My Groups'
+%a{:href => new_survey_group_path} Add a new group
 - paginated_section @survey_groups do
   %table
     %thead
@@ -7,10 +8,12 @@
         %th Name
         %th Age Group
         %th Surveys Completed
+        %th Invitation Link
     %tbody
       - @survey_groups.each do |group|
         %tr
-          %td= h group.group_name
+          %td= link_to group.group_name, edit_survey_group_path(group)
           %td= h group.age_group.description
-          %td= group.surveys.count
+          %td= link_to group.surveys.count, survey_group_surveys_path(group)
+          %td= link_to new_survey_group_survey_url(group), new_survey_group_survey_path(group)
 

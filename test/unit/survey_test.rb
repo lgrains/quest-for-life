@@ -2,6 +2,7 @@ require 'test_helper'
 
 class SurveyTest < ActiveSupport::TestCase
   should_validate_numericality_of :r_star, :fp, :ne, :fl, :fi, :fc, :l, :n
+  should_belong_to :survey_group
 
   test "n is nil if any parameter is nil" do
     # initialize all to non-nil

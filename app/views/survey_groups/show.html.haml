@@ -1,1 +1,7 @@
-= h current_object.inspect
+- title current_object.group_name
+
+%p
+  = link_to pluralize(current_object.surveys.count, "survey"), survey_group_surveys_path(current_object)
+
+%p
+  = link_to 'back to groups', survey_groups_path

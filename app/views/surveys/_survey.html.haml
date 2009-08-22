@@ -1,6 +1,6 @@
 %li
   - if survey.n.present?
-    = link_to "N = #{survey.n}", survey
+    = link_to "N = #{survey.n}", [parent_object, survey].flatten
   - else
-    = link_to "(incomplete)", survey
+    = link_to "(incomplete)", [parent_object, survey].flatten
   (created #{survey.created_at})

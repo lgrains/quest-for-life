@@ -5,6 +5,7 @@ class SurveysController < ApplicationController
   
   make_resourceful do
     actions :new, :create, :show, :index, :edit, :update
+    belongs_to :survey_group
 
     after :create do
       # store survey id in the user's session, which authorizes them to edit/update
@@ -21,7 +22,7 @@ class SurveysController < ApplicationController
         if (n = next_parameter) #not a bug, intended assignment!
           redirect_to survey_parameter_path(current_object, n)
         else
-          redirect_to current_object
+          redirect_to [current_object.survey_group, current_object].flatten
         end
       end
     end
@@ -50,14 +51,14 @@ class SurveysController < ApplicationController
     
     unless current_object.id == session[:survey_id]
       if current_object.completed?
-        redirect_to current_object # show survey
+        redirect_to [parent_object, current_object].flatten # show survey
       else
-        redirect_to surveys_path
+        redirect_to parent? ? survey_group_surveys_path : surveys_path
       end
     end
   end
   
   def only_show_if_completed
-    redirect_to surveys_path unless current_object.completed?
+    redirect_to ( parent? ? survey_group_surveys_path : surveys_path) unless current_object.completed?
   end
 end

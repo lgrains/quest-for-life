@@ -1,5 +1,9 @@
 %p
-  %a{:href => new_survey_path} Add a new survey
+  %a{:href => parent? ? new_survey_group_survey_path : new_survey_path}
+    Add a new survey
+  - if parent?
+    |
+    = link_to parent_object.group_name, parent_object
 
 - paginated_section current_objects do
   = page_entries_info current_objects
