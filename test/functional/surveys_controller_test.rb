@@ -9,7 +9,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "create" do
     post :create, :survey => {}
 
-    assert_redirected_to assigns(:current_object)
+    assert_redirected_to edit_survey_path(assigns(:current_object))
     assert assigns(:current_object).present?
     assert !assigns(:current_object).new_record?
   end
