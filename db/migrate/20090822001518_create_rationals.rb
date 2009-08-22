@@ -1,6 +1,6 @@
-class CreateRationals < ActiveRecord::Migration
+class CreateRationalOptions < ActiveRecord::Migration
   def self.up
-    create_table :rationals do |t|
+    create_table :rational_options do |t|
       t.integer :numerator, :null => false
       t.integer :denominator, :null => false
       t.decimal :quotient, :null => false
@@ -10,6 +10,6 @@ class CreateRationals < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :rationals
+    drop_table :rational_options
   end
 end

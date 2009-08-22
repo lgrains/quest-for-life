@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RationalTest < ActiveSupport::TestCase
+class RationalOptionsControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true
