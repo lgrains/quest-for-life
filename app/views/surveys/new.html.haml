@@ -3,5 +3,9 @@
   - form.inputs do
     - for p in Survey.parameter_columns
       = form.input p, :collection => RationalOption.all, :as => :select, :label_method => :quotient_label, :value_method => :quotient
-
   = form.buttons
+
+:javascript
+  $(function(){
+    $('select').selectToUISlider();
+  });
