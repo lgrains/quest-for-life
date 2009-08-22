@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def drake_link(text, url, definition)
-    class_name = (controller.action_name == url) ? 'yah drake' : 'drake' 
+    class_name = (@parameter == url) ? 'yah drake' : 'drake' 
     haml_tag :a, {:href => url_for(:controller => 'drake', :action => url), :class => class_name, :title => definition} do
       haml_concat(text)
     end
