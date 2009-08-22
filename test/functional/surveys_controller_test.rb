@@ -14,8 +14,14 @@ class SurveysControllerTest < ActionController::TestCase
     assert !assigns(:current_object).new_record?
   end
 
-  test "show" do    
+  test "show incomplete survey" do
     survey = Factory.create(:survey)
+    get :show, :id => survey.slug
+    assert_redirected_to surveys_path
+  end
+
+  test "show completed survey" do    
+    survey = Factory.create(:completed_survey)
     get :show, :id => survey.slug
 
     assert_response :ok
