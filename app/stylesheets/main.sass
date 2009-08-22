@@ -214,28 +214,27 @@ blockquote.signage
       font-size: 100%      
 
     dl, p, ul
-      text-shadow: 1px 1px 0 #000
+      text-shadow: 1px 1px 2px #000
 
     dd
       ul, li, p
         :margin-left 1em
 
     #comments
-      clear: both
-      /position: relative
-      /top: -145px
+      +border_radius(.5em)
       background-color: #313771
       padding: 1em
-      +border_radius(.5em)
+      margin-top: 2em
+      border: 1px solid #20244a
       dl, p, ul
         text-shadow: none
         
   p
     margin: 0 0 1em 0
-    text-shadow: 1px 1px 2px #000
   
   a
-    color: #3AC1FF
+    color: #3ac1ff
+    font-weight: bold
     text-decoration: none
     &:hover
       text-decoration: underline

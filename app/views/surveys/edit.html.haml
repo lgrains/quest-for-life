@@ -6,8 +6,14 @@
   })
 
 = partial @parameter
-= partial 'parameter_form', :parameter => @parameter
 
+- if current_object.present?
+  = partial 'parameter_form', :parameter => @parameter
+- else
+  %h4 
+    PROMPT TO TAKE SURVEY
+    = link_to new_survey_path
+  
 #comments
   %h3 Discussion
   = partial '/shared/disqus'

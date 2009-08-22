@@ -32,7 +32,7 @@ class SurveysController < ApplicationController
   end
   
   def current_object
-    @current_object ||= current_model.find_by_slug(params[:id])
+    @current_object ||= current_model.find_by_slug(params[:id]) if params[:id].present?
   end
   
 
@@ -46,6 +46,8 @@ class SurveysController < ApplicationController
   end
   
   def authorize
+    return if current_object.nil?
+    
     unless current_object.id == session[:survey_id]
       if current_object.completed?
         redirect_to current_object # show survey

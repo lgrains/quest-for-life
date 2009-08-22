@@ -15,8 +15,16 @@ module ApplicationHelper
   end
   
   def drake_link(text, url, definition)
-    class_name = (@parameter == url) ? 'yah drake' : 'drake' 
-    haml_tag :a, {:href => url_for(:controller => 'drake', :action => url), :class => class_name, :title => definition} do
+    class_name = (@parameter == url) ? 'yah drake' : 'drake'
+    if session[:survey_id].present?
+      survey = Survey.find(session[:survey_id]) 
+      path = survey_parameter_path(survey, url)
+    else
+      # just browsing
+      path = equation_parameter_path(url)
+    end
+    
+    haml_tag :a, {:href => path, :class => class_name, :title => definition} do
       haml_concat(text)
     end
   end
