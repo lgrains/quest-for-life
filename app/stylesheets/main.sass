@@ -1,3 +1,5 @@
+@import compass/utilities.sass
+
 !site_purple = "#41345F"
 !main_nav_radius = "10px"
 
@@ -31,6 +33,10 @@ body
   font-size: 10pt
   padding: 0
   margin: 0
+  html[lang~=en] &
+    overflow-x: hidden
+  html[lang~=EN] &
+    overflow-x: visible 
 
 
 #page
@@ -116,6 +122,7 @@ body
               &.function
                 border: 1px solid transparent
                 display: inline-block
+                letter-spacing: -2px
                 min-height: 50px
                 min-width: 30px
                 padding: 0 .5em
@@ -139,7 +146,7 @@ body
   font-size: 80%
   color = !site_purple
 
-blockquote.iya
+blockquote.signage
   float: right
   margin-left: 1em
   position: relative
@@ -158,10 +165,12 @@ blockquote.iya
 
 #content
   color: #fff
+  +pie-clearfix
   font-family: 'Mank Sans', Georgia, 'Times New Roman', Serif
   position: relative
   +width_constraints
   margin: 0 auto 0 auto
+  text-align: left
   
   /-moz-column-gap: 1em
   /-moz-column-width: 380px
