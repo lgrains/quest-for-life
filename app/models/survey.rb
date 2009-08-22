@@ -4,6 +4,14 @@ class Survey < ActiveRecord::Base
     def parameter_columns
       [:r_star, :fp, :ne, :fl, :fi, :fc, :l]
     end
+
+    def next_parameter(requested_parameter)
+      return parameter_columns.first if requested_parameter.nil?
+      requested_parameter = requested_parameter.to_sym
+      raise "Invalid parameter: #{requested_parameter}" unless parameter_columns.include?(requested_parameter)
+      index = parameter_columns.index(requested_parameter)
+      parameter_columns[index+1]
+    end
   end
 
   # belongs_to :
