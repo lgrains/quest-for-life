@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :rationals
+  map.resources :rational_options
 
   # The priority is based upon order of creation: first created -> highest priority.
 
