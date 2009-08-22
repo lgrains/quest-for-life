@@ -1,0 +1,8 @@
+%h4 New Rational Option
+
+- semantic_form_for current_object do |form|
+  = form.error_messages
+  = form.inputs :numerator, :denominator
+  = form.buttons
+  
+= link_to 'Cancel', rational_options_path

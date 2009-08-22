@@ -1,0 +1,13 @@
+%h4 Rational Options
+
+= link_to 'Add a rational option', new_rational_option_path
+
+%ol
+  - for rational_option in current_objects
+    %li
+      = rational_option.numerator
+      = "/"
+      = rational_option.denominator
+      = "="
+      = rational_option.quotient
+      = link_to 'Delete', rational_option, :method => :delete, :confirm => 'Are you sure?'
