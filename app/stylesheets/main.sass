@@ -124,23 +124,25 @@ body
                 min-height: 50px
                 min-width: 30px
                 padding: 0 .5em
+                text-shadow: 0 0 2px #000
                 sub
                   position: relative
                   top: -.25em
+                sup
+                  position: relative
+                  top: .25em
             &:hover
               span.function
                 color: #fff
-                background-color: #eee
-                background-color: rgba(192, 192, 192, .25)
-                text-shadow: 0 0 2px #000
+                background-color: #777
+                background-color: rgba(192, 192, 192, .2)
                 +border_radius(!main_nav_radius)
             &.yah
               span.function
-                border:
-                  color: #f1efce
-                  style: solid
-                  width: 0 5px
-                +border_radius("20px")
+                color: #fff
+                background-color: #777
+                background-color: rgba(192, 192, 192, .5)
+                +border_radius(!main_nav_radius)
 
 #footer
   margin-top: 30px
@@ -154,6 +156,7 @@ blockquote.signage
   margin-left: 1em
   position: relative
   top: -150px
+  z-index: 99
   p
     &.iya
       a
@@ -175,22 +178,6 @@ blockquote.signage
         margin-bottom: .5em
         width: 108px
 
-  z-index: 99
-  p.iya
-    a
-      background:
-        image: url(/images/iya_logo_small.png)
-        position: 0 0
-        repeat: no-repeat
-      display: block
-      height: 204px
-      text-indent: -800em
-      width: 108px
-      -moz-box-shadow: 2px 2px 12px #000
-      -webkit-box-shadow: 2px 2px 12px #000
->>>>>>> Homepage, layout tweaks:app/stylesheets/main.sass
-
-
 #content
   color: #fff
   +pie-clearfix
@@ -209,8 +196,17 @@ blockquote.signage
   h2
     font-weight: bold
     font-size: 130%
-    margin: 0 0 1em 0
 
+  h3
+    margin: 0 0 1em 0
+    font-size: 120%
+
+  dl, p, ul
+    text-shadow: 1px 1px 0 #000
+
+  ul
+    :padding-left 1em
+    
   p
     margin: 0 0 1em 0
     text-shadow: 1px 1px 0 #000
@@ -221,6 +217,18 @@ blockquote.signage
     text-decoration: none
     &:hover
       text-decoration: underline
+
+/#parameter-symbol
+/  font:
+/    size: 72px
+/    family: Georgia, Serif
+/    style: italic
+/  letter-spacing: -10px
+/  float: left
+/  margin-right: 30px
+/  sup
+/    position: relative
+/    top: .25em
 
 dl.form dd
   margin-left: 0
