@@ -1,3 +1,4 @@
+require "settingslogic"
 require "smtp_tls"
  
 mailer_config = File.open("#{RAILS_ROOT}/config/mailer.yml")
