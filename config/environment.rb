@@ -14,6 +14,7 @@ Rails::Initializer.run do |config|
   config.gem 'thoughtbot-clearance', :lib => 'clearance', :source => 'http://gems.github.com'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'ruby-openid', :lib => 'openid'
+  config.gem 'chriseppstein-compass', :version => '0.8.7', :lib => 'compass', :source => 'http://gems.github.com'
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
