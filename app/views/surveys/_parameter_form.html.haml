@@ -8,7 +8,7 @@
 #form
   - semantic_form_for current_object do |form|
     - form.inputs do
-      = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient, :hint => 'a hint'
+      = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient
     - form.buttons do
       = form.commit_button 'Next'
 
