@@ -115,14 +115,13 @@ body
           
         a
           &.drake
-            /display: block
             color: #ccc
             line-height: 2.0
             text-decoration: none
             span
               &.function
                 display: inline-block
-                letter-spacing: -4px
+                letter-spacing: -.2em
                 min-height: 50px
                 min-width: 30px
                 padding: 0 .5em
@@ -144,7 +143,6 @@ body
                 color: #fff
                 background-color: #777
                 background-color: rgba(255, 255, 255, .2)
-                +border_radius(!main_nav_radius)
 
 #footer
   margin: 30px 0
@@ -152,6 +150,10 @@ body
   font-size: 11px
   font-family: arial, sans-serif
   color: #171a35
+  a
+    color: #141830
+    font-weight: bold
+    text-decoration: none
 
 blockquote.signage
   float: right
@@ -202,6 +204,8 @@ blockquote.signage
   /-webkit-column-width: 380px
   
   #main
+    width: 660px
+    
     h2
       font-weight: bold
       font-size: 130%
@@ -254,6 +258,7 @@ blockquote.signage
 
     #form
       +border_radius(.5em)
+      width: 100%
       padding: 1em
       background: #a2cb52 url(/images/gradient-green2.png) repeat-x
       width: 650px
@@ -272,10 +277,12 @@ blockquote.signage
       +border_radius(.5em)
       &:hover
         color: #000
+        border-color: #000
         
 
     #comments
       +border_radius(.5em)
+      width: 100%
       background-color: #313771
       padding: 1em
       margin-top: 2em
@@ -338,6 +345,8 @@ dt.bullet
   font-weight: bold
   display: list-item
   list-style-type: square
+  a:focus
+    outline: none
 dd.detail
   display: none
 
