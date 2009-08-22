@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
   def record_not_found
     render :template => '/error/error_404', :status => 404 , :layout => 'application.html.haml'
   end
+
+  def verify_admin
+    redirect_to root_path unless current_user.try(:admin?)
+  end
   
 end

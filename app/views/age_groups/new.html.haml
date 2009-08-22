@@ -1,0 +1,8 @@
+- title 'New Age Group'
+
+- semantic_form_for current_object do |form|
+  = form.error_messages
+  = form.inputs
+  - form.buttons do
+    = form.commit_button 'Save'
+  = link_to 'Cancel', age_groups_path

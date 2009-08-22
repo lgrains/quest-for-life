@@ -1,0 +1,9 @@
+- title 'Age Groups'
+
+= link_to 'Add an age group', new_age_group_path
+
+%ol
+  - for age_group in current_objects
+    %li
+      = age_group.description
+      = link_to 'Delete', age_group, :method => :delete, :confirm => 'Are you sure?'
