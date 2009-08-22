@@ -1,1 +1,16 @@
-= h @survey_groups.inspect
+- title 'My Classes'
+%a{:href => new_survey_group_path} Add a new class
+- paginated_section @survey_groups do
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Age Group
+        %th Surveys Completed
+    %tbody
+      - @survey_groups.each do |group|
+        %tr
+          %td= h group.group_name
+          %td= h group.age_group.description
+          %td= group.surveys.count
+
