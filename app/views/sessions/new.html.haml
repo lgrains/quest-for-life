@@ -1,0 +1,31 @@
+- title 'Log in'
+
+#password_form
+  - form_for :session, :url => session_path do |form|
+    %dl.form
+      %dt= form.label :email
+      %dd= form.text_field :email
+
+      %dt= form.label :password
+      %dd= form.password_field :password
+
+      %dd
+        = form.check_box :remember_me
+        = form.label :remember_me
+
+      %dd.actions
+        = form.submit "Log in", :disable_with => "Please wait..."
+            
+#openid_form
+  %p Or log in using OpenID&hellip;
+
+  - form_tag(session_url) do
+    .text_field
+      = label_tag :openid_url, 'OpenID'
+      = text_field_tag :openid_url, @openid_url
+    .submit_field
+      = submit_tag "Log in", :disable_with => "Please wait..."
+
+%ul
+  %li= link_to "Sign up", new_user_path
+  %li= link_to "Forgot password?", new_password_path

@@ -1,0 +1,11 @@
+defaults: &defaults
+  app_name: The Quest for Life
+  
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
