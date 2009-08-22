@@ -33,7 +33,7 @@ module ApplicationHelper
   end
   
   def drake_stars
-    drake_component('R', :sup => '*', :operator => '=')
+    drake_component('R', :sup => '*', :operator => '&times;')
   end
   
   def drake_planets
