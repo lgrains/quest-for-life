@@ -5,4 +5,5 @@ db/schema.rb
 log/*.log
 doc/api
 doc/app
-tmp/**/*
+tmp/**/
+.project*
