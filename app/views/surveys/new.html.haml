@@ -1,13 +1,18 @@
 - title 'The Drake Equation'
+%style{:type => 'text/css'}
+  :sass
+    select
+      :display none
 
 - semantic_form_for current_object do |form|
 
   - form.inputs do
     - for p in Survey.parameter_columns
-      = form.input p, :collection => RationalOption.all, :as => :select, :label_method => :quotient_label, :value_method => :quotient
+      = form.input p, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient
   = form.buttons
 
 :javascript
   $(function(){
-    $('select').selectToUISlider();
+    $('select').each(function(i,o){
+      $(o).selectToUISlider()});
   });
