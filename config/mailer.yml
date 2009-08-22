@@ -1,6 +1,6 @@
   ---
     :address: smtp.gmail.com
     :port: 587
-    :user_name: <%= $private_settings.mail_user %>
-    :password: <%= $private_settings.mail_password %>
+    :user_name: #{$private_settings.mail_user}
+    :password: #{$private_settings.mail_password}
     :authentication: :plain
