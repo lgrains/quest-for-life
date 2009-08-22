@@ -4,7 +4,7 @@
 =width_constraints
   min-width: 400px
   margin: 0 auto
-  max-width: 800px
+  max-width: 960px
 =outline(!color=red)
   * html &
     border = 1px dotted !color
@@ -31,39 +31,51 @@ body
 
 
 #page
+  background:
+    color: #000
+    image: url(/images/banner.png)
+    position: 100% 0
+    repeat: no-repeat
   /position: relative
   /margin: 0 auto
   /width: 960px
+  +width_constraints
 
 .banner
+  height: 93px
+  position: relative
+  z-index: 1
   h1
-    background-color: #000
     position: relative
     /+outline(yellow)
+    +width_constraints
     a
       background:
-        color: #000
-        image: url(/images/sprite.png)
+        image: url(/images/logo.png)
         position: 0 0
         repeat: no-repeat
       color: #fff
       display: block
-      height: 142px
+      height: 106px
+      left: 0
+      position: absolute
+      top: 0
+      
       text-indent: -800em
-      +width_constraints
+      width: 408px
 
 #header
-  background:
-    color: rgba(255, 255, 255, .1)
   left: 0
   top: 0
+  position: relative
+  z-index: 2
     
   a
     :color #fff
 
   #main-nav
     /margin 0 auto
-    /+outline
+    position: relative
     +width_constraints
     dl
       &.equation
@@ -104,13 +116,7 @@ body
                 min-height: 50px
                 min-width: 30px
                 padding: 0 .5em
-              /
-                &.operator
-                  color: #ccc
-                  font:
-                    family: 'Arial Narrow', Helvetica, Sans-serif
-                    size: 20px
-                    style: normal
+              
             &:hover
               span.function
                 background-color: #f1f1f1
@@ -124,39 +130,36 @@ body
                   style: solid
                   width: 0 5px
                 +border_radius("20px")
-                    
-    blockquote
-      background:
-        image: url(/images/sprite.png)
-        position: 0 0
-        repeat: no-repeat
-      position: absolute
-      right: -108px
-      top: 0
-      p
-        a
-          background:
-            image: url(/images/sprite.png)
-            position: -905px -158px
-            repeat: no-repeat
-          display: block
-          height: 204px
-          text-indent: -800em
-          width: 108px
-                
-            
 
 #footer
   text-align: center
   font-size: 80%
   color = !site_purple
 
+blockquote.iya
+  float: right
+  margin-left: 1em
+  position: relative
+  top: -150px
+  p
+    a
+      background:
+        image: url(/images/iya_logo_small.png)
+        position: 0 0
+        repeat: no-repeat
+      display: block
+      height: 204px
+      text-indent: -800em
+      width: 108px
+
 
 #content
   color: #fff
   font-family: 'Mank Sans', Georgia, 'Times New Roman', Serif
-  margin: 5em auto 0
+  position: relative
   +width_constraints
+  margin: 0 auto 0 auto
+  
   /-moz-column-gap: 1em
   /-moz-column-width: 380px
   /-webkit-column-gap: 1em
