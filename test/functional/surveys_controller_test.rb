@@ -11,7 +11,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_redirected_to edit_survey_path(assigns(:current_object))
     assert_not_nil assigns(:current_object)
-    assert !assigns(:current_object).new_record?
+    assert_equal assigns(:current_object).id, session[:survey_id]
   end
 
   test "show incomplete survey" do
