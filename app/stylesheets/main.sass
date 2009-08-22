@@ -1,3 +1,27 @@
+!site_purple = "#41345F"
+!main_nav_radius = "10px"
+
+=width_constraints
+  min-width: 400px
+  margin: 0 auto
+  max-width: 800px
+=outline(!color=red)
+  * html &
+    border = 1px dotted !color
+  html[lang=en] &
+    border = 1px dotted !color
+  html[lang=EN] &
+    outline = 1px dotted !color
+
+=border_radius(!radius)
+  border-radius = !radius
+  -moz-border-radius = !radius
+  -webkit-border-radius = !radius
+
+@font-face
+  font-family: 'Mank Sans'
+  src: url(/fonts/MankSans.ttf)
+
 body
   background-color: #000
   font-family: Verdana, Arial, sans-serif
@@ -11,57 +35,110 @@ body
   /margin: 0 auto
   /width: 960px
 
-#header
+h1
   background-color: #000
-  padding: 4px 10px
+  /+outline(yellow)
+  a
+    background:
+      color: #000
+      image: url(/images/sprite.png)
+      position: 0 0
+      repeat: no-repeat
+    color: #fff
+    display: block
+    height: 142px
+    text-indent: -800em
+    +width_constraints
+
+
+
+#header
+  background:
+    color: rgba(255, 255, 255, .1)
   left: 0
-  /margin-top: 40px
-  position: fixed
   top: 0
     
   a
     :color #fff
 
-  h1
-    color: #fff
-    margin: 0
-    padding: 0
-
   #main-nav
+    /margin 0 auto
+    /+outline
+    +width_constraints
     dl
-      margin: 0
-      font:
-        family: Georgia, Serif
-        size: 120%
-      dt, dd
-        display: inline
+      &.equation
+        font:
+          family: Georgia, Serif
+          size: 20px
+          style: italic
         
-      a
-        &.drake
-          /display: block
-          text-decoration: none
-          span
-            /float: left
-            margin-left: 1em
+        dt, dd
+          display: inline-block
           
+        a
+          &.drake
+            display: block
+            line-height: 2.0
+            text-decoration: none
+            span
+              margin:
+                left: 10px
+              &.function
+                border: 1px solid transparent
+                display: inline-block
+                min-height: 50px
+                min-width: 30px
+                padding: 0 .5em
+                
+              &.operator
+                color: #ccc
+                font:
+                  family: 'Arial Narrow', Helvetica, Sans-serif
+                  size: 20px
+                  style: normal
+            &:hover
+              span.function
+                background-color: #f1f1f1
+                border = 1px solid !site_purple
+                color: #000
+                +border_radius(!main_nav_radius)
+            &.yah
+              span.function
+                border:
+                  color: #f1efce
+                  style: solid
+                  width: 0 5px
+                +border_radius("20px")
+                    
+                
+            
 
 #footer
   text-align: center
   font-size: 80%
-  color: #41345f
+  color = !site_purple
 
 
 #content
   color: #fff
+  font-family: 'Mank Sans', Georgia, 'Times New Roman', Serif
   margin: 5em auto 0
-  padding: 1em
+  /padding: 1em
   /background-color: #fff
-  /border: 2px solid #41345f
+  outline: 1px dotted #fff
+  +width_constraints
+  -moz-column-gap: 1em
+  -moz-column-width: 380px
+  -webkit-column-gap: 1em
+  -webkit-column-width: 380px
+  
 
   h2
     font-weight: normal
     margin: 0 0 1em 0
 
+  p
+    margin: 0 0 1em 0
 
 dl.form dd
   margin-left: 0

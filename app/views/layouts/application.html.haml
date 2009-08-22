@@ -3,7 +3,7 @@
   %head
     %title= [Settings.app_name, yield(:title)].compact.join(' - ')
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    = stylesheet_link_tag 'main'
+    = stylesheet_link_tag 'main', 'screen'
     = stylesheet_link_tag 'redmond/jquery-ui-1.7.1.custom'
     = stylesheet_link_tag 'ui.slider.extras'
     = javascript_include_tag 'jquery-1.3.2.min.js'
@@ -13,8 +13,9 @@
     
   %body{:lang => 'en'}
     #page
+      %h1
+        %a{:href => '/'}= Settings.app_name
       #header
-        %h1= Settings.app_name
         #main-nav
           = render :partial => '/home/equation'
       

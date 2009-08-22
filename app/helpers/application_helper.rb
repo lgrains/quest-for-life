@@ -21,11 +21,21 @@ module ApplicationHelper
   end
   
   def drake_component(function, options={})
-    str = function
-    str << capture_haml {haml_tag(:sub, options[:sub])} if options[:sub]
-    str << capture_haml {haml_tag(:sup, options[:sup])} if options[:sup]
-    str << capture_haml {haml_tag(:span, options[:operator])} if options[:operator]
-    return str
+#    str = capture_haml {haml_tag(:span, function, :class => 'function')}
+#    str << capture_haml {haml_tag(:sub, options[:sub])} if options[:sub]
+#    str << capture_haml {haml_tag(:sup, options[:sup])} if options[:sup]
+#    str << capture_haml {haml_tag(:span, options[:operator], :class => 'operator')} if options[:operator]
+#    return str
+
+    capture_haml {
+      haml_tag(:span, :class => 'function') do
+        haml_concat function
+        haml_tag(:sub, options[:sub]) if options[:sub]
+        haml_tag(:sup, options[:sup]) if options[:sup]
+      end
+      haml_tag(:span, options[:operator], :class => 'operator') if options[:operator]
+    }
+
   end
   
   def drake_number
