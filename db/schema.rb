@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822001518) do
+ActiveRecord::Schema.define(:version => 20090822023734) do
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(:version => 20090822001518) do
     t.integer  "numerator",   :null => false
     t.integer  "denominator", :null => false
     t.decimal  "quotient",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.decimal  "r_star"
+    t.decimal  "fp"
+    t.decimal  "ne"
+    t.decimal  "fl"
+    t.decimal  "fi"
+    t.decimal  "fc"
+    t.integer  "l"
+    t.integer  "n"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
