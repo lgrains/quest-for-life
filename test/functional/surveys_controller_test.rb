@@ -28,6 +28,36 @@ class SurveysControllerTest < ActionController::TestCase
     assert_equal survey, assigns(:current_object)
   end
 
+  test "edit a survey that is in the current session" do
+    survey = Factory.create(:completed_survey)
+    session[:survey_id] = survey.id
+    get :edit, :id => survey.slug
+
+    assert_response :ok
+  end
+
+  test "edit a survey that is not in the current session" do
+    survey = Factory.create(:completed_survey)
+    get :edit, :id => survey.slug
+
+    assert_redirected_to survey, "should have redirected to view"
+  end
+
+  test "update a survey that is in the current session" do
+    survey = Factory.create(:completed_survey)
+    session[:survey_id] = survey.id
+    put :update, :id => survey.slug, :survey => {:r_star => 2}
+
+    assert_redirected_to survey_parameter_path(survey, 'fp')
+  end
+
+  test "update a survey that is not in the current session" do
+    survey = Factory.create(:completed_survey)
+    put :update, :id => survey.slug, :survey => {:r_star => 2}
+
+    assert_redirected_to survey, "should have redirected to view"
+  end
+
   test "index" do
     Survey.delete_all
     surveys = [Factory(:survey), Factory(:survey)]
