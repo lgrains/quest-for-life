@@ -40,11 +40,15 @@ module ApplicationHelper
   end
   
   def parameter_to_drake_component(parameter=@parameter)
-    method = {
-      'r_star' => :drake_stars
+    {
+      'r_star' => drake_stars,
+      'fp' => drake_planets,
+      'ne' => drake_earthlike,
+      'fl' => drake_life,
+      'fi' => drake_intelligence,
+      'fc' => drake_communicate,
+      'l' => drake_duration
     }[parameter]
-    
-    send(method)
   end
   
   def drake_operator(op='&times;')
