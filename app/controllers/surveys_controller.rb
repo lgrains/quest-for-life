@@ -21,8 +21,13 @@ class SurveysController < ApplicationController
   end
 
   def current_objects
-    current_model.paginate(:per_page => 20, :page => params[:page])
+    @current_objects ||= current_model.paginate(:per_page => 20, :page => params[:page])
   end
+  
+  def current_object
+    @current_object ||= current_model.find_by_slug(params[:id])
+  end
+  
 
   private
   def next_parameter

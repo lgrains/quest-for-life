@@ -17,10 +17,17 @@ class Survey < ActiveRecord::Base
   # belongs_to :
     
   validates_numericality_of parameter_columns, :n, :greater_than_or_equal_to => 0, :allow_nil => true
+  validates_presence_of :slug
+  validates_uniqueness_of :slug, :on => :create
 
+  before_validation_on_create :set_slug
   before_save :calculate_n
   
   attr_accessible *parameter_columns
+  
+  def to_param
+    slug
+  end
   
   private
   
@@ -32,6 +39,10 @@ class Survey < ActiveRecord::Base
       self.n = nil
     end
     true
+  end
+  
+  def set_slug
+    self.slug = ActiveSupport::SecureRandom.hex(4) # 8 hex digits
   end
   
 end

@@ -10,13 +10,13 @@ class SurveysControllerTest < ActionController::TestCase
     post :create, :survey => {}
 
     assert_redirected_to edit_survey_path(assigns(:current_object))
-    assert assigns(:current_object).present?
+    assert_not_nil assigns(:current_object)
     assert !assigns(:current_object).new_record?
   end
 
-  test "show" do
+  test "show" do    
     survey = Factory.create(:survey)
-    get :show, :id => survey
+    get :show, :id => survey.slug
 
     assert_response :ok
     assert_equal survey, assigns(:current_object)
