@@ -47,9 +47,10 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   map.resources :users do |users|
-    users.resource :confirmation, :only => :new
+    users.resource :password, :controller => 'clearance/passwords', :only => [:create, :edit, :update]
+    users.resource :confirmation, :controller => 'clearance/confirmations', :only => [:new, :create]
   end
-
+  
   map.open_id_complete 'session', :controller => 'sessions', :action => 'create', :requirements => { :method => :get }
   map.resource :session, :only => [:new, :create, :destroy]
   
