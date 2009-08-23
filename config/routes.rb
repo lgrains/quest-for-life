@@ -45,7 +45,9 @@ ActionController::Routing::Routes.draw do |map|
   #     admin.resources :products
   #   end
 
-  map.resources :users
+  map.resources :users do |users|
+    users.resource :confirmation, :only => :new
+  end
 
   map.open_id_complete 'session', :controller => 'sessions', :action => 'create', :requirements => { :method => :get }
   map.resource :session, :only => [:new, :create, :destroy]
