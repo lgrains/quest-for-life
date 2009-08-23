@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   end
 
   def to_param
-    (self.email_confirmed? && self.username) || super
+    return self.username if self.email_confirmed? && !self.username.blank?
+    super
   end
   
 end
