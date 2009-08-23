@@ -1,33 +1,29 @@
 - title 'Log in'
 %br
-%table.content-table
-  %col{:width => '45%'}
-  %col{:width => '10%'}
-  %col{:width => '45%'}
-  %tr
-    %td
-      #password_form
-        - form_for :session, :url => session_path do |form|
-          %dl.form
-            %dt= form.label :email
-            %dd= form.text_field :email
+%fieldset#password_form
+  - form_for :session, :url => session_path do |form|
+    %dl.form
+      %dt= form.label :email
+      %dd= form.text_field :email
+  
+      %dt= form.label :password
+      %dd= form.password_field :password
+  
+      %dd
+        = form.check_box :remember_me
+        = form.label :remember_me
+  
+      %dd.actions
+        = form.submit "Log in", :disable_with => "Please wait..."
+      %dd
+        %p
+        = link_to "Forgot password?", new_password_path
 
-            %dt= form.label :password
-            %dd= form.password_field :password
+#teachers
+  %h2 Teachers: Why Sign Up? 
+  :textile 
+    By registering for an account you will be able to create special URLs (web addresses) to give your students so they can explore the Drake Equation and you can see, and share, the class's results.
+  :textile
+    We don't collect student names or e-mail addresses so you can have the print and hand in their summary sheets to show they did it. You will be able to see how many students have completed the equation and view a summary of their answers.
 
-            %dd
-              = form.check_box :remember_me
-              = form.label :remember_me
-
-            %dd.actions
-              = form.submit "Log in", :disable_with => "Please wait..."
-            %dd
-              %p
-              = link_to "Forgot password?", new_password_path
-    %td
-    %td
-      %h3 Teachers: Why Sign Up? 
-      %p By registering for an account you will be able to create special URLs (web addresses) to give your students so they can explore the Drake Equation and you can see, and share, the class's results.
-      %p We don't collect student names or e-mail addresses so you can have the print and hand in their summary sheets to show they did it. You will be able to see how many students have completed the equation and view a summary of their answers.
-      %h2= link_to "Sign up now", new_user_path
-
+  %h2= link_to "Sign up now", new_user_path
