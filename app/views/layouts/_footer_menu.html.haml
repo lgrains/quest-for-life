@@ -1,5 +1,4 @@
 %p.menu
-  |
   = link_to 'Home', root_path
   |
   = link_to 'About', '/home/about'
@@ -11,7 +10,6 @@
   = link_to 'IYA 2009', 'http://astronomy2009.org', :target => '_blank'
   |
   = link_to 'Rails Rumble', 'http://r09.railsrumble.com/', :target => '_blank'
-  |
   - if current_user
-    = link_to 'Logout', '/logout'
     |  
+    = link_to 'Logout', '/logout'
