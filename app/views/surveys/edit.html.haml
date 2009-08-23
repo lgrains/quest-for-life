@@ -1,5 +1,7 @@
 :javascript
   $(function(){
+    $('.bullets dd.detail').hide();
+    
     $('dt.bullet a').click(function(e){
       $(this).parent().next().slideToggle();
       e.preventDefault();
