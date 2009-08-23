@@ -6,7 +6,7 @@ class UsersController < Clearance::UsersController
 
   private
   def current_object
-    @current_object ||= User.teachers.find_by_login(params[:id])
+    @current_object ||= User.teachers.find_by_username(params[:id])
     if @current_object.nil?
       return record_not_found
     end
