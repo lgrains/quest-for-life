@@ -48,11 +48,10 @@
             %p.iya
               %a{:href => 'http://astronomy2009.org/', :target => "_blank"}
                 The Universe: Yours to discover. International Year of Astronomy 2009
-          
+            - rumble_text = 'Vote for this site for the Rails Rumble 2009 Competition'
             %p.rumble
-              %a{:href => 'http://blog.railsrumble.com/', :target => "_blank"}
-                %img{:src => image_path('rr09_badge_250.png'), :alt => 'Rails Rumble 2009'}
-                Vote for this site at Rails Rumble 2009
+              %a{:href => 'http://r09.railsrumble.com/teams/the-alienators', :target => "_blank", :title => rumble_text}
+                = rumble_text
                 
             %p.twitter
               %a{:href => 'http://www.twitter.com/home?status=See+how+many+alien+civilizations+you+can+find+at+quest-for-life.org', :target => "_blank"}
