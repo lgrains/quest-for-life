@@ -1,8 +1,11 @@
 - title 'About You', 'Almost there&hellip;'
 
 %p 
-  Please tell us a little about yourself so that we can compare your responses with others.
-  %em This is optional.
+  In addition to teaching a little science, we hope to learn more about how different people around the world think about this issue. Please tell us a little about yourself so that we can compare your responses with others.
+  
+%p
+  %em This is optional. Entering your Twitter username will allow us to associate that name and your Twitter avatar with your answer.
+  
 #form  
   - semantic_form_for current_object do |form|
     = hidden_field_tag :demographics, 'true'
