@@ -54,7 +54,6 @@ module SurveysHelper
     end
 
     options[:rational_options] ||= options[:data].keys.map(&:first).uniq.sort_by{|k| k.to_s.split('over').last.split('-').first.to_i}
-    debugger
     options
   end
   
