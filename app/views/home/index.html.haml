@@ -1,10 +1,24 @@
-- title 'Crowdsourcing the Drake Equation'
+- title 'Are We Alone?'
 
-:textile
-  In 1960 Dr. Frank Drake created a formula to estimate the number of intelligent civilizations in our galaxy. Rather than giving a definitive answer, the Drake Equation provides a framework for exploring what may be the most important scientific question of the 21st century.
-
-  This application will teach enough astronomy, geology, and biology to help people understand each parameter of the Drake Equation. They can enter their estimates for each value and calculate their own number of civilizations, then compare their ideas with those of other participants, contextualized by different demographic data.
-
-  Enhanced features will include teacher functionality to compare answers among students in a classroom, Twitter integration to share your estimate with your tweeps, and a blog to keep up with late-breaking news in the field.
+%p In 1960 Dr. Frank Drake created a formula to estimate the number of intelligent civilizations in our galaxy. Rather than giving a definitive answer, the Drake Equation provides a framework for exploring what may be the most important scientific question of the 21st century.
 
 = partial 'shared/survey_prompt'
+
+%table
+  %col{:width => '45%'}
+  %col{:width => '10%'}
+  %col{:width => '45%'}
+  %tr
+    %td
+      %h2 Participate
+
+      %p This site is your opportunity to understand the scientific underpinnings of the search for life in our galaxy. You can spend 10 minutes, or a couple hours here, exploring. As you think about each parameter of the equation you'll be building your own answer to the question "How many civilizations are out there trying to communicate with us?" Then you can see your answers compared with other people from around the world.
+    %td
+    %td
+      %h2 Teachers
+
+      %p We've built some special functionality that allows you to have entire classes think about this question and see their answers compared with the entire class. This will drive class discussion over the individual parameters, the answers and what those answers might mean to humanity.
+
+      %p
+        = link_to 'Teachers, get started now&hellip;', new_session_path
+
