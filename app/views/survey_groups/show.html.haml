@@ -4,4 +4,4 @@
   = link_to pluralize(current_object.surveys.count, "survey"), survey_group_surveys_path(current_object)
 
 %p
-  = link_to "back to #{current_object.user.login}'s profile", current_object.user
+  = link_to "back to #{current_object.user.username}'s profile", current_object.user

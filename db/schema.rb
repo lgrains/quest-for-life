@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823001107) do
+ActiveRecord::Schema.define(:version => 20090823041203) do
 
   create_table "age_groups", :force => true do |t|
     t.text     "description"
@@ -80,12 +80,13 @@ ActiveRecord::Schema.define(:version => 20090823001107) do
     t.boolean  "email_confirmed",                   :default => false, :null => false
     t.boolean  "admin",                             :default => false, :null => false
     t.string   "identity_url"
-    t.string   "login"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["id", "token"], :name => "index_users_on_id_and_token"
   add_index "users", ["identity_url"], :name => "index_users_on_identity_url", :unique => true
   add_index "users", ["token"], :name => "index_users_on_token"
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

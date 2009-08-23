@@ -3,7 +3,7 @@ class SurveyGroupsController < ApplicationController
   make_resourceful do
     actions :all
     response_for :create, :update, :destroy do |format|
-      format.html { redirect_to current_object.user }
+      format.html { redirect_to current_user }
     end
   end
 
