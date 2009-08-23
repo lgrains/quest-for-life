@@ -38,13 +38,20 @@ class Survey < ActiveRecord::Base
     end
     
     def report(parameter, axis)
-      sql = "select #{parameter}, #{axis}, count(*) as count_surveys
+      if 'n' == parameter.to_s
+        sql_parameter = "( SELECT CASE
+        when n <= 10 then n
+        else 'over 10' END) as group_col"
+      else
+        sql_parameter = "#{parameter} as group_col"
+      end
+      sql = "select #{sql_parameter}, #{axis}, count(*) as count_surveys
         from #{table_name}
         where n is not null 
-        group by #{parameter}, #{axis}"
-        
+        group by group_col, #{axis}"
+
       Survey.find_by_sql(sql).inject({}) do |hash, group|
-        hash[[group.send(parameter), group.send(axis)]] = group.count_surveys.to_i
+          hash[[group.group_col, group.send(axis)]] = group.count_surveys.to_i
         hash
       end
     end

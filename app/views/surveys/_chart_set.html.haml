@@ -7,7 +7,7 @@
   - rational_options.each_with_index do |option, i|
     %li
       %span{ :style => "background-color: #{chart_colors[i]}"} &nbsp;
-      = option.quotient_label
+      = option.send(option_label_method)# quotient_label
 
 %ol.pie-charts
   - for member in dimension
@@ -25,14 +25,14 @@
         %thead
           %tr
             - for option in rational_options
-              %th= option.quotient_label
+              %th= option.send(option_label_method)
 
         %tbody
           %tr
             - for option in rational_options                
               %td
                 - if member.nil?
-                  = data[[option.id, nil]].to_i + data[[option.id, '']].to_i
+                  = data[[option.send(option_value_method), nil]].to_i + data[[option.send(option_value_method), '']].to_i
                 - else
-                  = data[[option.id, member.send(dimension_key_method)]].to_i
+                  = data[[option.send(option_value_method), member.send(dimension_key_method)]].to_i
 

@@ -26,23 +26,35 @@ module SurveysHelper
   def chart(parameter, dimension, options={})
     options[:parameter] = parameter
     options[:demographic] = dimension
+
+    if :n == parameter.to_sym
+      parameter_col = parameter.to_s
+      options[:option_label_method] = :to_s
+      options[:option_value_method] = :to_s
+    else
+      parameter_col ="#{parameter}_rational_id"
+      options[:rational_options] = Survey.options_for(parameter)
+      options[:option_label_method] = :quotient_label
+      options[:option_value_method] = :id
+    end
     
     case dimension
     when :age
       options[:dimension] = AgeGroup.all + [AgeGroup.new(:id => nil, :description => 'Unknown')]
-      options[:data] = Survey.report("#{parameter}_rational_id", :age_group_id)
+      options[:data] = Survey.report(parameter_col, :age_group_id)
       options[:dimension_key_method] = :id
       options[:dimension_label_method] = :description
     when :gender
       options[:dimension] = ['Male','Female',nil]
-      options[:data] = Survey.report("#{parameter}_rational_id", :gender)
+      options[:data] = Survey.report(parameter_col, :gender)
       options[:dimension_key_method] = :to_s
       options[:dimension_label_method] = :to_s
     else
       raise 'Invalid dimension'
     end
+
+    options[:rational_options] ||= options[:data].keys.map(&:first).uniq.sort
     
-    options[:rational_options] = Survey.options_for(parameter)
     
     render :partial => 'chart_set', :locals => options
   end

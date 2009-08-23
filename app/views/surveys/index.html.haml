@@ -6,6 +6,8 @@
     /= link_to parent_object.group_name, parent_object
 
 
+= chart :n, :age
+= chart :n, :gender
 - for parameter in Survey.parameter_columns
   = chart parameter, :age
   = chart parameter, :gender
