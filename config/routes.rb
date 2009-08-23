@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   #     admin.resources :products
   #   end
 
-  map.resources :users, :only => :show do |users|
+  map.resources :users do |users|
     users.resource :confirmation, :only => :new
   end
 
