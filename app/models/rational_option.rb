@@ -41,7 +41,7 @@ class RationalOption < ActiveRecord::Base
 
   def ne_label
     if quotient >= 1
-      "#{pluralize quotient.to_i, 'body'} in an average solar system will be capable of liquid water"
+      "#{pluralize quotient.to_i, 'body'} in an average solar system could have liquid water"
     else
       "#{number_with_delimiter(self.numerator)} out of every #{pluralize(number_with_delimiter(self.denominator), 'solar system')} will have one body that supports liquid water"
     end
