@@ -18,5 +18,12 @@
 :javascript
   $(function(){
     $('#form select').each(function(i,o){
-      $(o).selectToUISlider({labels: 0})});
+
+      $(o).selectToUISlider({
+        sliderOptions: {
+          slide: function(event, ui){
+            document.title = o.options[ui.value].text;
+          },
+        },
+        labels: 0})});
   });
