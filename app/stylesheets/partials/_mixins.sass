@@ -1,0 +1,30 @@
+!main_nav_radius = "10px"
+
+=width_constraints
+  min-width: 400px
+  margin: 0 auto
+  max-width: 960px
+=outline(!color=red)
+  * html &
+    border = 1px "dotted" !color
+  html[lang~=en] &
+    border = 1px "dotted" !color
+  html[lang~=EN] &
+    outline = 1px "dotted" !color
+
+=border_radius(!radius)
+  border-radius = !radius
+  -moz-border-radius = !radius
+  -webkit-border-radius = !radius
+
+=drake_sub_fix
+  #header #main-nav dl.equation a.drake span.function sub
+    top: .2em
+
+=ie7_plus_fixes
+  +drake_sub_fix
+
+  #header #main-nav dl.equation,
+  #parameter-symbol
+    background: url(/images/alpha.png) repeat
+    /-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"

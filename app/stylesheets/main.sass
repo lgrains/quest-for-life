@@ -1,23 +1,6 @@
 @import compass/utilities.sass
-!main_nav_radius = "10px"
-
-=width_constraints
-  min-width: 400px
-  margin: 0 auto
-  max-width: 960px
-=outline(!color=red)
-  * html &
-    border = 1px "dotted" !color
-  html[lang~=en] &
-    border = 1px "dotted" !color
-  html[lang~=EN] &
-    outline = 1px "dotted" !color
-
-=border_radius(!radius)
-  border-radius = !radius
-  -moz-border-radius = !radius
-  -webkit-border-radius = !radius
-
+@import partials/_mixins.sass  
+  
 @font-face
   font-family: 'Mank Sans'
   src: url(/fonts/MankSans.ttf)
@@ -127,11 +110,12 @@ body
                 padding: 0 .5em
                 text-shadow: 0 0 2px #000
                 sub
-                  /position: relative
-                  /top: -.25em
+                  position: relative
+                  top: -.25em
                 sup
-                  /position: relative
-                  /top: .25em
+                  left: .2em
+                  position: relative
+                  top: .25em
             &:hover
               span.function
                 color: #fff
@@ -143,6 +127,9 @@ body
                 color: #fff
                 background-color: #777
                 background-color: rgba(255, 255, 255, .2)
+
+@media all and (-webkit-min-device-pixel-ratio:0)
+  +drake_sub_fix
 
 #footer
   margin: 30px 0
@@ -158,9 +145,9 @@ body
     text-decoration: none
 
 blockquote.signage
-  float: right
+  /float: right
   margin-left: 1em
-  position: relative
+  /position: relative
   top: -170px
   z-index: 99
   p
@@ -188,9 +175,10 @@ blockquote.signage
 #content
 
   #sidebar
-    width: 108px
-    float: right
     margin-left: 20px
+    position: absolute
+    right: 0
+    top: 0
     
   color: #fff
   +clearfix
@@ -230,6 +218,13 @@ blockquote.signage
     dd
       ul, li, p
         :margin-left 1em
+        
+    a[target~='_blank']:after
+      content: ' (external link)'
+      color: #ccc
+      font:
+        size: 90%
+        weight: normal
 
     p.start-survey-prompt
       -moz-box-shadow: 4px 4px 16px #000
@@ -242,6 +237,8 @@ blockquote.signage
       font-family: Helvetica, 'Mank Sans', sans-serif
       font-size: 140%
       text-shadow: 0 1px 1px #E5E573
+      &:hover
+        /background: #5c992e url(/images/gradient-green2.png) repeat-x 0 29px
 
       a
         display: block
@@ -337,8 +334,6 @@ blockquote.signage
     text-decoration: none
     &:hover
       text-decoration: underline
-
-
           
 #parameter-symbol
   font:
@@ -349,7 +344,7 @@ blockquote.signage
   margin-left: .25em
   position: absolute
   right: 0
-  top: -.5em
+  top: 0em
   color: #999
   text-shadow: 0 0 12px #000
   background: rgba(0,0,0,.2)
@@ -410,6 +405,7 @@ dd.detail
     :display block
     :line-height 1.1
     :margin-top 3px
+    /margin-top: 1.5em
   
   img
     display: block
