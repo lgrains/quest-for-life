@@ -1,0 +1,36 @@
+- title "#{current_object.login}'s Profile"
+
+- if current_user == current_object
+  = partial 'user_account_header'
+
+- if current_object.survey_groups.any?
+  %h3 Groups
+  %table
+    %col{:width => 320}
+    %col{:width => 120}
+    %col{:width => 120}
+    %col{:width => 120}
+    %col{:width => 120}
+    %col{:width => 120}
+    %thead
+      %tr
+        %th Group / Class Name
+        %th Age Group
+        %th Completed Surveys
+        %th Incomplete Surveys
+        %th Total Surveys
+        %th Actions
+    %tbody
+      - current_object.survey_groups.each do |g|
+        %tr
+          %th= h g.group_name
+          %th= h g.age_group.description
+          %th= link_to g.surveys.n_not_null.count, [g, :surveys]
+          %th= g.surveys.n_null.count
+          %th= g.surveys.count
+          - if current_user != current_object
+            %th= link_to 'Add yours', new_survey_group_survey_path(g)
+          -else
+            %th= link_to 'edit', edit_survey_group_survey_path(g)
+
+

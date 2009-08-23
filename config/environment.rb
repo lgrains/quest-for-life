@@ -16,6 +16,8 @@ Rails::Initializer.run do |config|
   config.gem 'ruby-openid', :lib => 'openid'
   config.gem 'chriseppstein-compass', :version => '0.8.10', :lib => 'compass', :source => 'http://gems.github.com'
   config.gem 'jcnetdev-better_partials', :version => '>= 1.1', :lib => 'better_partials', :source => 'http://gems.github.com'
+  config.gem 'binarylogic-searchlogic', :version => '2.2.3', :lib => 'searchlogic', :source => 'http://gems.github.com'
+
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
