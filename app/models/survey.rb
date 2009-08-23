@@ -22,10 +22,18 @@ class Survey < ActiveRecord::Base
 
   before_validation_on_create :set_slug
   before_validation :strip_at_from_twitter_username
-  before_save :calculate_n
+  before_save :calculate_quotients
   
-  attr_accessible *parameter_columns
+  attr_accessible *(parameter_columns.map{|p| "#{p}_rational_id".to_sym })
   attr_accessible :city, :state, :country, :age_group_id, :gender, :twitter_username
+
+  belongs_to :r_star_rational, :class_name => 'RationalOption'
+  belongs_to :fp_rational, :class_name => 'RationalOption'
+  belongs_to :ne_rational, :class_name => 'RationalOption'
+  belongs_to :fl_rational, :class_name => 'RationalOption'
+  belongs_to :fi_rational, :class_name => 'RationalOption'
+  belongs_to :fc_rational, :class_name => 'RationalOption'
+  belongs_to :l_rational, :class_name => 'RationalOption'
   
   def to_param
     slug
@@ -37,7 +45,10 @@ class Survey < ActiveRecord::Base
   
   private
   
-  def calculate_n
+  def calculate_quotients
+    Survey.parameter_columns.each do |column|
+      send("#{column}=", send("#{column}_rational").try(:quotient))
+    end
     values = Survey.parameter_columns.map { |p| self.send(p) }
     if values.all?
       self.n = values.inject(1.0) { |product, v| product * v }.round

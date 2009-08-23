@@ -46,7 +46,7 @@ class SurveysController < ApplicationController
 
   private
   def next_parameter
-    current = params[:survey].keys.find{|k| Survey.parameter_columns.include? k.to_sym }
+    current = params[:survey].keys.map{|k| k.sub(/_rational_id$/, '')}.find{|k| Survey.parameter_columns.include? k.to_sym }
     Survey.next_parameter(current)
   end
   def find_parameter
