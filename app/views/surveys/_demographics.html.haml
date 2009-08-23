@@ -1,0 +1,18 @@
+- title 'About You', 'Almost there&hellip;'
+
+%p 
+  Please tell us a little about yourself so that we can compare your responses with others.
+  %em This is optional.
+#form  
+  - semantic_form_for current_object do |form|
+    = hidden_field_tag :demographics, 'true'
+    - form.inputs do      
+      = form.input :city
+      = form.input :state
+      = form.input :country, :as => :country, :include_blank => true
+      = form.input :gender, :as => :select, :collection => ['Male', 'Female'], :include_blank => true
+      = form.input :age_group_id, :as => :select, :include_blank => true, :label_method => :description
+      = form.input :twitter_username
+    - form.buttons do
+      = form.commit_button 'Next'
+  

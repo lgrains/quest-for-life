@@ -6,16 +6,20 @@
     });
   })
 
-#parameter-symbol
-  = parameter_to_drake_component(@parameter)
+- if @parameter == 'demographics'
+  = partial 'demographics'
 
-= partial @parameter
-
-- if current_object.present?
-  = partial 'parameter_form', :parameter => @parameter
 - else
-  = partial 'shared/survey_prompt'
+  #parameter-symbol
+    = parameter_to_drake_component(@parameter)
+
+  = partial @parameter
+
+  - if current_object.present?
+    = partial 'parameter_form', :parameter => @parameter
+  - else
+    = partial 'shared/survey_prompt'
   
-#comments
-  %h3 Discussion
-  = partial '/shared/disqus'
+  #comments
+    %h3 Discussion
+    = partial '/shared/disqus'

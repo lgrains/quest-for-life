@@ -8,8 +8,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :surveys
   map.with_options :controller => 'surveys' do |s|
-    s.survey_parameter '/surveys/:id/:parameter', :action => :edit, :requirements =>{:method => :get}
-    s.equation_parameter '/equation/:parameter', :action => :edit, :requirements =>{:method => :get}
+    s.survey_demographics '/surveys/:id/demographics', :action => :edit, :parameter => 'demographics', :requirements => { :method => :get }
+    s.survey_parameter '/surveys/:id/:parameter', :action => :edit, :requirements => { :method => :get }
+    s.equation_parameter '/equation/:parameter', :action => :edit, :requirements => { :method => :get }
   end
 
   map.resources :rational_options

@@ -64,8 +64,14 @@ ActiveRecord::Schema.define(:version => 20090823041203) do
     t.integer  "n"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug",            :limit => 8
+    t.string   "slug",             :limit => 8
     t.integer  "survey_group_id"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "gender"
+    t.integer  "age_group_id"
+    t.string   "twitter_username"
   end
 
   add_index "surveys", ["slug"], :name => "index_surveys_on_slug", :unique => true

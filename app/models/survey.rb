@@ -21,9 +21,11 @@ class Survey < ActiveRecord::Base
   validates_uniqueness_of :slug, :on => :create
 
   before_validation_on_create :set_slug
+  before_validation :strip_at_from_twitter_username
   before_save :calculate_n
   
   attr_accessible *parameter_columns
+  attr_accessible :city, :state, :country, :age_group_id, :gender, :twitter_username
   
   def to_param
     slug
@@ -47,6 +49,10 @@ class Survey < ActiveRecord::Base
   
   def set_slug
     self.slug = ActiveSupport::SecureRandom.hex(4) # 8 hex digits
+  end
+  
+  def strip_at_from_twitter_username
+    self.twitter_username.gsub!('@', '') if self.twitter_username.present?
   end
   
 end

@@ -1,12 +1,20 @@
 - title 'Log in'
 
 #password_form
-  - semantic_form_for :session, :url => session_path do |form|
-    = form.input :email
-    = form.input :password, :as => :password
-    = form.input :remember_me, :as => :boolean
-    - form.buttons do
-      = form.commit_button "Log in", :disable_with => "Please wait..."
+  - form_for :session, :url => session_path do |form|
+    %dl.form
+      %dt= form.label :email
+      %dd= form.text_field :email
+
+      %dt= form.label :password
+      %dd= form.password_field :password
+
+      %dd
+        = form.check_box :remember_me
+        = form.label :remember_me
+
+      %dd.actions
+        = form.submit "Log in", :disable_with => "Please wait..."
             
 #openid_form
   %p Or log in using OpenID&hellip;
