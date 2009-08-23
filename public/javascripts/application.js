@@ -6,10 +6,7 @@ $(function() {
   });
 });
 
-DD_roundies.addRule('p.start-survey-prompt', '12px');
+//DD_roundies.addRule('p.start-survey-prompt', '12px');
 DD_roundies.addRule('p.twitter a', '6px');
-//DD_roundies.addRule('#header #main-nav dl.equation', '10px');
-//DD_roundies.addRule('div#form', '12px');
-//DD_roundies.addRule('#parameter-symbol', '12px');
 
 

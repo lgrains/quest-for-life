@@ -21,8 +21,14 @@
   #header #main-nav dl.equation a.drake span.function sub
     top: .2em
 
+=parameter_symbol_fix
+  #parameter-symbol sub,
+  #parameter-symbol sup
+    font-size: 35px
+
 =ie7_plus_fixes
   +drake_sub_fix
+  +parameter_symbol_fix
 
   #header #main-nav dl.equation,
   #parameter-symbol
