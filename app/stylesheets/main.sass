@@ -186,9 +186,9 @@ blockquote.signage
 #content
 
   #sidebar
-    width: 270px
+    width: 170px
     float: right
-    margin-left: 40px
+    margin-left: 20px
     
   color: #fff
   +pie-clearfix
@@ -204,16 +204,15 @@ blockquote.signage
   /-webkit-column-width: 380px
   
   #main
-    width: 660px
+    width: 760px
     
     h2
       font-weight: bold
-      font-size: 130%
+      font-size: 140%
 
     h3
       margin: 0 0 1em 0
-      font-size: 120%
-      font-weight: bold
+      font-size: 110%
       
     em
       font-style: italic
@@ -258,7 +257,6 @@ blockquote.signage
 
     #form
       +border_radius(.5em)
-      width: 100%
       padding: 1em
       background: #a2cb52 url(/images/gradient-green2.png) repeat-x
       border: 1px solid #5c992e
@@ -281,7 +279,6 @@ blockquote.signage
 
     #comments
       +border_radius(.5em)
-      width: 100%
       background-color: #313771
       padding: 1em
       margin-top: 2em
@@ -301,17 +298,30 @@ blockquote.signage
 
 
           
-/#parameter-symbol
-/  font:
-/    size: 72px
-/    family: Georgia, Serif
-/    style: italic
-/  letter-spacing: -10px
-/  float: left
-/  margin-right: 30px
-/  sup
-/    position: relative
-/    top: .25em
+#parameter-symbol
+    
+  font:
+    size: 60px
+    family: Georgia, Serif
+    style: italic
+  float: right
+  margin-left: .25em
+  position: relative
+  top: -.5em
+  color: #999
+  text-shadow: 0 0 12px #000
+  background: rgba(0,0,0,.2)
+  padding: 0 .1em 0 .4em
+  +border_radius(.25em) 
+  
+  sup
+    position: relative
+    top: .25em
+    left: -.5em
+  sub
+    position: relative
+    top: -.25em
+    left: -.5em
 
 dl.form dd
   margin-left: 0
@@ -344,8 +354,6 @@ dt.bullet
   font-weight: bold
   display: list-item
   list-style-type: square
-  a:focus
-    outline: none
 dd.detail
   display: none
 
