@@ -4,6 +4,32 @@ class Survey < ActiveRecord::Base
     def parameter_columns
       [:r_star, :fp, :ne, :fl, :fi, :fc, :l]
     end
+    
+    def title_for_parameter(p)
+      {
+        :n => 'Number of Civilians',
+        :r_star => 'Rate of Stellar Formation',
+        :fp => "Fraction of Stars that Develop Planets",
+        :ne => 'Number of Earthlike Planets',
+        :fl => 'Frequency of Life Developing',
+        :fi => 'Frequency of Intelligence Evolving',
+        :fc => 'Frequency of Intelligent Civilization Communicating',
+        :l => "Life Expectancy of an Advanced Society"
+      }[p.to_sym]
+    end
+    
+    def question_for_parameter(p)
+      {
+        :n => 'How many intelligent civilations are there in our galaxy?',
+        :r_star => 'How many stars form in our galaxy each year?',
+        :fp => "How many suitable stars actually form a solar system with planets in it?",
+        :ne => 'What\'s the average number of bodies in a solar system capable of supporting liquid water?',
+        :fl => 'How hard is it for life to start on a suitable planet?',
+        :fi => 'If life starts on a planet, how likely is intelligence to develop?',
+        :fc => 'Will an advanced civilization discover radio and choose to use it to communicate?',
+        :l => "How many years can an advanced society survive?"
+      }[p.to_sym]
+    end
 
     def next_parameter(requested_parameter)
       return parameter_columns.first if requested_parameter.nil?

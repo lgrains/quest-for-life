@@ -1,16 +1,24 @@
 - title 'Results'
+- summarize_parameter = params[:p] || 'n'
 
 %p
   - if parent?
     = parent_object.group_name
     /= link_to parent_object.group_name, parent_object
 
+.vertical-tabs
+  %ol.tabs
+    - for parameter in ([:n] + Survey.parameter_columns)
+      %li
+        %a{ :class => (parameter.to_s == summarize_parameter) ? 'yah' : '', :href => url_for(:p => parameter) }
+          = parameter_to_drake_component parameter
 
-= chart :n, :age
-= chart :n, :gender
-- for parameter in Survey.parameter_columns
-  = chart parameter, :age
-  = chart parameter, :gender
+  .tab-body
+    %h2= Survey.title_for_parameter(summarize_parameter)
+    %h3= Survey.question_for_parameter(summarize_parameter)
+  
+    = chart summarize_parameter.to_sym, :age
+    = chart summarize_parameter.to_sym, :gender
 
 
 :javascript

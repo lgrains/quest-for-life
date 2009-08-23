@@ -196,6 +196,40 @@ blockquote.signage
 
 #content
 
+  #main
+    .vertical-tabs
+      .tab-body
+        :min-height 300px
+        :margin-left 50px
+        :background rgba(0,0,0,.5)
+        :padding 1em
+        :-moz-border-radius-topright .5em
+        :-moz-border-radius-bottomleft .5em
+        :-moz-border-radius-bottomright .5em
+      ol.tabs
+        :float left
+        :width 50px
+        +no-bullets
+        li
+          a
+            :font-size 150%
+            :font-family Georgia, serif
+            :font-style italic
+            :display block
+            :padding 4px 8px
+            :text-align center
+            :font-weight normal
+            :-moz-border-radius-topleft .5em
+            :-moz-border-radius-bottomleft .5em
+            :letter-spacing -4px
+            &:hover
+              :background rgba(0,0,0,.2)
+              :text-decoration none
+            &.yah
+              :color #fff
+              :background rgba(0,0,0,.5)
+
+
   #sidebar
     margin-left: 20px
     position: absolute
@@ -487,6 +521,7 @@ ol.legend
     
 ol.pie-charts
   width: 400px
+  +no-bullets
   li
     :background rgba(0,0,0,.4)
     :height 75px

@@ -47,6 +47,7 @@ module ApplicationHelper
   
   def parameter_to_drake_component(parameter=@parameter)
     {
+      'n' => drake_number,
       'r_star' => drake_stars,
       'fp' => drake_planets,
       'ne' => drake_earthlike,
