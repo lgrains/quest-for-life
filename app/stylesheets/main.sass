@@ -151,7 +151,7 @@ blockquote.signage
   top: -170px
   z-index: 99
   p
-    width: 108px
+    width: 115px
     a
       &:hover
         text-decoration: none
@@ -181,7 +181,10 @@ blockquote.signage
     
     &.twitter
       a
-        +rounded_button("/images/alpha_gradient.png", "#9AE4E8", "89px", "70%", "#333", "0 6px", "2px 2px 8px #000")
+        img
+          display: block
+          margin-bottom: .3em
+        +rounded_button("/images/alpha_gradient.png", "#9AE4E8", "94px", "70%", "#333", "0 6px", "2px 2px 8px #000")
 
 #content
 
@@ -244,6 +247,12 @@ blockquote.signage
 
     p.start-survey-prompt
       +rounded_button("/images/gradient-green.png", "#5c992e", "520px", "140%", "#3C791E")
+
+    #participate
+      float: left
+      width: 46%
+    #teachers
+      margin-left: 55%
       
     #form
       +border_radius(.5em)
@@ -419,3 +428,4 @@ body.js dd.detail
   td
     vertical-align: top
   / +border_radius(.25em)
+  

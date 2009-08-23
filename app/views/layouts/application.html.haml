@@ -3,6 +3,7 @@
   %head
     %title= [Settings.app_name, yield(:title)].compact.join(' - ')
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
     = stylesheet_link_tag 'compiled/main.css', 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if lt IE 8]

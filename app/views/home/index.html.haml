@@ -4,21 +4,14 @@
 
 = partial 'shared/survey_prompt'
 
-%table
-  %col{:width => '45%'}
-  %col{:width => '10%'}
-  %col{:width => '45%'}
-  %tr
-    %td
-      %h2 Participate
-
-      %p This site is your opportunity to understand the scientific underpinnings of the search for life in our galaxy. You can spend 10 minutes, or a couple hours here, exploring. As you think about each parameter of the equation you'll be building your own answer to the question "How many civilizations are out there trying to communicate with us?" Then you can see your answers compared with other people from around the world.
-    %td
-    %td
-      %h2 Teachers
-
-      %p We've built some special functionality that allows you to have entire classes think about this question and see their answers compared with the entire class. This will drive class discussion over the individual parameters, the answers and what those answers might mean to humanity.
-
-      %p
-        = link_to 'Teachers, get started now&hellip;', new_session_path
-
+#participate
+  %h2 Participate
+  :textile
+    This site is your opportunity to understand the scientific underpinnings of the search for life in our galaxy. You can spend 10 minutes, or a couple hours here, exploring. As you think about each parameter of the equation you'll be building your own answer to the question "How many civilizations are out there trying to communicate with us?" Then you can see your answers compared with other people from around the world.
+      
+#teachers      
+  %h2 Teachers
+  :textile
+    We've built some special functionality that allows you to have entire classes think about this question and see their answers compared with the entire class. This will drive class discussion over the individual parameters, the answers and what those answers might mean to humanity.
+  %p
+    = link_to 'Teachers, get started now&hellip;', new_session_path
