@@ -53,7 +53,7 @@ module SurveysHelper
       raise 'Invalid dimension'
     end
 
-    options[:rational_options] ||= options[:data].keys.map(&:first).uniq.sort
+    options[:rational_options] ||= options[:data].keys.map(&:first).uniq.sort_by{|k| k.to_s.split('over').last.split('-').first.to_i}
     
     
     render :partial => 'chart_set', :locals => options

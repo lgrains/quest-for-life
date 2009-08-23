@@ -41,7 +41,9 @@ class Survey < ActiveRecord::Base
       if 'n' == parameter.to_s
         sql_parameter = "( SELECT CASE
         when n <= 10 then n
-        else 'over 10' END) as group_col"
+        when n <= 20 then '10-20'
+        when n <= 100 then '21-100'
+        else 'over 100' END) as group_col"
       else
         sql_parameter = "#{parameter} as group_col"
       end
