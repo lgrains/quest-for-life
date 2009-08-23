@@ -1,14 +1,14 @@
 %p.menu
   |
-  Home
+  = link_to 'Home', root_path
   |
-  About
+  = link_to 'About', '/home/about'
   |
-  Privacy
+  = link_to 'Privacy', '/home/privacy'
   |
-  Credit
+  = link_to 'Credit', '/home/credits'
   |
-  IYA 2009
+  = link_to 'IYA 2009', 'http://astronomy2009.org', :target => '_blank'
   |
-  Rails Rumble
+  = link_to 'Rails Rumble', 'http://r09.railsrumble.com/', :target => '_blank'
   |
