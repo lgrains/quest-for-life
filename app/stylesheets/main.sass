@@ -206,6 +206,7 @@ blockquote.signage
   /-webkit-column-width: 380px
   
   #main
+    position: relative
     width: 760px
     
     h2
@@ -213,9 +214,10 @@ blockquote.signage
       font-size: 140%
 
     h3
+      +clearfix
       margin: 0 0 1em 0
       font-size: 110%
-      
+
     em
       font-style: italic
 
@@ -259,6 +261,7 @@ blockquote.signage
 
     #form
       +border_radius(.5em)
+      +pie-clearfix
       padding: 1em
       background: #a2cb52 url(/images/gradient-green2.png) repeat-x
       border: 1px solid #5c992e
@@ -301,20 +304,21 @@ blockquote.signage
 
           
 #parameter-symbol
-    
   font:
     size: 60px
     family: Georgia, Serif
     style: italic
-  float: right
+  / float: right
   margin-left: .25em
-  position: relative
+  position: absolute
+  right: 0
   top: -.5em
   color: #999
   text-shadow: 0 0 12px #000
   background: rgba(0,0,0,.2)
   padding: 0 .1em 0 .4em
   +border_radius(.25em) 
+  z-index: 10
   
   sup
     position: relative
@@ -359,6 +363,10 @@ dt.bullet
 dd.detail
   display: none
   
-img.right
+.illustration
   float: right
+  font-size: 80%
+  width: 300px
 
+.bullets
+  +clearfix
