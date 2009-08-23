@@ -1,38 +1,41 @@
-%h4 
-  = parameter_to_drake_component parameter
-  estimates by
-  = demographic
+.chart-set
+  %h4 
+    = parameter_to_drake_component parameter
+    estimates by
+    = demographic
 
-%ol.legend
-  - rational_options.each_with_index do |option, i|
-    %li
-      %span{ :style => "background-color: #{chart_colors[i]}"} &nbsp;
-      = option.send(option_label_method)# quotient_label
+  %ol.pie-charts
+    - for member in dimension
+      %li
+        %h4
+          = member.nil? ? 'Unknown' : member.send(dimension_label_method) 
 
-%ol.pie-charts
-  - for member in dimension
-    %li
-      %h4
-        = member.nil? ? 'Unknown' : member.send(dimension_label_method) 
+        %dl
+          %dt Count
+          %dd= data.select { |k,v| k[1].to_s == member.send(dimension_key_method).to_s }.map { |v| v.last }.sum
+          %dt Average
+          %dd -
+          %dt Median
+          %dd -
+          %dt Min
+          %dd -
+          %dt Max
+          %dd -
+          %dt Stdev
+          %dd -
 
-      %dl
-        %dt Total respondents
-        %dd= data.select { |k,v| k[1].to_s == member.send(dimension_key_method).to_s }.map { |v| v.last }.sum
-        %dt Average
-        %dd 5
+        %table.data
+          %thead
+            %tr
+              - for option in rational_options
+                %th= option.send(option_label_method)
 
-      %table.data
-        %thead
-          %tr
-            - for option in rational_options
-              %th= option.send(option_label_method)
-
-        %tbody
-          %tr
-            - for option in rational_options                
-              %td
-                - if member.nil?
-                  = data[[option.send(option_value_method), nil]].to_i + data[[option.send(option_value_method), '']].to_i
-                - else
-                  = data[[option.send(option_value_method), member.send(dimension_key_method)]].to_i
+          %tbody
+            %tr
+              - for option in rational_options                
+                %td
+                  - if member.nil?
+                    = data[[option.send(option_value_method).to_s, nil]].to_i + data[[option.send(option_value_method), '']].to_i
+                  - else
+                    = data[[option.send(option_value_method).to_s, member.send(dimension_key_method)]].to_i
 

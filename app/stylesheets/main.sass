@@ -199,6 +199,7 @@ blockquote.signage
   #main
     .vertical-tabs
       .tab-body
+        +clearfix
         :min-height 300px
         :margin-left 50px
         :background rgba(0,0,0,.5)
@@ -206,6 +207,14 @@ blockquote.signage
         :-moz-border-radius-topright .5em
         :-moz-border-radius-bottomleft .5em
         :-moz-border-radius-bottomright .5em
+        
+        .columns
+          .column
+            :width 280px
+            :float left
+            &.legend
+              :width 100px
+        
       ol.tabs
         :float left
         :width 50px
@@ -507,8 +516,10 @@ table#data
 
 ol.legend
   :float right
+  :width 100px
+  :margin-top 30px
+  :margin-right 10px
   +no-bullets
-  :width 200px
   li
     :font-size 12px
     :font-family Arial, sans-serif
@@ -520,39 +531,39 @@ ol.legend
     :height 12px
     
 ol.pie-charts
-  width: 400px
+  width: 247px
   +no-bullets
   li
     :background rgba(0,0,0,.4)
-    :height 75px
+    :height 100px
     :margin-bottom 1em
-    +border_radius(1em)
+    :padding .5em
+    +border_radius(.5em)
   h4
+    :font-size 90%
     :font-weight bold
-    :float left
-    :width 7em
-    :line-height 75px
-    :padding-left 1em
     :font-family Helvetica
+    :padding-left 5px
   dl
     :float right
-    :margin 1em
     :font-family Arial, sans-serif
     :font-size 10px
-    :width 170px
+    :width 100px
+    :margin 0
     dt
       :clear both
       :float left
-      :width 100px
       :color #ccc      
       :text-shadow none
-      :text-align right
+      :text-align left
+      :padding-right 5px
+      :width 55px
       :border-bottom 1px dotted #000
     dd
       :float left
       :text-align right
-      :width 70px
       :text-shadow none      
+      :width 40px
       :border-bottom 1px dotted #000
 
   .visualize

@@ -17,8 +17,22 @@
     %h2= Survey.title_for_parameter(summarize_parameter)
     %h3= Survey.question_for_parameter(summarize_parameter)
   
-    = chart summarize_parameter.to_sym, :age
-    = chart summarize_parameter.to_sym, :gender
+    .all-responses
+    
+    .columns
+      .column
+        = chart summarize_parameter.to_sym, :age
+
+      .column.legend
+        - options = chart_options(summarize_parameter, :age)
+        %ol.legend
+          - options[:rational_options].each_with_index do |option, i|
+            %li
+              %span{ :style => "background-color: #{chart_colors[i]}"} &nbsp;
+              = option.send(options[:option_label_method])
+
+      .column
+        = chart summarize_parameter.to_sym, :gender
 
 
 :javascript

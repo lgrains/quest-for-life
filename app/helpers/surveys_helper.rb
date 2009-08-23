@@ -22,8 +22,8 @@ module SurveysHelper
   def chart_colors
     colors = 25.times.map { |i| "rgb(#{[128+i*5, i*5, 0].join(',')})"}.reverse
   end
-  
-  def chart(parameter, dimension, options={})
+
+  def chart_options(parameter, dimension, options={})
     options[:parameter] = parameter
     options[:demographic] = dimension
 
@@ -54,9 +54,12 @@ module SurveysHelper
     end
 
     options[:rational_options] ||= options[:data].keys.map(&:first).uniq.sort_by{|k| k.to_s.split('over').last.split('-').first.to_i}
-    
-    
-    render :partial => 'chart_set', :locals => options
+    debugger
+    options
+  end
+  
+  def chart(parameter, dimension, options={})
+    render :partial => 'chart_set', :locals => chart_options(parameter, dimension, options)
   end
   
 end
