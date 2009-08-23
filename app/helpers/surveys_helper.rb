@@ -20,7 +20,7 @@ module SurveysHelper
   end
 
   def chart_colors
-    colors = 25.times.map { |i| "rgb(#{[128+i*5, i*5, 0].join(',')})"}.reverse
+    colors = (1..25).to_a.map { |i| "rgb(#{[128+i*5, i*5, 0].join(',')})"}.reverse
   end
 
   def chart_options(parameter, dimension, options={})
