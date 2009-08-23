@@ -23,7 +23,7 @@
     %tbody
       - current_object.survey_groups.each do |g|
         %tr
-          %th= h g.group_name
+          %th= link_to g.group_name, g
           %th= h g.age_group.description
           %th= link_to g.surveys.n_not_null.count, [g, :surveys]
           %th= g.surveys.n_null.count
@@ -32,5 +32,6 @@
             %th= link_to 'Add yours', new_survey_group_survey_path(g)
           -else
             %th= link_to 'edit', edit_survey_group_survey_path(g)
+
 
 

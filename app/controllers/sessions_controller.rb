@@ -12,6 +12,10 @@ class SessionsController < Clearance::SessionsController
   
   private
   
+  def url_after_create
+    #send the user to his/her dashboard
+    current_user
+  end
   def authenticate_with_openid
     @openid_url = params[:openid_url]
     
