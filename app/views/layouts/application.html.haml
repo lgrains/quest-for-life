@@ -1,4 +1,4 @@
-!!!Strict
+!!!
 %html{:xmlns => 'http://www.w3.org/1999/xhtml', :lang => 'en' }
   %head
     %title= [Settings.app_name, yield(:title)].compact.join(' - ')
@@ -44,7 +44,7 @@
           
             %p.rumble
               %a{:href => 'http://blog.railsrumble.com/', :target => "_blank"}
-                %img{:src => image_path('rr09_badge_250.png')}
+                %img{:src => image_path('rr09_badge_250.png'), :alt => 'Rails Rumble 2009'}
                 Vote for this site at Rails Rumble 2009
                 
             %p.twitter
