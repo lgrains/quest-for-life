@@ -22,18 +22,8 @@
             %dd.actions
               = form.submit "Log in", :disable_with => "Please wait..."
             %dd
+              %p
               = link_to "Forgot password?", new_password_path
-      %br
-      %br      
-      #openid_form
-        %p Or log in using OpenID&hellip;
-
-        - form_tag(session_url) do
-          .text_field
-            = label_tag :openid_url, 'OpenID'
-            = text_field_tag :openid_url, @openid_url
-          .submit_field
-            = submit_tag "Log in", :disable_with => "Please wait..."
     %td
     %td
       %h3 Teachers: Why Sign Up? 
