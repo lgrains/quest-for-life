@@ -1,6 +1,10 @@
 %script
-  var disqus_identifier = #{@parameter.to_json};
-  var disqus_url = #{[Settings.base_url, @parameter || 'results'].join('/').to_json};
+  //var disqus_identifier = #{@parameter.to_json};
+  - if @parameter.present?
+    var disqus_url = #{[Settings.base_url, 'equation', @parameter].join('/').to_json};
+  - else
+    var disqus_url = #{[Settings.base_url, request.path].join.to_json};
+
   // uncomment this to cause discus to load css into the iframe for its form
   // see http://wiki.disqus.net/CustomCSS
   //
