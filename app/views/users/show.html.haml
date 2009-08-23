@@ -1,10 +1,12 @@
 - title "#{current_object.username}'s Profile"
 
+%br
+
 - if current_user == current_object
   = partial 'user_account_header'
 
 - if current_object.survey_groups.empty?
-  %h3 No groups belong to #{current_user == current_object ? 'you' : current_user.username}.
+  %h3 No groups currently belong to #{current_user == current_object ? 'you' : current_user.username}.
 
 -else
   %h3 Groups
