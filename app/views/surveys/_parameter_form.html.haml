@@ -3,7 +3,7 @@
   
   - semantic_form_for current_object do |form|
     - form.inputs(:class => 'parameter') do
-      = form.input parameter.to_s + '_rational_id', :collection => RationalOption.all, :include_blank => false, :as => :select, :value_method => :id, :label_method => :quotient_label
+      = form.input parameter.to_s + '_rational_id', :collection => Survey.options_for(parameter), :include_blank => false, :as => :select, :value_method => :id, :label_method => :quotient_label
     - form.buttons do
       = form.commit_button 'Next'
     .humanized-value

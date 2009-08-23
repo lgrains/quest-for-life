@@ -13,6 +13,8 @@ class RationalOption < ActiveRecord::Base
   
   attr_accessible :numerator, :denominator
   
+  named_scope :integers, {:conditions=>{:quotient => Array(0..100)}}
+
   def quotient_label
     if self.denominator > 1
       # Rational(self.numerator, self.denominator).to_s\

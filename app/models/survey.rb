@@ -12,6 +12,31 @@ class Survey < ActiveRecord::Base
       index = parameter_columns.index(requested_parameter)
       parameter_columns[index+1]
     end
+
+    def options_for(parameter)
+      send("#{parameter}_options")
+    end
+
+    def r_star_options
+      RationalOption.integers.quotient_gte(0).quotient_lte(100)
+    end
+
+    def fp_options
+      RationalOption.quotient_gte((10**-6).to_f).quotient_lte(1)
+    end
+
+    def ne_options
+      RationalOption.quotient_gte((10**-2).to_f).quotient_lte(10)
+    end
+
+    alias fl_options :fp_options
+    alias fi_options :fp_options
+    alias fc_options :fp_options
+
+    def l_options
+      RationalOption.quotient_gte(1).quotient_lte(10**6)
+    end
+
   end
 
   belongs_to :survey_group
