@@ -36,7 +36,7 @@ class SurveysController < ApplicationController
   end
 
   def current_objects
-    @current_objects ||= current_model.paginate(:per_page => 20, :page => params[:page])
+    @current_objects ||= current_model.n_not_null #.paginate(:per_page => 20, :page => params[:page])
   end
   
   def current_object

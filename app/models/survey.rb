@@ -36,10 +36,23 @@ class Survey < ActiveRecord::Base
     def l_options
       RationalOption.quotient_gte(1).quotient_lte(10**6).reject{|o| Math.log10(o.quotient) % 1 != 0}
     end
+    
+    def report(parameter, axis)
+      sql = "select #{parameter}, #{axis}, count(*) as count_surveys
+        from #{table_name}
+        where n is not null 
+        group by #{parameter}, #{axis}"
+        
+      Survey.find_by_sql(sql).inject({}) do |hash, group|
+        hash[[group.send(parameter), group.send(axis)]] = group.count_surveys.to_i
+        hash
+      end
+    end
 
   end
 
   belongs_to :survey_group
+  belongs_to :age_group
     
   validates_numericality_of parameter_columns, :n, :greater_than_or_equal_to => 0, :allow_nil => true
   validates_presence_of :slug

@@ -16,8 +16,9 @@ module ApplicationHelper
   
   def drake_link(text, url, definition)
     class_name = (@parameter == url) ? 'yah drake' : 'drake'
-    if session[:survey_id].present?
-      survey = Survey.find(session[:survey_id]) 
+    survey = Survey.find_by_id(session[:survey_id]) if session[:survey_id].present?
+
+    if survey
       path = survey_parameter_path(survey, url)
     else
       # just browsing
@@ -48,7 +49,7 @@ module ApplicationHelper
       'fi' => drake_intelligence,
       'fc' => drake_communicate,
       'l' => drake_duration
-    }[parameter]
+    }[parameter.to_s]
   end
   
   def drake_operator(op='&times;')

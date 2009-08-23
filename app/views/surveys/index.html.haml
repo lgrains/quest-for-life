@@ -1,11 +1,17 @@
-%p
-  %a{:href => parent? ? new_survey_group_survey_path : new_survey_path}
-    Add a new survey
-  - if parent?
-    |
-    = link_to parent_object.group_name, parent_object
+- title 'Results'
 
-- paginated_section current_objects do
-  = page_entries_info current_objects
-  %ol
-    = partial current_objects
+%p
+  - if parent?
+    = parent_object.group_name
+    /= link_to parent_object.group_name, parent_object
+
+
+- for parameter in Survey.parameter_columns
+  = chart parameter, :age
+  = chart parameter, :gender
+
+
+:javascript
+  $(function() {
+    $('table.data').visualize({type: 'pie', colors: #{chart_colors.to_json}, width: 75, height: 75, pieMargin: 5, pieLabelPos: 'inside', parseDirection: 'y', });
+  });
