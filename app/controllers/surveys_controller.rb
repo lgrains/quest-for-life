@@ -7,6 +7,10 @@ class SurveysController < ApplicationController
     actions :new, :create, :show, :index, :edit, :update
     belongs_to :survey_group
 
+    before:index do
+      @parameter = 'n' 
+    end
+
     after :create do
       # store survey id in the user's session, which authorizes them to edit/update
       session[:survey_id] = current_object.id

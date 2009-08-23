@@ -22,11 +22,16 @@ module ApplicationHelper
       path = survey_parameter_path(survey, url)
     else
       # just browsing
-      path = equation_parameter_path(url)
+      if url == 'n'
+        path = surveys_path
+      else
+        path = equation_parameter_path(url)
+      end
     end
     
     haml_tag :a, {:href => path, :class => class_name, :title => definition} do
       haml_concat(text)
+#      haml_tag :span, ' &#9660;', :class => 'carat' if @parameter == url
     end
   end
   
