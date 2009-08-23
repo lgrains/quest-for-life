@@ -1,5 +1,7 @@
 class RationalOption < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::TextHelper
+
 
   default_scope :order => 'quotient'
   
@@ -24,7 +26,54 @@ class RationalOption < ActiveRecord::Base
       number_with_delimiter(self.numerator)
     end
   end
+
+  def r_star_label
+    "#{pluralize quotient.to_i, 'star'} #{quotient==1 ? 'forms' : 'form'} in our galaxy each year"
+  end
+
+  def fp_label
+    if quotient >= 1
+      "every star develops planets"
+    else
+      "#{number_with_delimiter(self.numerator)} star out of every #{number_with_delimiter(self.denominator)} develops planets"
+    end
+  end
+
+  def ne_label
+    if quotient >= 1
+      "#{pluralize quotient.to_i, 'body'} in an average solar system will be capable of liquid qater"
+    else
+      "#{number_with_delimiter(self.numerator)} out of every #{pluralize(number_with_delimiter(self.denominator), 'solar system')} will have one body that supports liquid water"
+    end
+  end
+
+  def fl_label
+    if quotient >= 1
+      "every suitable planet will develop life"
+    else
+      "#{quotient_label} suitable planets will develop life"
+    end
+  end
+
+  def fi_label
+    if quotient >= 1
+      "intelligence will develop wherever life develops"
+    else
+      "#{quotient_label} suitable planets with life will develop intelligence"
+    end
+  end
   
+  def fc_label
+    if quotient >= 1
+      "every intelligent civilization will discover radio and choose to communicate"
+    else
+      "#{quotient_label} intelligent civilizations will discover radio and choose to communicate"
+    end
+  end
+
+  def l_label
+    "An advanced society can survive #{pluralize number_with_delimiter(quotient.to_i), 'year'}"
+  end
   private
   
   def calculate_quotient
