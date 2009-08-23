@@ -11,14 +11,14 @@
     %col{:width => 120}
     %col{:width => 120}
     %col{:width => 120}
-    %col{:width => 120}
+    %col{:width => 320}
     %thead
       %tr
         %th Group / Class Name
         %th Age Group
-        %th Completed Surveys
-        %th Incomplete Surveys
-        %th Total Surveys
+        %th Completed Responses
+        %th Incomplete Responses
+        %th Total Responses
         %th Actions
     %tbody
       - current_object.survey_groups.each do |g|
@@ -31,7 +31,12 @@
           - if current_user != current_object
             %th= link_to 'Add yours', new_survey_group_survey_path(g)
           -else
-            %th= link_to 'edit', edit_survey_group_survey_path(g)
+            %th
+              = link_to 'add survey', new_survey_group_survey_path(g)
+              |
+              = link_to 'edit', edit_survey_group_path(g)
+              |
+              = link_to 'delete', g, :method => :delete, :confirm => 'Are you sure?'
 
 
 
