@@ -7,8 +7,14 @@ class SurveysController < ApplicationController
     actions :new, :create, :show, :index, :edit, :update
     belongs_to :survey_group
 
-    before:index do
+    before :index, :show do
       @parameter = 'n' 
+    end
+
+    before :edit do
+      if @parameter == 'n'
+        redirect_to :action => :show, :id => params[:id]
+      end
     end
 
     after :create do
