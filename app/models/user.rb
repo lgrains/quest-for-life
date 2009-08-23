@@ -9,9 +9,10 @@ class User < ActiveRecord::Base
     scoped(:include =>{:survey_groups => :surveys}).admin_is(false).email_confirmed_is(true)
   end
 
-  def to_param
+  
+  def pretty_url
     return self.username if self.email_confirmed? && !self.username.blank?
-    super
+    return self.id
   end
   
 end

@@ -1,6 +1,6 @@
 #this-is-you
   %strong This is your profile.
-  You can refer your students to #{link_to "this page ( #{user_url(current_object)} )", current_object}
+  You can refer your students to #{link_to "this page ( #{url_for(:controller => 'users', :action => current_user.username, :only_path => false)} )", url_for(:controller => 'users', :action => current_user.username)}
   to record their answers and to view results.
 
 %p
