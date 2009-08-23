@@ -6,11 +6,14 @@
       :margin-top 2em
 
 #form
+  %p What&#8217;s your estimate?
+  
   - semantic_form_for current_object do |form|
     - form.inputs do
-      = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :label_method => :quotient_label, :value_method => :quotient
+      = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :value_method => :quotient
     - form.buttons do
       = form.commit_button 'Next'
+    .humanized-value 1 in a million
 
 :javascript
   $(function(){

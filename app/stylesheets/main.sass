@@ -205,7 +205,7 @@ blockquote.signage
   /-webkit-column-gap: 1em
   /-webkit-column-width: 380px
   
-  #main
+  #main  
     position: relative
     width: 760px
     
@@ -265,10 +265,30 @@ blockquote.signage
       padding: 1em
       background: #a2cb52 url(/images/gradient-green2.png) repeat-x
       border: 1px solid #5c992e
+      
+      p
+        color: #222
+        text-shadow: 0 1px 1px #9c9
+        font-family: Helvetica, 'Mank Sans', sans-serif
+        font-size: 100%
+        font-weight: bold
+        
 
+      .humanized-value
+        :float right
+        :margin 1.25em 1em 0 0
+        :color #222
+        :text-shadow 0 1px 1px #9c9
+        :font-family Helvetica, 'Mank Sans', sans-serif
+        :font-weight bold
+        
       fieldset
         li
           :margin-bottom .5em
+        &.buttons
+          :float right
+          li
+            :margin-bottom 0
         
       label
         :font-size 90%
@@ -280,6 +300,8 @@ blockquote.signage
         :font-size 100%
         :border 2px solid #5c992e
         :padding .25em
+        
+      
 
     input[type=submit]
       margin-top: 1em
@@ -380,8 +402,17 @@ dd.detail
   
 .illustration
   float: right
-  font-size: 80%
-  width: 300px
+  width: 220px
+  
+  .caption
+    :font-size 10px
+    :font-family Arial, Helvetica, sans-serif
+    :display block
+    :line-height 1.1
+    :margin-top 3px
+  
+  img
+    display: block
 
 .bullets
   +clearfix
