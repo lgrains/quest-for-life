@@ -42,6 +42,11 @@
               %a{:href => 'http://blog.railsrumble.com/', :target => "_blank"}
                 %img{:src => image_path('rr09_badge_250.png')}
                 Vote for this site at Rails Rumble 2009
+                
+            %p.twitter
+              %a{:href => 'http://www.twitter.com/home/', :target => "_blank"}
+                = image_tag 'twitter_logo.png', :alt => '', :size => '80x18' 
+                Post to your Twitter account
 
         #main
           %h2= yield :heading

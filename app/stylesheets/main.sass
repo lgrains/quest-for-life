@@ -151,6 +151,10 @@ blockquote.signage
   top: -170px
   z-index: 99
   p
+    width: 108px
+    a
+      &:hover
+        text-decoration: none
     &.iya
       a
         background:
@@ -163,14 +167,21 @@ blockquote.signage
         width: 108px
         -moz-box-shadow: 2px 2px 8px #000
     &.rumble
+      display: none
       font-size: 12px
       text-align: center
-      width: 108px
+      
       img
         display: block
         height: 108px
         margin-bottom: .5em
         width: 108px
+      a
+        color: #000
+    
+    &.twitter
+      a
+        +rounded_button("/images/alpha_gradient.png", "#9AE4E8", "89px", "70%", "#333", "0 6px", "2px 2px 8px #000")
 
 #content
 
@@ -218,6 +229,11 @@ blockquote.signage
     dd
       ul, li, p
         :margin-left 1em
+    
+    a
+      color: #3ac1ff
+      &:hover
+        text-decoration: underline
         
     a[target~='_blank']:after
       content: ' (external link)'
@@ -227,35 +243,8 @@ blockquote.signage
         weight: normal
 
     p.start-survey-prompt
-      -moz-box-shadow: 4px 4px 16px #000
-      margin: 1em 0
-      background: #5c992e url(/images/gradient-green.png) repeat-x
-      border: 1px solid #5c992e
-      +border_radius(.5em)
-      width: 520px
-      font-weight: normal
-      font-family: Helvetica, 'Mank Sans', sans-serif
-      font-size: 140%
-      text-shadow: 0 1px 1px #E5E573
-      &:hover
-        /background: #5c992e url(/images/gradient-green2.png) repeat-x 0 29px
-
-      a
-        display: block
-        padding: .75em 1em
-        color: #3C791E
-        strong
-          display: block
-          margin-top: .25em
-          text-align: right
-          color: #222
-          text-shadow: 0 1px 1px #9c9
-          font-weight: bold
-        &:hover
-          text-decoration: none !important
-          strong
-            color: #000
-
+      +rounded_button("/images/gradient-green.png", "#5c992e", "520px", "140%", "#3C791E")
+      
     #form
       +border_radius(.5em)
       +pie-clearfix
@@ -329,11 +318,11 @@ blockquote.signage
     margin: 0 0 1em 0
   
   a
-    color: #3ac1ff
+    /color: #3ac1ff
     font-weight: bold
     text-decoration: none
     &:hover
-      text-decoration: underline
+      /text-decoration: underline
           
 #parameter-symbol
   font:
@@ -355,7 +344,7 @@ blockquote.signage
   sup
     position: relative
     top: .25em
-    left: -.5em
+    left: -.4em
   sub
     position: relative
     top: -.25em

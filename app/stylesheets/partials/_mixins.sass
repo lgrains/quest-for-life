@@ -28,3 +28,43 @@
   #parameter-symbol
     background: url(/images/alpha.png) repeat
     /-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+    
+=rounded_button(!bg_img, !bg_color, !width, !font_size="100%", !font_color="#3C791E", !padding=0, !box_shadow="4px 4px 16px #000")
+  -moz-box-shadow = !box_shadow
+  background:
+    color = !bg_color
+    image = url(!bg_img)
+    repeat: repeat-x
+  border: 1px solid #5c992e
+  +border_radius(.5em)
+  color = !font_color
+  display: block
+  font:
+    family: Helvetica, 'Mank Sans', sans-serif
+    size = !font_size
+    weight: normal
+  margin: 1em 0
+  padding = !padding
+  text:
+    decoration: none
+    shadow: 0 1px 1px #E5E573
+  width = !width
+  &:hover
+    /background: #5c992e url(/images/gradient-green2.png) repeat-x 0 29px
+    text-decoration: none
+
+  a
+    display: block
+    padding: .75em 1em
+    color = !font_color
+    strong
+      display: block
+      margin-top: .25em
+      text-align: right
+      color: #222
+      text-shadow: 0 1px 1px #9c9
+      font-weight: bold
+    &:hover
+      text-decoration: none !important
+      strong
+        color: #000
