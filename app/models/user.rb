@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   end
 
   def to_param
-    self.login || self.id
+    (self.email_confirmed? && self.login) || self.id
   end
   
 end
