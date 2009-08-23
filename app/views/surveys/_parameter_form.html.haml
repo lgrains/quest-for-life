@@ -1,29 +1,22 @@
-%style{:type => 'text/css'}
-  :sass
-    select
-      :display none
-    #form
-      :margin-top 2em
-
 #form
   %p What&#8217;s your estimate?
   
   - semantic_form_for current_object do |form|
-    - form.inputs do
-      = form.input parameter, :collection => RationalOption.all, :include_blank => false, :as => :select, :value_method => :quotient
+    - form.inputs(:class => 'parameter') do
+      = form.input parameter.to_s + '_rational_id', :collection => RationalOption.all, :include_blank => false, :as => :select, :value_method => :id, :label_method => :quotient_label
     - form.buttons do
       = form.commit_button 'Next'
-    .humanized-value 1 in a million
+    .humanized-value
 
 :javascript
   $(function(){
     $('#form select').each(function(i,o){
-
+      $(o).change(function(){
+        $('.humanized-value').text($(o).children(':selected')[0].text);
+      });
+      $(o).triggerHandler('change');
       $(o).selectToUISlider({
-        sliderOptions: {
-          slide: function(event, ui){
-            document.title = o.options[ui.value].text;
-          },
-        },
-        labels: 0})});
+        tooltip: 0,
+        labels: 0
+      })});
   });
