@@ -6,24 +6,37 @@ class SurveyTest < ActiveSupport::TestCase
 
   test "n is nil if any parameter is nil" do
     # initialize all to non-nil
-    params = Survey.parameter_columns.inject({}) { |hash, p| hash[p] = 1; hash } 
+    params = Survey.parameter_columns.inject({}) { |hash, p| hash["#{p}_rational"] = Factory(:rational_option); hash } 
     survey = Factory.create(:survey, params)
     assert_not_nil survey.n, 'should have a non-nil N'
     
     Survey.parameter_columns.each do |p|
-      survey.send "#{p}=", nil
+      original_value = survey.send "#{p}_rational"
+      survey.send "#{p}_rational=", nil
       survey.save!
       
       assert_nil survey.n
       
       # set the parameter back 
-      survey.send "#{p}=", 1
+      survey.send "#{p}_rational=", original_value
     end
   end
   
   test "n is calculated correctly" do
-    survey = Factory.create(:survey, :r_star => 4, :fp => 1.0, :ne => 3, :fl => 0.5, :fi => 0.25, :fc => 0.1, :l => 2000)
-    assert_equal (4 * 1.0 * 3 * 0.5 * 0.25 * 0.1 * 2000).round, survey.n
+    rationals =
+      {
+        :r_star_rational_id => Factory(:rational_option),
+        :fp_rational_id => Factory(:rational_option),
+        :ne_rational_id => Factory(:rational_option),
+        :fl_rational_id => Factory(:rational_option),
+        :fi_rational_id => Factory(:rational_option),
+        :fc_rational_id => Factory(:rational_option),
+        :l_rational_id => Factory(:rational_option)
+      }
+    survey = Factory.create(:survey, rationals)
+
+    product = rationals.values.inject(1.0) { |product, v| product * v.quotient }.round
+    assert_equal product.round, survey.n
   end
   
   test "slug gets set on create" do

@@ -1,4 +1,4 @@
 Factory.define :rational_option do |ro|
-  ro.numerator 1
-  ro.denominator 1
+  ro.sequence(:numerator){|n| n }
+  ro.sequence(:denominator){|n| (n+1)*2 }
 end
