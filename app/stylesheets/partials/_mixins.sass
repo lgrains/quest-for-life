@@ -29,13 +29,13 @@
     background: url(/images/alpha.png) repeat
     /-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
     
-=rounded_button(!bg_img, !bg_color, !width, !font_size="100%", !font_color="#3C791E", !padding=0, !box_shadow="4px 4px 16px #000")
+=rounded_button(!bg_img, !bg_color, !width, !font_size="100%", !font_color="#3C791E", !padding=0, !box_shadow="4px 4px 16px #000", !border_color="#5c992e")
   -moz-box-shadow = !box_shadow
   background:
     color = !bg_color
     image = url(!bg_img)
     repeat: repeat-x
-  border: 1px solid #5c992e
+  border = 1px solid !border_color
   +border_radius(.5em)
   color = !font_color
   display: block

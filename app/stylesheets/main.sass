@@ -184,7 +184,7 @@ blockquote.signage
         img
           display: block
           margin-bottom: .3em
-        +rounded_button("/images/alpha_gradient.png", "#9AE4E8", "94px", "70%", "#333", "0 6px", "2px 2px 8px #000")
+        +rounded_button("/images/alpha_gradient.png", "#9AE4E8", "94px", "70%", "#333", "0 6px", "2px 2px 8px #000", "#0084B4")
 
 #content
 
@@ -209,6 +209,7 @@ blockquote.signage
   
   #main  
     position: relative
+    min-height: 500px
     width: 760px
     
     h2
@@ -250,6 +251,14 @@ blockquote.signage
 
     p.start-survey-prompt
       +rounded_button("/images/gradient-green.png", "#5c992e", "520px", "140%", "#3C791E")
+      
+    .tweet-result
+      a
+        img
+          display: block
+          margin-bottom: .3em
+        +rounded_button("/images/twitter_gradient.png", "#9ae4e8", "320px", "140%", "#4f8a9e", "6px 6px", "2px 2px 8px #000", "#0084B4")
+  
 
     #participate
       float: left
@@ -339,7 +348,7 @@ blockquote.signage
     text-decoration: none
     &:hover
       /text-decoration: underline
-          
+      
 #parameter-symbol
   font:
     size: 60px

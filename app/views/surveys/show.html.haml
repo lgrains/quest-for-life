@@ -1,2 +1,11 @@
 %pre
   = h current_object.inspect
+
+  
+%p.tweet-result
+  Spread the word:
+  
+  %a{:href => 'http://www.twitter.com/home/', :target => "_new"}
+    = image_tag 'twitter_logo.png', :alt => '', :size => '80x18' 
+    Post your result to your 
+    %strong Twitter account
