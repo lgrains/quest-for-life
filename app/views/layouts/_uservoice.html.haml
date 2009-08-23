@@ -1,0 +1,16 @@
+:javascript
+  var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+  document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+:javascript
+  UserVoice.Tab.show({ 
+    /* required */
+    key: 'questforlife',
+    host: 'questforlife.uservoice.com', 
+    forum: '27041', 
+    /* optional */
+    alignment: 'right',
+    background_color:'#434BA0', 
+    text_color: 'white',
+    hover_color: '#06C',
+    lang: 'en'
+  })
