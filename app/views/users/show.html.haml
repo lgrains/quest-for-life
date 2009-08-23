@@ -34,10 +34,10 @@
           %th= g.surveys.n_null.count
           %th= g.surveys.count
           - if current_user != current_object
-            %th= link_to 'Add yours', new_survey_group_survey_path(g)
+            %th= link_to 'Start your quest', new_survey_group_survey_path(g)
           -else
             %th
-              = link_to 'add survey', new_survey_group_survey_path(g)
+              = link_to 'take survey', new_survey_group_survey_path(g)
               |
               = link_to 'edit', edit_survey_group_path(g)
               |
