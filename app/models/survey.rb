@@ -34,7 +34,7 @@ class Survey < ActiveRecord::Base
     alias fc_options :fp_options
 
     def l_options
-      RationalOption.quotient_gte(1).quotient_lte(10**6)
+      RationalOption.quotient_gte(1).quotient_lte(10**6).reject{|o| Math.log10(o.quotient) % 1 != 0}
     end
 
   end
