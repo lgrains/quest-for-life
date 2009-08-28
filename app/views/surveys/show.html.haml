@@ -14,11 +14,16 @@
         %dd
           = current_object.send("#{parameter}_rational").send("#{parameter}_label")
 
-= link_to 'See your answers in context!', surveys_path
+%br
+
 %p
-  Spread the word:
-%p.tweet-result
-  %a{:href => "http://www.twitter.com/home?status=I+found+#{current_object.n}+alien+civilzations+at+http://quest-for-life.org", :target => "_new"}
-    = image_tag 'twitter_logo.png', :alt => '', :size => '80x18' 
-    Post your result to your 
-    %strong Twitter account
+  = link_to "See how others answered these questions&hellip;", surveys_path
+
+- if @survey.id == session[:survey_id]
+  %p.tweet-result
+    %a{:href => "http://twitter.com/home?status=I+found+#{current_object.n}+alien+civilzations+at+http://quest-for-life.org/surveys/#{@survey.slug}", :target => "_new"}
+      = image_tag 'twitter_logo.png', :alt => '', :size => '80x18' 
+      %strong Help spread the word.
+      Post your result to Twitter.
+- else
+  = partial 'shared/survey_prompt'

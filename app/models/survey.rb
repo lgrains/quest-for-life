@@ -20,7 +20,7 @@ class Survey < ActiveRecord::Base
     
     def question_for_parameter(p)
       {
-        :n => 'How many civilations that might communicate with us are there in our galaxy?',
+        :n => 'How many civilizations that might communicate with us are there in our galaxy?',
         :r_star => 'How many stars form in our galaxy each year?',
         :fp => "How many suitable stars actually form a solar system with planets in it?",
         :ne => 'What\'s the average number of bodies in a solar system capable of supporting liquid water?',

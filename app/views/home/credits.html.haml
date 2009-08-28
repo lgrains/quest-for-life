@@ -1,27 +1,40 @@
 - title 'Credits'
 %br
-%h2 Steven Hammond
-= image_tag 'sa_logo.png', :title => 'Solar System Ambassador Logo', :style => 'float:right;'
-%p Steven Hammond has four-years experience as a <a href="http://www2.jpl.nasa.gov/ambassador/">Solar System Ambassador</a> &mdash; a volunteer educator for <a herf="http://www.jpl.nasa.gov/">NASA's Jet Propulsion Laboratory</a>. Steven is also an member of the <a href="http://www.aldrichastro.org">Aldrich Astronomical Society</a> in Worcester, MA. As an ambassador, Steve volunteers his time to visit schools, libraries and scouting organizations throughout New England to teach people about astronomy and space exploration. Steven is also an active amateur astronomer and telescope maker.
+%h3 Steven Hammond
+= image_tag 'sa_logo.png', :title => 'Solar System Ambassador Logo', :style => 'float:right; margin-left: 1em'
+%p Steven Hammond has four years experience as a <a href="http://www2.jpl.nasa.gov/ambassador/">Solar System Ambassador</a> &mdash; a volunteer educator for <a herf="http://www.jpl.nasa.gov/">NASA's Jet Propulsion Laboratory</a>. Steven is also an member of the <a href="http://www.aldrichastro.org">Aldrich Astronomical Society</a> in Worcester, MA. As an ambassador, Steven volunteers his time to visit schools, libraries and scouting organizations throughout New England to teach people about astronomy and space exploration. Steven is also an active amateur astronomer and telescope maker.
 
-%p This site started as one of Steven's favorite astronomy lectures. The International Year of Astronomy seemed like a good time to take this presentation and move it to the web for everyone to see, but it took three willing friends and a <a href="http://railsrumble.com">Rails Rumble</a> competition to bring this to fruition.
+%p 
+  This site started as one of Steven's favorite astronomy lectures. The 
+  %a{ :href => 'http://astronomy2009.org' } International Year of Astronomy 
+  seemed like a good time to take this presentation and move it to the web for everyone to see, 
+  but it took three willing friends and a <a href="http://railsrumble.com">Rails Rumble</a> competition 
+  to bring this to fruition.
 
-%br
-
-%h2 The Alienators Team
-%h3
-  Steven Hammond (<a href="http://twitter.com/shammond42"><tt>@shammond42</tt></a>),
-  Joseph Lind (<a href="http://twitter.com/joe_lind"><tt>@joe_lind</tt></a>),
-  Cris Necochea (<a href="http://twitter.com/knick44"><tt>@knick44</tt></a>),
-  Jeremy Weiskotten (<a href="http://twitter.com/doctorzaius"><tt>@doctorzaius</tt></a>)
+%h3 The Alienators Team
+%ul{ :style => 'list-style-type: none; margin-bottom: 1em'}
+  %li
+    %a{ :href => 'http://twitter.com/shammond42', :title => '@shammond42' } Steven Hammond
+  %li
+    %a{ :href => 'http://twitter.com/joe_lind', :title => '@joe_lind' } Joe Lind
+  %li
+    %a{ :href => 'http://twitter.com/knick44', :title => '@knick44' } Cris Necochea
+  %li
+    %a{ :href => 'http://twitter.com/doctorzaius', :title => '@doctorzaius' } Jeremy Weiskotten
   
-%p We constitute about half of the engineering team at <a href="http://www.patientslikeme.com">PatientsLikeMe</a>. We are all passionate about writing great code to solve challenging problems. We are also strong believers in engaging the public in science. These passions, combined with a galaxy-sized competitive streak and 50+ years of engineering experience, came together in this app. Leave feedback to the right or catch up with us on twitter.
+%p 
+  We constitute about half of the engineering team at 
+  = succeed '.' do
+    %a{ :href => 'http://www.patientslikeme.com', :title => 'PatientsLikeMe' } PatientsLikeMe
+  We are all passionate about writing great code to solve challenging problems. We are also strong 
+  believers in engaging the public in science. These passions, combined with a galaxy-sized competitive 
+  streak and 50+ years of engineering experience, came together in this application.
 
 %h3 Image Credits
 %p All images used on this site are Public Domain, either from NASA, the National Parks Service or WikiMedia Commons.
 
 %h3 Other Thanks
 %p Thanks to our spouses and families for supporting our efforts in building this.
+%p Thanks to the organizers and other participants in the <a href="http://r09.railsrumble.com">2009 Rails Rumble</a>.
 %p Thanks to our employer, <a href="http://www.patientslikeme.com">PatientsLikeMe</a>, for allowing us to use the office space and providing sodas and snacks.
-%p Thanks to our co-workers, for food deliveries and encouraging tweets. We love you guys.
-%p And thanks to everybody who votes for this app! We're glad you liked it.
+%p Thanks to our co-workers, for food deliveries and encouraging tweets. We &hearts; you guys.
