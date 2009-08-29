@@ -5,7 +5,7 @@
       %dt
         = drake_number
       %dd
-        == #{pluralize current_object.n, 'civlization'} currently exist in our galaxy
+        == #{pluralize current_object.n, 'civilization'} currently exist in our galaxy
   - Survey.parameter_columns.each do |parameter|
     %li
       %dl
@@ -21,7 +21,7 @@
 
 - if @survey.id == session[:survey_id]
   %p.tweet-result
-    %a{:href => "http://twitter.com/home?status=I+found+#{current_object.n}+alien+civilzations+at+http://quest-for-life.org/surveys/#{@survey.slug}", :target => "_new"}
+    %a{:href => "http://twitter.com/home?status=I+found+#{current_object.n}+alien+civilizations+at+http://quest-for-life.org/surveys/#{@survey.slug}", :target => "_new"}
       = image_tag 'twitter_logo.png', :alt => '', :size => '80x18' 
       %strong Help spread the word.
       Post your result to Twitter.
