@@ -1,16 +1,17 @@
-- title "Your results: N = #{current_object.n}"
+- title "Your results: N = #{number_with_delimiter current_object.n}"
 %ul.n-results
   %li
     %dl
       %dt
         = drake_number
       %dd
-        == #{pluralize current_object.n, 'civilization'} currently exist in our galaxy
+        = number_with_delimiter current_object.n
+        = current_object.n == 1 ? 'civilization' : 'civilizations'
   - Survey.parameter_columns.each do |parameter|
     %li
       %dl
         %dt
-          =parameter_to_drake_component parameter
+          = parameter_to_drake_component parameter
         %dd
           = current_object.send("#{parameter}_rational").send("#{parameter}_label")
 

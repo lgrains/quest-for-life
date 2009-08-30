@@ -19,8 +19,16 @@ module SurveysHelper
       :label_method => label_method
   end
 
-  def chart_colors
-    colors = (1..25).to_a.map { |i| "rgb(#{[128+i*5, i*5, 0].join(',')})"}.reverse
+  def chart_colors(parameter)
+    num_values = case parameter
+    when 'n'
+      4
+    else
+      Survey.options_for(parameter).size
+    end
+    
+    step = 128 / num_values
+    colors = (0...num_values).to_a.map { |i| "rgb(#{[128+i*step, i*step, 0].join(',')})"}.reverse
   end
 
   def chart_options(parameter, dimension, options={})

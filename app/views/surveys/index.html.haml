@@ -28,7 +28,7 @@
         %ol.legend
           - options[:rational_options].each_with_index do |option, i|
             %li
-              %span{ :style => "background-color: #{chart_colors[i]}"} &nbsp;
+              %span{ :style => "background-color: #{chart_colors(summarize_parameter)[i]}"} &nbsp;
               = option.send(options[:option_label_method])
 
       .column
@@ -37,5 +37,5 @@
 
 :javascript
   $(function() {
-    $('table.data').visualize({type: 'pie', colors: #{chart_colors.to_json}, width: 75, height: 75, pieMargin: 5, pieLabelPos: 'inside', parseDirection: 'y', });
+    $('table.data').visualize({type: 'pie', colors: #{chart_colors(summarize_parameter).to_json}, width: 75, height: 75, pieMargin: 5, pieLabelPos: 'inside', parseDirection: 'y', });
   });
