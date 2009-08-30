@@ -1,3 +1,10 @@
+-# 
+  Copyright (c) 2009 Steven Hammond, Cris Necochea, Joe Lind, Jeremy Weiskotten
+  
+  This work is licensed under the Creative Commons Attribution 3.0 United States License.
+  To view a copy of  this license, visit http://creativecommons.org/licenses/by/3.0/us/ or
+  send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+  
 !!!
 %html{:xmlns => 'http://www.w3.org/1999/xhtml', :lang => 'en' }
   %head
@@ -66,8 +73,7 @@
       #footer
         = partial 'layouts/footer_menu'
         %p
-          == Copyright &copy; #{Date.today.year}, 
-          == #{link_to 'The Alienators', 'http://r09.railsrumble.com/teams/the-alienators'}.
+          = render :partial => 'layouts/copyright'
 
     = render :partial => '/layouts/uservoice'
     - if Rails.env.production?
