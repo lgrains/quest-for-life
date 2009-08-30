@@ -195,6 +195,19 @@ blockquote.signage
 #content
 
   #main
+    thead
+      th
+        :background rgba(0,0,0,.3)
+        :font-weight bold
+        :font-size 80%
+        :padding .5em
+    tbody
+      td, th
+        :padding .5em
+        :vertical-align top
+      input[type=submit]
+        :margin-top 0
+      
     .vertical-tabs
       .tab-body
         +clearfix
@@ -615,3 +628,8 @@ ul.n-results
         margin-left 150px
   
 
+
+#flash
+  :margin 1em 0
+  :background rgba(0,0,0,.3)
+  :padding 1em

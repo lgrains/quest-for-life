@@ -1,47 +1,80 @@
-- title "#{current_object.username}'s Profile"
+- my_account = (current_user == current_object)
+- if my_account
+  - title "My Account"
+- else
+  - title "#{current_object.username}'s Account"
+
+- if my_account
+  %p
+    = link_to "Log out", '/logout'
 
 %br
-
-- if current_user == current_object
-  = partial 'user_account_header'
-
+  
 - if current_object.survey_groups.empty?
-  %h3 No groups currently belong to #{current_user == current_object ? 'you' : current_user.username}.
+  - if my_account
+    %p
+      %strong You have not set up any groups yet!
+      = link_to 'Add your first group', new_survey_group_path
+      to begin collecting responses from your students.    
+      After you create a group, it will appear on your profile and your students will be able
+      to submit responses as part of that group.
+  - else
+    %p
+      = current_object.username
+      has not set up any groups yet.
+
 
 -else
-  %h3 Groups
+
+  - if my_account
+    %p
+      Refer your students to 
+      - url = url_for(:action => 'show', :id => current_user, :only_path => false)
+      = link_to url, url
+      to record their answers and to view results.
+  - else
+    %p
+      Find your group in the list below.
+    
   %table
     %col{:width => 320}
-    %col{:width => 120}
-    %col{:width => 120}
     %col{:width => 120}
     %col{:width => 120}
     %col{:width => 320}
     %thead
       %tr
-        %th Group / Class Name
-        %th Age Group
+        %th Group
         %th Completed Responses
         %th Incomplete Responses
-        %th Total Responses
-        %th Actions
+        %th
     %tbody
       - current_object.survey_groups.each do |g|
         %tr
-          %th= link_to g.group_name, g
-          %th= h g.age_group.description
-          %th= link_to g.surveys.n_not_null.count, [g, :surveys]
-          %th= g.surveys.n_null.count
-          %th= g.surveys.count
+          %th
+            = link_to g.group_name, g
+            %br
+            %small
+              Ages
+              = h g.age_group.description
+            
+          %td= link_to g.surveys.n_not_null.count, [g, :surveys]
+          %td= g.surveys.n_null.count
           - if current_user != current_object
-            %th= link_to 'Start your quest', new_survey_group_survey_path(g)
+            %td
+              - semantic_form_for [g, Survey.new].compact do |form|
+                - form.buttons do
+                  = form.commit_button 'Start the Drake Equation'            
           -else
-            %th
+            %td
               = link_to 'take survey', new_survey_group_survey_path(g)
               |
               = link_to 'edit', edit_survey_group_path(g)
               |
               = link_to 'delete', g, :method => :delete, :confirm => 'Are you sure?'
 
+  - if my_account
+    %p
+      %br
+      = link_to 'Add another group', new_survey_group_path
 
 

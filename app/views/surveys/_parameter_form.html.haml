@@ -1,5 +1,7 @@
 #form
-  %p What&#8217;s your estimate?
+  %p
+    = Survey.question_for_parameter(parameter)
+    %em Your estimate:
   
   - semantic_form_for current_object do |form|
     - form.inputs(:class => 'parameter') do

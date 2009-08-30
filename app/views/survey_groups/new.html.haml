@@ -1,7 +1,7 @@
-- title 'Add a new class'
+- title 'New Group'
 - semantic_form_for current_object do |form|
   - form.inputs do
     = form.input :group_name
     = form.input :age_group, :label_method => :description, :include_blank => false
   - form.buttons do
-    = form.commit_button 'Add class'
+    = form.commit_button 'Add Group'
