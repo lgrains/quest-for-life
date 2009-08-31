@@ -1,6 +1,6 @@
 defaults: &defaults
   app_name: The Quest for Life
-  base_url: http://www.quest-for-life.org
+  base_url: http://quest-for-life.org
   
 development:
   <<: *defaults
