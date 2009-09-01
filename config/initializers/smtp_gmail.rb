@@ -21,15 +21,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-require "settingslogic"
+require "config/initializers/settingslogic"
 require "smtp_tls"
 
 mailer_config = File.open("#{RAILS_ROOT}/config/mailer.yml")
 mailer_options = YAML.load(mailer_config)
-if $private_settings
-  mailer_options[:user_name] = $private_settings.mail_user
-  mailer_options[:password] = $private_settings.mail_password
-end
+
+mailer_options[:user_name] = $private_settings.mail_user
+mailer_options[:password] = $private_settings.mail_password
+
 
 ActionMailer::Base.smtp_settings = mailer_options
 

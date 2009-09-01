@@ -21,6 +21,12 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+DEFAULT_FILE = "#{RAILS_ROOT}/config/default_settings.yml" unless defined?(DEFAULT_FILE)
 private_file = "#{RAILS_ROOT}/config/#{RAILS_ENV}_settings.yml"
-$private_settings = Settings.new(private_file) if File.exists?(private_file)
+
+if File.exists?(private_file)
+  $private_settings = Settings.new(private_file)
+else
+  $private_settings = Settings.new(DEFAULT_FILE)
+end
 

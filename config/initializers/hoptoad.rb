@@ -21,7 +21,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+require "config/initializers/settingslogic"
 
 HoptoadNotifier.configure do |config|
-  config.api_key = '39e18226d5ed603cd72b36fe14c7971a'
+  config.api_key = $private_settings.hoptoad_api_key
 end
