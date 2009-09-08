@@ -99,6 +99,6 @@ class SurveysController < ApplicationController
   end
   
   def only_show_if_completed
-    redirect_to ( parent? ? survey_group_surveys_path : surveys_path) unless current_object.completed?
+    redirect_to ( parent? ? survey_group_surveys_path : surveys_path) if current_object.nil? || !current_object.completed?
   end
 end

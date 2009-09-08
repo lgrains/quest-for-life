@@ -20,6 +20,11 @@ class SurveysControllerTest < ActionController::TestCase
     assert_redirected_to surveys_path
   end
 
+  test "show without id" do
+    get :show
+    assert_redirected_to surveys_path
+  end
+  
   test "show completed survey" do    
     survey = Factory.create(:completed_survey)
     get :show, :id => survey.slug
