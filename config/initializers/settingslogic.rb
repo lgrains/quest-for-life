@@ -21,12 +21,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-DEFAULT_FILE = "#{RAILS_ROOT}/config/default_settings.yml" unless defined?(DEFAULT_FILE)
 private_file = "#{RAILS_ROOT}/config/#{RAILS_ENV}_settings.yml"
 
 if File.exists?(private_file)
   $private_settings = Settings.new(private_file)
-else
-  $private_settings = Settings.new(DEFAULT_FILE)
+else # If not configuration file, check environment variables -- use for Heroku
+  $private_settings = Settings.new({
+    :mail_user => ENV['MAIL_USER'] || '',
+    :mail_password => ENV['MAIL_PASSWORD'] || '',
+    :hoptoad_api_key => ENV['HOPTOAD_API_KEY'] || ''
+  })
 end
 
