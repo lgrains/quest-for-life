@@ -36,4 +36,7 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def deny(value, message=nil)
+    assert(!value, message)
+  end
 end
