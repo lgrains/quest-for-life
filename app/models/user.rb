@@ -32,6 +32,20 @@ class User < ActiveRecord::Base
     scoped(:include =>{:survey_groups => :surveys}).admin_is(false).email_confirmed_is(true)
   end
 
+  # This flexible finder should return nil instead of RecordNotFound if it can't find the
+  # listed record.
+  # TODO: Should this really only return teachers? What about admins?
+  def self.find_by_id_or_username(key)
+    if key.instance_of?(Fixnum) || key =~ /^\d/
+      return User.teachers.find_by_id(key.to_i)
+    else
+      return User.teachers.find_by_username(key)
+    end
+  end
+  
+  def to_param
+    return "#{self.id}-#{self.username}"
+  end
   
   def pretty_url
     return self.username if self.email_confirmed? && !self.username.blank?
