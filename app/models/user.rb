@@ -48,8 +48,12 @@ class User < ActiveRecord::Base
   end
   
   def pretty_url
+    # Under what condition should the username be blank?
     return self.username if self.email_confirmed? && !self.username.blank?
     return self.id
   end
   
+  def validate
+    errors.add("username", "cannot start with a number") if username =~ /^\d+/
+  end
 end
