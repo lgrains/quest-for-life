@@ -29,7 +29,8 @@ class UsersController < Clearance::UsersController
 
   private
   def current_object
-    @current_object ||= User.teachers.find(:first,:conditions => ['username = ? or id = ?', params[:id], params[:id]])
+    @current_object ||= User.find_by_id_or_username(params[:id])
+
     if @current_object.nil?
       return record_not_found
     end
