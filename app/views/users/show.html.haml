@@ -46,27 +46,32 @@
     
   %table
     %col{:width => 320}
-    %col{:width => 120}
-    %col{:width => 120}
+    %col{:width => 60}
+    %col{:width => 60}
+    %col{:width => 60}
+    %col{:width => 60}
     %col{:width => 320}
     %thead
       %tr
         %th Class
-        %th Completed Responses
-        %th Incomplete Responses
+        %th Total
+        %th Completed
+        %th Incomplete
+        %th Not Started
         %th
     %tbody
       - current_object.survey_groups.each do |g|
         %tr
           %th
-            = link_to g.group_name, g
+            = link_to g.group_name, [g, :surveys]
             %br
             %small
               Ages
               = h g.age_group.description
-            
-          %td= link_to g.surveys.n_not_null.count, [g, :surveys]
+          %td= g.num_students  
+          %td= g.surveys.n_not_null.count
           %td= g.surveys.n_null.count
+          %td= (g.num_students - g.surveys.n_not_null.count - g.surveys.n_null.count)
           - if current_user != current_object
             %td
               - semantic_form_for [g, Survey.new].compact do |form|
@@ -74,7 +79,7 @@
                   = form.commit_button 'Start the Drake Equation'            
           -else
             %td
-              = link_to 'take survey', new_survey_group_survey_path(g)
+              = link_to 'summary', [g, :surveys]
               |
               = link_to 'edit', edit_survey_group_path(g)
               |
