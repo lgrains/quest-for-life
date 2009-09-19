@@ -140,6 +140,10 @@ class Survey < ActiveRecord::Base
     self.n.present?
   end
   
+  def address
+    "#{self.city}, #{self.state+' '}#{self.country}"
+  end
+  
   private
   
   def store_group_demigraphics
