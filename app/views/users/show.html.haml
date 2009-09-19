@@ -36,7 +36,7 @@
   - if my_account
     %p
       Refer your students to 
-      - url = url_for(:action => 'show', :id => current_user, :only_path => false)
+      - url = url_for(:action => 'show', :id => current_user.pretty_url, :only_path => false)
       = link_to url, url
       to record their answers and to view results.
   - else

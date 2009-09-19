@@ -43,10 +43,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def to_param
-    return "#{self.id}-#{self.username}"
-  end
-  
   def pretty_url
     # Under what condition should the username be blank?
     return self.username if self.email_confirmed? && !self.username.blank?

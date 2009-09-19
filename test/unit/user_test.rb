@@ -31,9 +31,6 @@ class UserTest < ActiveSupport::TestCase
     setup do
       @user = Factory(:email_confirmed_user, :username => 'great_teacher')
     end
-    should 'return a search friendly to_param' do
-      assert_equal "#{@user.id}-great_teacher", @user.to_param
-    end
     should 'have a pretty_url without the id' do
       assert_equal 'great_teacher', @user.pretty_url
     end
