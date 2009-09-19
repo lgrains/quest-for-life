@@ -7,8 +7,8 @@
   
 - my_account = (current_user == current_object)
 - if my_account
-  #account-menu{:style => 'width:100%; height:2em;'}
-    %span#menu-item{:style => 'float:right;'}
+  #account-menu
+    %span#menu-items
       = link_to "Add class", new_survey_group_path
       |
       = link_to "Log out", '/logout'
