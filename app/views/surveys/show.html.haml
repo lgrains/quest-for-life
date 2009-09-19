@@ -25,7 +25,10 @@
 %br
 
 %p
-  = link_to "See how others answered these questions&hellip;", surveys_path
+  - if current_object.survey_group
+    = link_to "See how others, in your class, answered these questions&hellip;", [current_object.survey_group, :surveys]
+  -else  
+    = link_to "See how others answered these questions&hellip;", surveys_path
 
 - if @survey.id == session[:survey_id]
   %p.tweet-result
