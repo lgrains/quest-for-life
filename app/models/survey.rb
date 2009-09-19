@@ -118,6 +118,7 @@ class Survey < ActiveRecord::Base
 
   before_validation_on_create :set_slug
   before_validation :strip_at_from_twitter_username
+  before_save :store_group_demigraphics
   before_save :calculate_quotients
   
   attr_accessible *(parameter_columns.map{|p| "#{p}_rational_id".to_sym })
@@ -140,6 +141,15 @@ class Survey < ActiveRecord::Base
   end
   
   private
+  
+  def store_group_demigraphics
+    if survey_group
+      self.country = survey_group.country
+      self.state = survey_group.state
+      self.city = survey_group.city
+      self.age_group_id = survey_group.age_group_id
+    end
+  end
   
   def calculate_quotients
     Survey.parameter_columns.each do |column|

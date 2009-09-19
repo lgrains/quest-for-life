@@ -16,12 +16,13 @@
 #form  
   - semantic_form_for current_object do |form|
     = hidden_field_tag :demographics, 'true'
-    - form.inputs do      
-      = form.input :city
-      = form.input :state, :label => 'State/Province'
-      = form.input :country, :as => :country, :include_blank => true
+    - form.inputs do
+      - unless current_object.survey_group     
+        = form.input :city
+        = form.input :state, :label => 'State/Province'
+        = form.input :country, :as => :country, :include_blank => true
+        = form.input :age_group_id, :label => 'Age', :as => :select, :include_blank => true, :label_method => :description
       = form.input :gender, :as => :select, :collection => ['Male', 'Female'], :include_blank => true
-      = form.input :age_group_id, :label => 'Age', :as => :select, :include_blank => true, :label_method => :description
       = form.input :twitter_username
     - form.buttons do
       = form.commit_button 'Finish'
