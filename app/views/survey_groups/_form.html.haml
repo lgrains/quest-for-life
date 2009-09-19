@@ -1,0 +1,12 @@
+- semantic_form_for current_object do |form|
+  - form.inputs do
+    = form.input :group_name, :label => 'Class name'
+    = form.input :num_students, :label => 'Number of students'
+    = form.input :age_group, :label_method => :description, :include_blank => false
+    = form.input :city
+    = form.input :state, :label => 'State/Province'
+    = form.input :country, :as => :country, :include_blank => true
+  - form.buttons do
+    = form.commit_button current_object.id ? 'Save' : 'Add Class'
+    %li
+      = link_to 'Cancel, and return to your teacher page.', current_user

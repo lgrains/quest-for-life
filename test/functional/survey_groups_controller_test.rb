@@ -9,7 +9,12 @@ class SurveyGroupsControllerTest < ActionController::TestCase
   end
   
   test "create" do
-    post :create, :survey_group => {:group_name => 'test group', :age_group => Factory(:age_group)}
+    post :create, :survey_group => {
+      :group_name => 'test group', 
+      :age_group => Factory(:age_group),
+      :city => 'London',
+      :country => 'United Kingdom'
+      }
 
     assert_redirected_to assigns(:current_object).user
     assert_not_nil assigns(:current_object)

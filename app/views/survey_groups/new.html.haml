@@ -5,10 +5,6 @@
   To view a copy of  this license, visit http://creativecommons.org/licenses/by/3.0/us/ or
   send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
   
-- title 'New Group'
-- semantic_form_for current_object do |form|
-  - form.inputs do
-    = form.input :group_name
-    = form.input :age_group, :label_method => :description, :include_blank => false
-  - form.buttons do
-    = form.commit_button 'Add Group'
+- title 'New Class'
+%p
+= render :partial => 'form'

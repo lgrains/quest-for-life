@@ -4,11 +4,8 @@
   This work is licensed under the Creative Commons Attribution 3.0 United States License.
   To view a copy of  this license, visit http://creativecommons.org/licenses/by/3.0/us/ or
   send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
-  
-- semantic_form_for current_object do |form|
-  - form.inputs do
-    = form.input :age_group, :label_method => :description, :as => :radio
-    = form.input :group_name
 
-  - form.buttons do
-    = form.commit_button 'save'
+-title "Edit &ldquo;#{current_object.group_name}&rdquo;"
+%p
+= render :partial => 'form'
+
