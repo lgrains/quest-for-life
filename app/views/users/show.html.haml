@@ -49,8 +49,8 @@
     %col{:width => 60}
     %col{:width => 60}
     %col{:width => 60}
-    %col{:width => 60}
-    %col{:width => 320}
+    %col{:width => 100}
+    %col{:width => 280}
     %thead
       %tr
         %th Class
@@ -58,7 +58,7 @@
         %th Completed
         %th Incomplete
         %th Not Started
-        %th
+        %th.centered Actions
     %tbody
       - current_object.survey_groups.each do |g|
         %tr
@@ -78,7 +78,7 @@
                 - form.buttons do
                   = form.commit_button 'Start the Drake Equation'            
           -else
-            %td
+            %td.right
               = link_to 'summary', [g, :surveys]
               |
               = link_to 'edit', edit_survey_group_path(g)
