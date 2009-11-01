@@ -122,7 +122,10 @@ class Survey < ActiveRecord::Base
   before_save :calculate_quotients
   
   attr_accessible *(parameter_columns.map{|p| "#{p}_rational_id".to_sym })
-  attr_accessible :city, :state, :country, :age_group_id, :gender, :twitter_username
+  attr_accessible :city, :state, :country, :age_group_id, :gender, :activity_id, :lit_type_id, :twitter_username
+
+  belongs_to :lit_type
+  belongs_to :activity
 
   belongs_to :r_star_rational, :class_name => 'RationalOption'
   belongs_to :fp_rational, :class_name => 'RationalOption'

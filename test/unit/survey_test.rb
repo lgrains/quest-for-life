@@ -3,7 +3,10 @@ require 'test_helper'
 class SurveyTest < ActiveSupport::TestCase
   should_validate_numericality_of :r_star, :fp, :ne, :fl, :fi, :fc, :l, :n
   should_belong_to :survey_group
-
+  should_belong_to :lit_type
+  should_belong_to :activity
+  should_protect_attributes :id, :created_at, :updated_at
+  
   test "n is nil if any parameter is nil" do
     # initialize all to non-nil
     params = Survey.parameter_columns.inject({}) { |hash, p| hash["#{p}_rational"] = Factory(:rational_option); hash } 

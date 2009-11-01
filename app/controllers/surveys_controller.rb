@@ -39,7 +39,11 @@ class SurveysController < ApplicationController
         redirect_to :action => :show, :id => params[:id]
       end
     end
-
+    
+    before :update do
+      logger.warn params[:activity_id]
+    end
+    
     after :create do
       # store survey id in the user's session, which authorizes them to edit/update
       session[:survey_id] = current_object.id

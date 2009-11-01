@@ -27,6 +27,8 @@
         = form.input :country, :as => :country, :include_blank => true
         = form.input :age_group_id, :label => 'Age', :as => :select, :include_blank => true, :label_method => :description
       = form.input :gender, :as => :select, :collection => ['Male', 'Female'], :include_blank => true
+      = form.input :activity_id, :label => 'Favorite Activity', :as => :select, :include_blank => true, :label_method => :name
+      = form.input :lit_type_id, :label => 'Favorite Kind of Book', :as => :select, :include_blank => true, :label_method => :name
       - unless current_object.survey_group
         = form.input :twitter_username
     - form.buttons do
