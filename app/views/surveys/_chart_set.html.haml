@@ -14,7 +14,6 @@
   %ol.pie-charts
     - for member in dimension
       - member_key = member.nil? ? nil : member.send(dimension_key_method)
-      - logger.warn "Rendering: #{data[:count].inspect} #{member_key} : #{data[:count][member_key]}"
       - unless data[:count][member_key].nil?
         %li
           %h4
@@ -45,9 +44,7 @@
                 - for option in rational_options
                   - option_label = option.send(option_label_method).to_s
                   %td
-                    - if member.nil?
-                      = data[[option.send(option_value_method).to_s, nil]].to_i + data[[option.send(option_value_method), '']].to_i
-                    - elsif data[:values][member_key].nil?
+                    - if data[:values][member_key].nil?
                       0
                     - else
                       = data[:values][member_key][option_label].to_i
