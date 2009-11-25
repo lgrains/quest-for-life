@@ -101,6 +101,7 @@ class Survey < ActiveRecord::Base
         where n is not null 
         group by group_col, #{axis}"
       
+      # Initialize the results hash
       report_hash = {
         :count => {},
         :rational_options => [],
@@ -136,6 +137,7 @@ class Survey < ActiveRecord::Base
   before_validation :strip_at_from_twitter_username
   before_save :store_group_demigraphics
   before_save :calculate_quotients
+  before_save :cleanup_empty_strings
   
   attr_accessible *(parameter_columns.map{|p| "#{p}_rational_id".to_sym })
   attr_accessible :city, :state, :country, :age_group_id, :gender, :activity_id, :lit_type_id, :twitter_username
@@ -195,4 +197,7 @@ class Survey < ActiveRecord::Base
     self.twitter_username.gsub!('@', '') if self.twitter_username.present?
   end
   
+  def cleanup_empty_strings
+    self.gender = nil if self.gender == ''
+  end
 end

@@ -53,4 +53,17 @@ class SurveyTest < ActiveSupport::TestCase
     survey = Factory.build(:survey, :slug => '12345678')
     assert_equal survey.slug, survey.to_param
   end
+  
+  test "gender should not save as an empty string" do
+    survey = Factory.create(:survey, :gender => nil)
+    assert_equal nil, survey.gender
+    
+    survey.gender = ''
+    assert survey.save
+    assert_equal nil, survey.gender
+
+    survey.gender = "Male"
+    assert survey.save
+    assert_equal "Male", survey.gender
+  end
 end
