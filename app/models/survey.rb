@@ -96,7 +96,8 @@ class Survey < ActiveRecord::Base
       else
         sql_parameter = "#{parameter} as group_col"
       end
-      sql = "select #{sql_parameter}, #{axis}, count(*) as count_surveys
+      sql = "select #{sql_parameter}, #{axis}, count(*) as count_surveys,
+        min(#{parameter}) as min, max(#{parameter}) as max
         from #{table_name}
         where n is not null 
         group by group_col, #{axis}"
@@ -104,6 +105,8 @@ class Survey < ActiveRecord::Base
       # Initialize the results hash
       report_hash = {
         :count => {},
+        :min => {},
+        :max => {},
         :rational_options => [],
         :values => {}
       }
@@ -111,6 +114,8 @@ class Survey < ActiveRecord::Base
         group_label = group.send(axis).blank? ? nil : group.send(axis)
         report_hash[:count][group_label] = 0 if report_hash[:count][group_label].nil?
         report_hash[:count][group_label] += group.count_surveys.to_i
+        report_hash[:min][group_label] = group.min if report_hash[:min][group_label].nil? || report_hash[:min][group_label] > group.min
+        report_hash[:max][group_label] = group.max if report_hash[:max][group_label].nil? || report_hash[:max][group_label] < group.max
         report_hash[:rational_options] << group.group_col
         report_hash[:values][group_label] = {} if report_hash[:values][group_label].nil?
         if report_hash[:values][group_label][group.group_col]
