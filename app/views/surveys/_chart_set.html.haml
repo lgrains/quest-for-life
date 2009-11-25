@@ -13,15 +13,16 @@
 
   %ol.pie-charts
     - for member in dimension
-      - count = data.select { |k,v| k[1].to_s == member.send(dimension_key_method).to_s }.map { |v| v.last }.sum
-      - if count > 0
+      - member_key = member.nil? ? nil : member.send(dimension_key_method)
+      - logger.warn "Rendering: #{data[:count].inspect} #{member_key} : #{data[:count][member_key]}"
+      - unless data[:count][member_key].nil?
         %li
           %h4
-            = member.nil? ? 'Unknown' : member.send(dimension_label_method) 
+            =  member.nil? ? 'Unknown' : member.send(dimension_label_method)
 
           %dl
             %dt Count
-            %dd= count
+            %dd= data[:count][member_key]
             %dt Average
             %dd -
             %dt Median
@@ -41,10 +42,13 @@
 
             %tbody
               %tr
-                - for option in rational_options                
+                - for option in rational_options
+                  - option_label = option.send(option_label_method).to_s
                   %td
                     - if member.nil?
                       = data[[option.send(option_value_method).to_s, nil]].to_i + data[[option.send(option_value_method), '']].to_i
+                    - elsif data[:values][member_key].nil?
+                      0
                     - else
-                      = data[[option.send(option_value_method).to_s, member.send(dimension_key_method)]].to_i
+                      = data[:values][member_key][option_label].to_i
 

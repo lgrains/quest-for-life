@@ -84,8 +84,9 @@ module SurveysHelper
       raise 'Invalid dimension'
     end
 
-    options[:rational_options] ||= options[:data].keys.map(&:first).uniq.sort_by{|k| k.to_s.split('over').last.split('-').first.to_i}
-    options
+    options[:rational_options] ||= options[:data][:rational_options].sort_by{|k| k.to_s.split('over').last.split('-').first.to_i}
+    
+    return options
   end
   
   def chart(parameter, dimension, options={})

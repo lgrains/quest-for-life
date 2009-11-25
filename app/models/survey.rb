@@ -101,10 +101,35 @@ class Survey < ActiveRecord::Base
         where n is not null 
         group by group_col, #{axis}"
 
-      Survey.find_by_sql(sql).inject({}) do |hash, group|
-          hash[[group.group_col, group.send(axis)]] = group.count_surveys.to_i
-        hash
+      surveys = Survey.find_by_sql(sql)
+      logger.warn parameter
+      logger.warn axis
+      surveys.each do |survey|
+        logger.warn "****** Data: #{survey.group_col} #{survey.send(axis)} #{survey.count_surveys}"
       end
+      
+      # report_hash = Survey.find_by_sql(sql).inject({}) do |hash, group|
+      #     hash[[group.group_col, group.send(axis)]] = group.count_surveys.to_i
+      #   hash
+      # end
+      # return report_hash
+      
+      report_hash = {
+        :count => {},
+        :rational_options => [],
+        :values => {}
+      }
+      Survey.find_by_sql(sql).each do |group|
+        group_label = group.send(axis).blank? ? nil : group.send(axis)
+        report_hash[:count][group_label] = 0 if report_hash[:count][group_label].nil?
+        report_hash[:count][group_label] += group.count_surveys.to_i
+        report_hash[:rational_options] << group.group_col
+        report_hash[:values][group_label] = {} if report_hash[:values][group_label].nil?
+        report_hash[:values][group_label][group.group_col] = group.count_surveys
+      end
+      report_hash[:rational_options] = report_hash[:rational_options].uniq
+      logger.warn report_hash[:count].inspect
+      return report_hash
     end
 
   end
