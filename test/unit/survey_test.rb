@@ -5,7 +5,7 @@ class SurveyTest < ActiveSupport::TestCase
   should_belong_to :survey_group
   should_belong_to :lit_type
   should_belong_to :activity
-  should_protect_attributes :id, :created_at, :updated_at
+  should_not_allow_mass_assignment_of :id, :created_at, :updated_at
   
   test "n is nil if any parameter is nil" do
     # initialize all to non-nil
