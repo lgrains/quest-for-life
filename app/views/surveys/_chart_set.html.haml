@@ -21,15 +21,15 @@
 
           %dl
             %dt Count
-            %dd= data[:count][member_key]
+            %dd= data[:count][member_key].commify
             %dt Average
-            %dd -
+            %dd= data[:average][member_key].commify
             %dt Median
             %dd -
             %dt Min
-            %dd= data[:min][member_key]
+            %dd= data[:min][member_key].commify
             %dt Max
-            %dd= data[:max][member_key]
+            %dd= data[:max][member_key].commify
             %dt Stdev
             %dd -
 

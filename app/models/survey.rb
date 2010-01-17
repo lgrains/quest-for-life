@@ -97,7 +97,8 @@ class Survey < ActiveRecord::Base
         sql_parameter = "#{parameter} as group_col"
       end
       sql = "select #{sql_parameter}, #{axis}, count(*) as count_surveys,
-        min(#{parameter}) as min, max(#{parameter}) as max
+        min(#{parameter}) as min, max(#{parameter}) as max,
+        avg(#{parameter}) as average
         from #{table_name}
         where n is not null 
         group by group_col, #{axis}"
@@ -107,15 +108,26 @@ class Survey < ActiveRecord::Base
         :count => {},
         :min => {},
         :max => {},
+        :average => {},
         :rational_options => [],
         :values => {}
       }
       Survey.find_by_sql(sql).each do |group|
         group_label = group.send(axis).blank? ? nil : group.send(axis)
+        
+        # initialize some values
         report_hash[:count][group_label] = 0 if report_hash[:count][group_label].nil?
+        report_hash[:average][group_label] = 0 if report_hash[:average][group_label].nil?
+        
         report_hash[:count][group_label] += group.count_surveys.to_i
-        report_hash[:min][group_label] = group.min if report_hash[:min][group_label].nil? || report_hash[:min][group_label] > group.min
-        report_hash[:max][group_label] = group.max if report_hash[:max][group_label].nil? || report_hash[:max][group_label] < group.max
+        if report_hash[:min][group_label].nil? || report_hash[:min][group_label] > group.min.to_i
+          report_hash[:min][group_label] = group.min.to_i
+        end
+        if report_hash[:max][group_label].nil? || report_hash[:max][group_label] < group.max.to_i
+          report_hash[:max][group_label] = group.max.to_i
+        end
+        report_hash[:average][group_label] += (group.average.to_i * group.count_surveys.to_i)
+        
         report_hash[:rational_options] << group.group_col
         report_hash[:values][group_label] = {} if report_hash[:values][group_label].nil?
         if report_hash[:values][group_label][group.group_col]
@@ -125,7 +137,9 @@ class Survey < ActiveRecord::Base
         end
       end
       report_hash[:rational_options] = report_hash[:rational_options].uniq
-
+      report_hash[:average].each do |key, value|
+        report_hash[:average][key] = value/report_hash[:count][key]
+      end
       return report_hash
     end
 
