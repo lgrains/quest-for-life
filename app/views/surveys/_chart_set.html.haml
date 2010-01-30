@@ -21,17 +21,17 @@
 
           %dl
             %dt Count
-            %dd= data[:count][member_key].commify
+            %dd= data_format(data[:count][member_key])
             %dt Average
-            %dd= data[:average][member_key].commify
+            %dd= data_format(data[:average][member_key])
             %dt Median
             %dd -
             %dt Min
-            %dd= data[:min][member_key].commify
+            %dd= data_format(data[:min][member_key])
             %dt Max
-            %dd= data[:max][member_key].commify
-            %dt Stdev
-            %dd -
+            %dd= data_format(data[:max][member_key])
+            %dt St. Dev.
+            %dd= data_format(data[:stdev][member_key])
 
           %table.data
             %thead

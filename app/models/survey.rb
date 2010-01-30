@@ -98,7 +98,7 @@ class Survey < ActiveRecord::Base
       end
       sql = "select #{sql_parameter}, #{axis}, count(*) as count_surveys,
         min(#{parameter}) as min, max(#{parameter}) as max,
-        avg(#{parameter}) as average
+        avg(#{parameter}) as average, stddev_pop(#{parameter}) as stdev
         from #{table_name}
         where n is not null 
         group by group_col, #{axis}"
@@ -109,6 +109,7 @@ class Survey < ActiveRecord::Base
         :min => {},
         :max => {},
         :average => {},
+        :stdev => {},
         :rational_options => [],
         :values => {}
       }
@@ -118,6 +119,7 @@ class Survey < ActiveRecord::Base
         # initialize some values
         report_hash[:count][group_label] = 0 if report_hash[:count][group_label].nil?
         report_hash[:average][group_label] = 0 if report_hash[:average][group_label].nil?
+        report_hash[:stdev][group_label] = 0.0 if report_hash[:stdev][group_label].nil?
         
         report_hash[:count][group_label] += group.count_surveys.to_i
         if report_hash[:min][group_label].nil? || report_hash[:min][group_label] > group.min.to_i
@@ -127,6 +129,7 @@ class Survey < ActiveRecord::Base
           report_hash[:max][group_label] = group.max.to_i
         end
         report_hash[:average][group_label] += (group.average.to_i * group.count_surveys.to_i)
+        report_hash[:stdev][group_label] += (group.stdev.to_f * group.count_surveys.to_f)
         
         report_hash[:rational_options] << group.group_col
         report_hash[:values][group_label] = {} if report_hash[:values][group_label].nil?
@@ -139,6 +142,9 @@ class Survey < ActiveRecord::Base
       report_hash[:rational_options] = report_hash[:rational_options].uniq
       report_hash[:average].each do |key, value|
         report_hash[:average][key] = value/report_hash[:count][key]
+      end
+      report_hash[:stdev].each do |key, value|
+        report_hash[:stdev][key] = value/report_hash[:count][key]
       end
       return report_hash
     end

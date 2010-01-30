@@ -93,4 +93,13 @@ module SurveysHelper
     render :partial => 'chart_set', :locals => chart_options(parameter, dimension, options)
   end
   
+  def data_format(num)
+    if num > 9_999_999
+      return '%0.2e' % num.to_f
+    elsif num > 100
+      return num.round.commify
+    else
+      return "%0.2f" % num.to_f
+    end
+  end
 end
