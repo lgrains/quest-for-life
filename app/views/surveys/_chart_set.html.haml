@@ -24,14 +24,12 @@
             %dd= data_format(data[:count][member_key])
             %dt Average
             %dd= data_format(data[:average][member_key])
-            %dt Median
-            %dd -
+            %dt St. Dev.
+            %dd= data_format(data[:stdev][member_key])
             %dt Min
             %dd= data_format(data[:min][member_key])
             %dt Max
             %dd= data_format(data[:max][member_key])
-            %dt St. Dev.
-            %dd= data_format(data[:stdev][member_key])
 
           %table.data
             %thead
