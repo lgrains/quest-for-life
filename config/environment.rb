@@ -41,7 +41,8 @@ Rails::Initializer.run do |config|
   config.gem 'jcnetdev-better_partials', :version => '>= 1.1', :lib => 'better_partials', :source => 'http://gems.github.com'
   config.gem 'binarylogic-searchlogic', :version => '2.2.3', :lib => 'searchlogic', :source => 'http://gems.github.com'
   config.gem 'zilkey-active_hash', :version => '0.6.1', :lib => 'active_hash'
-
+  config.gem 'exceptional', :version => '2.0.7'
+  
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
   config.frameworks -= [ :active_resource ]
