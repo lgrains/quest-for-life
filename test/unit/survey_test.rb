@@ -28,17 +28,16 @@ class SurveyTest < ActiveSupport::TestCase
   test "n is calculated correctly" do
     rationals =
       {
-        :r_star_rational_id => Factory(:rational_option),
-        :fp_rational_id => Factory(:rational_option),
-        :ne_rational_id => Factory(:rational_option),
-        :fl_rational_id => Factory(:rational_option),
-        :fi_rational_id => Factory(:rational_option),
-        :fc_rational_id => Factory(:rational_option),
-        :l_rational_id => Factory(:rational_option)
+        :r_star_rational_id => Factory.create(:rational_option).id,
+        :fp_rational_id => Factory.create(:rational_option).id,
+        :ne_rational_id => Factory.create(:rational_option).id,
+        :fl_rational_id => Factory.create(:rational_option).id,
+        :fi_rational_id => Factory.create(:rational_option).id,
+        :fc_rational_id => Factory.create(:rational_option).id,
+        :l_rational_id => Factory.create(:rational_option).id
       }
     survey = Factory.create(:survey, rationals)
-
-    product = rationals.values.inject(1.0) { |product, v| product * v.quotient }.round
+    product = rationals.values.inject(1.0) { |product, v| product * RationalOption.find(v).quotient }.round
     assert_equal product.round, survey.n
   end
   

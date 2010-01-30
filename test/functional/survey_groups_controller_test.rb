@@ -46,14 +46,15 @@ class SurveyGroupsControllerTest < ActionController::TestCase
   end
 
   test "update a survey that belongs to the current user" do
-    survey_group = Factory.create(:survey_group)
+    survey_group = Factory.create(:survey_group, :user => @user)
     put :update, :id => survey_group, :survey_group => {}
 
     assert_redirected_to survey_group.user, "should have redirected to view"
   end
 
   test "index" do
-    survey_groups = [Factory(:survey_group), Factory(:survey_group)]
+    survey_groups = [ Factory.create(:survey_group, :user => @user), 
+                      Factory.create(:survey_group, :user => @user) ]
     get :index
 
     assert_response :ok
