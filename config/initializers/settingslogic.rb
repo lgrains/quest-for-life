@@ -28,8 +28,7 @@ if File.exists?(private_file)
 else # If not configuration file, check environment variables -- use for Heroku
   $private_settings = Settings.new({
     :mail_user => ENV['MAIL_USER'] || '',
-    :mail_password => ENV['MAIL_PASSWORD'] || '',
-    :hoptoad_api_key => ENV['HOPTOAD_API_KEY'] || ''
+    :mail_password => ENV['MAIL_PASSWORD'] || ''
   })
 end
 
