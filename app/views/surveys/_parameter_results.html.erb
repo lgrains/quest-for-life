@@ -1,0 +1,393 @@
+<div class="tab-body">
+  <h2>Number of Civilizations</h2>
+  <h3>How many civilizations that might communicate with us are there in our galaxy?</h3>
+	
+  <label>Show age:</label>
+  <select>
+    <option disabled="disabled">Choose:</option>
+    <option>11 and under</option>
+    <option>12-14</option>
+    <option>15-18</option>
+    <option>19-25</option>
+    <option selected="selected">26-35</option>
+    <option>36-50</option>
+    <option>50+</option>
+    <option>Unknown</option>
+  </select>
+	
+	<div id="ages-group" style="width: 800px; height: 400px;"></div>
+
+	<table id="data-ages-group" style="display:none;">
+    <caption>Estimates by age group 26-35</caption>
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>1</th>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th>10</th>
+        <td>7</td>
+      </tr>
+      <tr>
+        <th>100</th>
+        <td>12</td>
+      </tr>
+      <tr>
+        <th>1000</th>
+        <td>7</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <label>Show gender:</label>
+  <select>
+    <option disabled="disabled">Choose:</option>
+    <option selected="selected">Male</option>
+    <option>Female</option>
+    <option>Unknown</option>
+  </select>
+
+	<div id="ages-all" style="width: 800px; height: 400px;"></div>
+
+	<table id="data-ages-all" style="display:none;">
+    <caption>Estimates for all ages</caption>
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>1</th>
+        <td>410</td>
+      </tr>
+      <tr>
+        <th>10</th>
+        <td>713</td>
+      </tr>
+      <tr>
+        <th>100</th>
+        <td>1275</td>
+      </tr>
+      <tr>
+        <th>1000</th>
+        <td>79</td>
+      </tr>
+    </tbody>
+  </table>
+
+	<div id="gender-group" style="width: 800px; height: 400px;"></div>
+
+	<table id="data-gender-group" style="display:none;">
+    <caption>Estimates for age 26-35</caption>
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Male</th>
+        <td>13</td>
+      </tr>
+      <tr>
+        <th>Female</th>
+        <td>12</td>
+      </tr>
+      <tr>
+        <th>Unknown</th>
+        <td>1</td>
+      </tr>
+    </tbody>
+  </table>
+
+	<div id="gender-all" style="width: 800px; height: 400px;"></div>
+
+	<table id="data-gender-all" style="display:none;">
+    <caption>Estimates for age 26-35</caption>
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Male</th>
+        <td>421</td>
+      </tr>
+      <tr>
+        <th>Female</th>
+        <td>378</td>
+      </tr>
+      <tr>
+        <th>Unknown</th>
+        <td>84</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'ages-group',
+			defaultSeriesType: 'column'
+		},
+		title: {
+			text: 'Estimates by age group 26-35'
+		},
+		xAxis: {
+			categories: ['1', '10', '100', '1000']
+		},
+		yAxis: {
+			title: {
+				text: 'Number of Responses'
+			}
+		},
+		tooltip: {
+			formatter: function() {
+				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+			}
+		},
+		plotOptions: {
+			column: {
+				data: 'data-ages-group',
+				// define a custom data parser function for both series
+				dataParser: function(data) {
+					var table = document.getElementById(data),
+						// get the data rows from the tbody element
+						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
+						// define the array to hold the real data
+						result = [], 
+						// decide which column to use for this series
+						column = { 'Count': 0 }[this.options.name];
+						
+					// loop through the rows and get the data depending on the series (this) name
+					for (var i = 0; i < rows.length; i++) {						
+						result.push(
+							parseInt(
+								rows[i].getElementsByTagName('td')[column]. // the data cell
+								innerHTML
+							)
+						);
+					}
+					return result;
+				}
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		legend: {
+			enabled: false
+		},
+		series: [{
+			name: 'Count'
+		}]
+	});
+	
+	
+});
+
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'ages-all',
+			defaultSeriesType: 'column'
+		},
+		title: {
+			text: 'Estimates for all ages'
+		},
+		xAxis: {
+			categories: ['1', '10', '100', '1000']
+		},
+		yAxis: {
+			title: {
+				text: 'Number of Responses'
+			}
+		},
+		tooltip: {
+			formatter: function() {
+				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+			}
+		},
+		plotOptions: {
+			column: {
+				data: 'data-ages-all',
+				// define a custom data parser function for both series
+				dataParser: function(data) {
+					var table = document.getElementById(data),
+						// get the data rows from the tbody element
+						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
+						// define the array to hold the real data
+						result = [], 
+						// decide which column to use for this series
+						column = { 'Count': 0 }[this.options.name];
+						
+					// loop through the rows and get the data depending on the series (this) name
+					for (var i = 0; i < rows.length; i++) {						
+						result.push(
+							parseInt(
+								rows[i].getElementsByTagName('td')[column]. // the data cell
+								innerHTML
+							)
+						);
+					}
+					return result;
+				}
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		legend: {
+			enabled: false
+		},
+		series: [{
+			name: 'Count'
+		}]
+	});
+	
+	
+});
+
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'gender-group',
+			defaultSeriesType: 'column'
+		},
+		title: {
+			text: 'Estimates by males'
+		},
+		xAxis: {
+			categories: ['Male', 'Female', 'Unknown']
+		},
+		yAxis: {
+			title: {
+				text: 'Number of Responses'
+			}
+		},
+		tooltip: {
+			formatter: function() {
+				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+			}
+		},
+		plotOptions: {
+			column: {
+				data: 'data-gender-group',
+				// define a custom data parser function for both series
+				dataParser: function(data) {
+					var table = document.getElementById(data),
+						// get the data rows from the tbody element
+						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
+						// define the array to hold the real data
+						result = [], 
+						// decide which column to use for this series
+						column = { 'Count': 0 }[this.options.name];
+						
+					// loop through the rows and get the data depending on the series (this) name
+					for (var i = 0; i < rows.length; i++) {						
+						result.push(
+							parseInt(
+								rows[i].getElementsByTagName('td')[column]. // the data cell
+								innerHTML
+							)
+						);
+					}
+					return result;
+				}
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		legend: {
+			enabled: false
+		},
+		series: [{
+			name: 'Count'
+		}]
+	});
+	
+	
+});
+
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'gender-all',
+			defaultSeriesType: 'column'
+		},
+		title: {
+			text: 'Estimates for all genders'
+		},
+		xAxis: {
+			categories: ['Male', 'Female', 'Unknown']
+		},
+		yAxis: {
+			title: {
+				text: 'Number of Responses'
+			}
+		},
+		tooltip: {
+			formatter: function() {
+				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+			}
+		},
+		plotOptions: {
+			column: {
+				data: 'data-gender-all',
+				// define a custom data parser function for both series
+				dataParser: function(data) {
+					var table = document.getElementById(data),
+						// get the data rows from the tbody element
+						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
+						// define the array to hold the real data
+						result = [], 
+						// decide which column to use for this series
+						column = { 'Count': 0 }[this.options.name];
+						
+					// loop through the rows and get the data depending on the series (this) name
+					for (var i = 0; i < rows.length; i++) {						
+						result.push(
+							parseInt(
+								rows[i].getElementsByTagName('td')[column]. // the data cell
+								innerHTML
+							)
+						);
+					}
+					return result;
+				}
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		legend: {
+			enabled: false
+		},
+		series: [{
+			name: 'Count'
+		}]
+	});
+	
+	
+});
+</script>
