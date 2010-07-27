@@ -47,6 +47,12 @@ Rails::Initializer.run do |config|
   # you must remove the Active Record framework.
   config.frameworks -= [ :active_resource ]
 
+  # config.action_controller.session = {
+  #   :session_key => '_quest_for_life_session',
+  #   :secret      => 'cdff9de3750737937a47b94fa3cf4c5b7e09c3c326eac24e1b20652816794aaa'
+  # }
+  config.action_controller.session_store = :cookie_store
+  
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
