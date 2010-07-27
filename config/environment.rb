@@ -36,11 +36,11 @@ Rails::Initializer.run do |config|
   config.gem 'justinfrench-formtastic', :lib => 'formtastic', :source => 'http://gems.github.com'
   config.gem 'thoughtbot-clearance', :lib => 'clearance', :source => 'http://gems.github.com'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
-  config.gem 'ruby-openid', :lib => 'openid'
+  config.gem 'ruby-openid', :lib => 'openid', :version => '2.1.8'
   config.gem 'chriseppstein-compass', :version => '0.8.10', :lib => 'compass', :source => 'http://gems.github.com'
   config.gem 'jcnetdev-better_partials', :version => '>= 1.1', :lib => 'better_partials', :source => 'http://gems.github.com'
   config.gem 'binarylogic-searchlogic', :version => '2.2.3', :lib => 'searchlogic', :source => 'http://gems.github.com'
-  config.gem 'active_hash', :version => '0.8.1', :lib => 'active_hash'
+  config.gem 'active_hash', :version => '0.8.2', :lib => 'active_hash'
   config.gem 'exceptional', :version => '2.0.7'
   
   # Skip frameworks you're not going to use. To use Rails without a database,
