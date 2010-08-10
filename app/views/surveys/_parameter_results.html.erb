@@ -44,7 +44,7 @@ $(document).ready(function() {
 		},
 		tooltip:{
 			formatter: function(){
-				return ' ' +this.y +' people calculated ' + this.x+ ' stars';
+				return ' ' +this.y +' calculated ' + this.x+ ' stars';
 			}
 		},
 		series: [{
@@ -70,7 +70,7 @@ $(document).ready(function() {
 			data: <%= Survey.report( prmtr.to_s  ,:age, 7).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: 'Unknown',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 0).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.report( prmtr.to_s  ,:age, NIL).split(',').collect{|e| e.to_i}.inspect %>
 		}]
 	});
 	
@@ -98,7 +98,7 @@ $(document).ready(function() {
 		},
 		tooltip:{
 			formatter: function(){
-				return ' ' +this.y +' people calculated ' + this.x+ ' stars';
+				return ' ' +this.y +' calculated ' + this.x+ ' stars';
 			}
 		},
 		series: [{
@@ -109,7 +109,7 @@ $(document).ready(function() {
 			data: <%= Survey.report(prmtr.to_s ,:gender, "Female").split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: 'Unknown',
-			data: <%= Survey.report(prmtr.to_s ,:gender, '').split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.report(prmtr.to_s ,:gender, NIL).split(',').collect{|e| e.to_i}.inspect %>
 		
 		}]
 	});
@@ -137,7 +137,7 @@ $(document).ready(function() {
 		},
 		tooltip:{
 			formatter: function(){
-				return ' ' +this.y +' people calculated ' + this.x+ ' stars';
+				return ' ' +this.y +' calculated ' + this.x+ ' stars';
 			}
 		},
 		series: [{

@@ -91,12 +91,19 @@ class Survey < ActiveRecord::Base
 	#     Survey.find(:all, :conditions=>["#{param} and age_group_id = #{age}"]) this works in the console
 	def report  param, dimension, selection
 		if dimension == :age
-			logger.info  
-			res = Survey.find(:all, :conditions => ["#{param} and age_group_id = #{selection}"])
+			if selection
+				res = Survey.find(:all, :conditions => ["#{param}>0 and age_group_id = #{selection}"])
+			else
+				res = Survey.find(:all, :conditions => ["#{param} >0 and age_group_id is NULL"])
+			end
 		elsif dimension == :gender 
-			res = Survey.find(:all, :conditions => ["#{param}  and gender = '#{selection}'"])
+			if selection
+				res = Survey.find(:all, :conditions => ["#{param} >0 and gender = '#{selection}'"])
+			else
+				res = Survey.find(:all, :conditions => ["#{param} > 0  and gender is NULL"])
+			end
 		elsif dimension == :all
-			res = Survey.find(:all, :conditions => ["#{param}"])
+			res = Survey.find(:all, :conditions => ["#{param} > 0"])
 		end
 		p =res.collect {|e| Survey.get_param(param, e)}
 		logger.info "104###{p.inspect}"
