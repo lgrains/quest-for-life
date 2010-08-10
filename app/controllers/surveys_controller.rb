@@ -108,7 +108,6 @@ class SurveysController < ApplicationController
   
   #this is going to call Survey.report
   def refresh (pmr, which)
-  logger.info "controller.111 in refresh"
 	pmr = pmr.to_s
 	which = which.to_sym
 	report(pmr, which)

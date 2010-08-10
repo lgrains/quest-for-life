@@ -106,7 +106,6 @@ class Survey < ActiveRecord::Base
 			res = Survey.find(:all, :conditions => ["#{param} > 0"])
 		end
 		p =res.collect {|e| Survey.get_param(param, e)}
-		logger.info "104###{p.inspect}"
 		if !p
 			raise "Bad Array"
 		end
@@ -129,9 +128,7 @@ class Survey < ActiveRecord::Base
 	end
 	
 	def counts data, param	#data is an array of Surveys
-		logger.info "127##########{data}.inspect"
 		data.inject(Array.new(4,0)) do |h,e|
-			logger.info"127-2#########{e}"
 			if 	e > 0 and e <= 10
 				h[0] +=1
 			elsif e<= 100
@@ -141,7 +138,6 @@ class Survey < ActiveRecord::Base
 			elsif e <= 10000
 				h[3] += 1
 			end	
-			logger.info "137######{h.inspect}"
 			h
 		end
 	end   
