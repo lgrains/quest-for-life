@@ -105,4 +105,13 @@ class SurveysController < ApplicationController
   def only_show_if_completed
     redirect_to ( parent? ? survey_group_surveys_path : surveys_path) if current_object.nil? || !current_object.completed?
   end
+  
+  #this is going to call Survey.report
+  def refresh (pmr, which)
+  logger.info "controller.111 in refresh"
+	pmr = pmr.to_s
+	which = which.to_sym
+	report(pmr, which)
+	
+  end
 end

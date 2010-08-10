@@ -38,6 +38,7 @@ class RationalOption < ActiveRecord::Base
   
   attr_accessible :numerator, :denominator
   
+  #reaches for the rational_options that have a whole number for the quotient
   named_scope :integers, {:conditions=>{:quotient => Array(0..100)}}
 
   def quotient_label

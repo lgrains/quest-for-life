@@ -85,8 +85,65 @@ class Survey < ActiveRecord::Base
     def l_options
       RationalOption.quotient_gte(1).quotient_lte(10**6).reject{|o| Math.log10(o.quotient) % 1 != 0}
     end
-  end
-  
+	
+	#returns all the data from the surveys table for the particular param with that dimension
+	#whichGroup is either an :age_group_id or :gender
+	#     Survey.find(:all, :conditions=>["#{param} and age_group_id = #{age}"]) this works in the console
+	def report  param, dimension, selection
+		if dimension == :age
+			logger.info  
+			res = Survey.find(:all, :conditions => ["#{param} and age_group_id = #{selection}"])
+		elsif dimension == :gender 
+			res = Survey.find(:all, :conditions => ["#{param}  and gender = '#{selection}'"])
+		elsif dimension == :all
+			res = Survey.find(:all, :conditions => ["#{param}"])
+		end
+		p =res.collect {|e| Survey.get_param(param, e)}
+		logger.info "104###{p.inspect}"
+		if !p
+			raise "Bad Array"
+		end
+		
+		Survey.counts(p,param).join(',')
+	end
+	############
+	def get_param param, inp
+		case param
+			when 'n'; 		inp.n
+			when 'r_star': 	inp.r_star
+			when 'fp':		inp.fp
+			when 'ne': 		inp.ne
+			when 'fl':		inp.fl
+			when 'fi':		inp.fi
+			when 'fc':		inp.fc
+			when 'l':		inp.l
+			else			"Invalid parameter"
+		end
+	end
+	
+	def counts data, param	#data is an array of Surveys
+		logger.info "127##########{data}.inspect"
+		data.inject(Array.new(4,0)) do |h,e|
+			logger.info"127-2#########{e}"
+			if 	e > 0 and e <= 10
+				h[0] +=1
+			elsif e<= 100
+				h[1]+=1
+			elsif e <=1000
+				h[2] +=1
+			elsif e <= 10000
+				h[3] += 1
+			end	
+			logger.info "137######{h.inspect}"
+			h
+		end
+	end   
+	
+end
+
+
+	
+	
   belongs_to :survey_group
   belongs_to :age_group
     
@@ -126,6 +183,8 @@ class Survey < ActiveRecord::Base
     "#{self.city}, #{self.state+' '}#{self.country}"
   end
   
+ 
+  
   private
   
   def store_group_demigraphics
@@ -161,4 +220,10 @@ class Survey < ActiveRecord::Base
   def cleanup_empty_strings
     self.gender = nil if self.gender == ''
   end
+  
+ 
 end
+
+
+
+

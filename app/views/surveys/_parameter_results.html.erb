@@ -1,124 +1,38 @@
 <div class="tab-body">
-  <h2>Number of Civilizations</h2>
-  <h3>How many civilizations that might communicate with us are there in our galaxy?</h3>
-	
-  <label>Show age:</label>
-  <select>
-    <option disabled="disabled">Choose:</option>
-    <option>11 and under</option>
-    <option>12-14</option>
-    <option>15-18</option>
-    <option>19-25</option>
-    <option selected="selected">26-35</option>
-    <option>36-50</option>
-    <option>50+</option>
-    <option>Unknown</option>
-  </select>
-	
+
+<% prmtr = !params[:p] ?options[:parameter] : params[:p]%>
+
+  <h2><%= Survey.title_for_parameter( prmtr.to_s) %></h2>
+  <h3><%= Survey.question_for_parameter( prmtr.to_s )%></h3>
+
+
+  
+	<BR>&nbsp;<BR>&nbsp;<BR>
 	<div id="ages-group" style="width: 650px; height: 300px;"></div>
-
-	<table id="data-ages-group" style="display:none;">
-    <caption>Estimates by age group 26-35</caption>
-    <thead>
-      <tr>
-        <th>Value</th>
-        <th>Count</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>1-9</th>
-        <td>4</td>
-      </tr>
-      <tr>
-        <th>10-99</th>
-        <td>7</td>
-      </tr>
-      <tr>
-        <th>100-999</th>
-        <td>12</td>
-      </tr>
-      <tr>
-        <th>1000-9999</th>
-        <td>7</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <label>Show gender:</label>
-  <select>
-    <option disabled="disabled">Choose:</option>
-    <option selected="selected">Male</option>
-    <option>Female</option>
-    <option>Unknown</option>
-  </select>
+	
+	<BR>&nbsp;<BR>&nbsp;<BR>
 
 	<div id="gender-group" style="width: 650px; height: 300px;"></div>
 
-	<table id="data-gender-group" style="display:none;">
-    <caption>Estimates for age 26-35</caption>
-    <thead>
-      <tr>
-        <th>Value</th>
-        <th>Count</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>1-9</th>
-        <td>4</td>
-      </tr>
-      <tr>
-        <th>10-99</th>
-        <td>7</td>
-      </tr>
-      <tr>
-        <th>100-999</th>
-        <td>12</td>
-      </tr>
-      <tr>
-        <th>1000-9999</th>
-        <td>7</td>
-      </tr>
-    </tbody>
-  </table>
+	<BR>&nbsp;<BR>&nbsp;<BR>
 
 	<div id="all" style="width: 650px; height: 300px;"></div>
-
-	<table id="data-all" style="display:none;">
-    <caption>Estimates for age 26-35</caption>
-    <tbody>
-      <tr>
-        <th>1-9</th>
-        <td>410</td>
-      </tr>
-      <tr>
-        <th>10-99</th>
-        <td>713</td>
-      </tr>
-      <tr>
-        <th>100-999</th>
-        <td>1275</td>
-      </tr>
-      <tr>
-        <th>1000-9999</th>
-        <td>379</td>
-      </tr>
-    </tbody>
-  </table>
 
 </div>
 
 <script>
-var chart;
+
+var chart_age;
 $(document).ready(function() {
-	chart = new Highcharts.Chart({
+	
+	chart_age = new Highcharts.Chart({
 		chart: {
 			renderTo: 'ages-group',
-			defaultSeriesType: 'column'
+			defaultSeriesType: 'column',
+			backgroundColor: '#0A0A0A'
 		},
 		title: {
-			text: 'Estimates by age group 26-35'
+			text: "Answers for Age Group "
 		},
 		xAxis: {
 			categories: ['1-9', '10-99', '100-999', '1000-9999']
@@ -128,60 +42,51 @@ $(document).ready(function() {
 				text: 'Number of Responses'
 			}
 		},
-		tooltip: {
-			formatter: function() {
-				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+		tooltip:{
+			formatter: function(){
+				return ' ' +this.y +' people calculated ' + this.x+ ' stars';
 			}
-		},
-		plotOptions: {
-			column: {
-				data: 'data-ages-group',
-				// define a custom data parser function for both series
-				dataParser: function(data) {
-					var table = document.getElementById(data),
-						// get the data rows from the tbody element
-						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
-						// define the array to hold the real data
-						result = [], 
-						// decide which column to use for this series
-						column = { 'Count': 0 }[this.options.name];
-						
-					// loop through the rows and get the data depending on the series (this) name
-					for (var i = 0; i < rows.length; i++) {						
-						result.push(
-							parseInt(
-								rows[i].getElementsByTagName('td')[column]. // the data cell
-								innerHTML
-							)
-						);
-					}
-					return result;
-				}
-			}
-		},
-		credits: {
-			enabled: false
-		},
-		legend: {
-			enabled: false
 		},
 		series: [{
-			name: 'Count'
+			name: '11 and Under',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 1).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: '12-14',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 2).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: '15-18',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 3).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: '19-25',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 4).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: '26-35',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 5).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: '36-50',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 6).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: '50+',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 7).split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: 'Unknown',
+			data: <%= Survey.report( prmtr.to_s  ,:age, 0).split(',').collect{|e| e.to_i}.inspect %>
 		}]
 	});
 	
-	
 });
 
-var chart;
+var chart_gen;
 $(document).ready(function() {
-	chart = new Highcharts.Chart({
+	
+	chart_gen = new Highcharts.Chart({
 		chart: {
 			renderTo: 'gender-group',
-			defaultSeriesType: 'column'
+			defaultSeriesType: 'column',
+			backgroundColor: '#0A0A0A',
 		},
 		title: {
-			text: 'Estimates by males'
+			text: "Answers for Gender"	//TODO fix so it is flexible
 		},
 		xAxis: {
 			categories: ['1-9', '10-99', '100-999', '1000-9999']
@@ -191,60 +96,36 @@ $(document).ready(function() {
 				text: 'Number of Responses'
 			}
 		},
-		tooltip: {
-			formatter: function() {
-				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+		tooltip:{
+			formatter: function(){
+				return ' ' +this.y +' people calculated ' + this.x+ ' stars';
 			}
-		},
-		plotOptions: {
-			column: {
-				data: 'data-gender-group',
-				// define a custom data parser function for both series
-				dataParser: function(data) {
-					var table = document.getElementById(data),
-						// get the data rows from the tbody element
-						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
-						// define the array to hold the real data
-						result = [], 
-						// decide which column to use for this series
-						column = { 'Count': 0 }[this.options.name];
-						
-					// loop through the rows and get the data depending on the series (this) name
-					for (var i = 0; i < rows.length; i++) {						
-						result.push(
-							parseInt(
-								rows[i].getElementsByTagName('td')[column]. // the data cell
-								innerHTML
-							)
-						);
-					}
-					return result;
-				}
-			}
-		},
-		credits: {
-			enabled: false
-		},
-		legend: {
-			enabled: false
 		},
 		series: [{
-			name: 'Count'
+			name: 'Males',
+			data: <%= Survey.report(prmtr.to_s ,:gender, "Male").split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: 'Females',
+			data: <%= Survey.report(prmtr.to_s ,:gender, "Female").split(',').collect{|e| e.to_i}.inspect %>
+		},{
+			name: 'Unknown',
+			data: <%= Survey.report(prmtr.to_s ,:gender, '').split(',').collect{|e| e.to_i}.inspect %>
+		
 		}]
 	});
-	
 	
 });
 
-var chart;
+var chart_all;
 $(document).ready(function() {
-	chart = new Highcharts.Chart({
+	chart_all = new Highcharts.Chart({
 		chart: {
 			renderTo: 'all',
-			defaultSeriesType: 'column'
+			defaultSeriesType: 'column',
+			backgroundColor: '#0A0A0A'
 		},
 		title: {
-			text: 'All Estimates'
+			text: 'All Users'
 		},
 		xAxis: {
 			categories: ['1-9', '10-99', '100-999', '1000-9999']
@@ -254,48 +135,21 @@ $(document).ready(function() {
 				text: 'Number of Responses'
 			}
 		},
-		tooltip: {
-			formatter: function() {
-				return '' + this.y +' users responded with '+ this.x.toLowerCase();
+		tooltip:{
+			formatter: function(){
+				return ' ' +this.y +' people calculated ' + this.x+ ' stars';
 			}
-		},
-		plotOptions: {
-			column: {
-				data: 'data-all',
-				// define a custom data parser function for both series
-				dataParser: function(data) {
-					var table = document.getElementById(data),
-						// get the data rows from the tbody element
-						rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'),
-						// define the array to hold the real data
-						result = [], 
-						// decide which column to use for this series
-						column = { 'Count': 0 }[this.options.name];
-						
-					// loop through the rows and get the data depending on the series (this) name
-					for (var i = 0; i < rows.length; i++) {						
-						result.push(
-							parseInt(
-								rows[i].getElementsByTagName('td')[column]. // the data cell
-								innerHTML
-							)
-						);
-					}
-					return result;
-				}
-			}
-		},
-		credits: {
-			enabled: false
-		},
-		legend: {
-			enabled: false
 		},
 		series: [{
-			name: 'Count'
+			name: 'all',
+			data: <%= Survey.report(prmtr.to_s ,:all, '').split(',').collect{|e| e.to_i}.inspect %>
 		}]
 	});
 	
 });
+
+
+
+
 
 </script>
