@@ -7,27 +7,13 @@
 
 
   
-  <label for "age">Show age:</label>
-	<%=
-		@ageGroups = AgeGroup.find(:all).map {|e| [ e.description, e.id]}
-		@ageGroups << ['Unknown', nil]
-		@selected_ageGroup = @ageGroups[5][1]
-		select('age',:description, @ageGroups, :selected=>5, :onclick => "requestData( prmtr, 'age');")
-		
-	%>
   
 	<BR>&nbsp;<BR>&nbsp;<BR>
 	<div id="ages-group" style="width: 650px; height: 300px;"></div>
 	
 	<BR>&nbsp;<BR>&nbsp;<BR>
 	
-	  <label >Show gender:</label>
-	  <select id="gender" onclick="requestData( prmtr, gender); " >
-	  <option disabled="disabled">Choose:</option>
-		<option value="1" selected="selected">Male</option>
-		<option value="2">Female</option>
-		<option value="3" >Unknown</option>
-	  </select>
+	 
 
 	<div id="gender-group" style="width: 650px; height: 300px;"></div>
 
