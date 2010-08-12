@@ -7,10 +7,27 @@
 
 
   
+  <label for "age">Show age:</label>
+	<%=
+		@ageGroups = AgeGroup.find(:all).map {|e| [ e.description, e.id]}
+		@ageGroups << ['Unknown', nil]
+		@selected_ageGroup = @ageGroups[5][1]
+		select('age',:description, @ageGroups, :selected=>5, :onclick => "requestData( prmtr, 'age');")
+		
+	%>
+  
 	<BR>&nbsp;<BR>&nbsp;<BR>
 	<div id="ages-group" style="width: 650px; height: 300px;"></div>
 	
 	<BR>&nbsp;<BR>&nbsp;<BR>
+	
+	  <label >Show gender:</label>
+	  <select id="gender" onclick="requestData( prmtr, gender); " >
+	  <option disabled="disabled">Choose:</option>
+		<option value="1" selected="selected">Male</option>
+		<option value="2">Female</option>
+		<option value="3" >Unknown</option>
+	  </select>
 
 	<div id="gender-group" style="width: 650px; height: 300px;"></div>
 
@@ -48,8 +65,12 @@ $(document).ready(function() {
 			}
 		},
 		series: [{
-			name: '11 and Under',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 1).split(',').collect{|e| e.to_i}.inspect %>
+			name: '11 and under',
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 1).inspect%>
+		
+		},{
+			name: '12 - 14',
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 2).inspect%>
 		},{
 			name: '12-14',
 			data: <%= Survey.report( prmtr.to_s  ,:age, 2).split(',').collect{|e| e.to_i}.inspect %>
@@ -70,7 +91,7 @@ $(document).ready(function() {
 			data: <%= Survey.report( prmtr.to_s  ,:age, 7).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: 'Unknown',
-			data: <%= Survey.report( prmtr.to_s  ,:age, NIL).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.report( prmtr.to_s  ,:age, 0).split(',').collect{|e| e.to_i}.inspect %>
 		}]
 	});
 	
@@ -148,7 +169,20 @@ $(document).ready(function() {
 	
 });
 
-
+function requestData(pm, whichDim){
+	$.ajax({
+		url:	'surveys/refresh?p=pm&aog=whichDim',
+		success:  function(data){
+			if (whichDim == 'age')
+				chart_age.series[0] = data;
+			else
+				chart_gender.series[0] = data;
+		},
+		cache:	false
+	
+	});
+}
+	
 
 
 

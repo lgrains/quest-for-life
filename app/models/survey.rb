@@ -86,6 +86,14 @@ class Survey < ActiveRecord::Base
       RationalOption.quotient_gte(1).quotient_lte(10**6).reject{|o| Math.log10(o.quotient) % 1 != 0}
     end
 	
+	#select r_star, count(*) as count  from surveys where age_group_id = 5  group by floor(log10(n))
+	def new_report(param, dimension, selection)
+		
+		p = Survey.find(:all, :conditions=>["#{param} >0  and #{dimension} = ?", selection])
+		q = p.collect{|e| e.n.to_f}
+		r = q.inject(Array.new(4,0)){ |h,e| h[Math.log10(e).to_i] +=1  if e < 10000; h}
+	end #def
+	
 	#returns all the data from the surveys table for the particular param with that dimension
 	#whichGroup is either an :age_group_id or :gender
 	#     Survey.find(:all, :conditions=>["#{param} and age_group_id = #{age}"]) this works in the console
@@ -141,6 +149,7 @@ class Survey < ActiveRecord::Base
 			h
 		end
 	end   
+	
 	
 end
 
