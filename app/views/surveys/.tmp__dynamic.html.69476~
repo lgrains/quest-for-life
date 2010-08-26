@@ -40,13 +40,12 @@ String.prototype.print = function() {
 	document.write(this);
 }
 
-//def works(param,dim,sel)
 
 $('#gender').change(function(){
 	var selection = this.value;
 	alert("selection is " + selection);	
 	
-	var localStr="<%= remote_function :url => '/surveys/works', :with =>[!params[:p] ? options[:parameter] : params[:p], options[:demographic], 'Form.element.serialize(this)'] %>"
+	var localStr="<%= remote_function :url => '/surveys/new_report', :with =>[!params[:p] ? options[:parameter] : params[:p],options[:demographic], 'Form.element.serialize(this)'] %>"
 	alert ("localStr is " + localStr);
 	alert(this.value);
 	var arr = localStr.split(",");

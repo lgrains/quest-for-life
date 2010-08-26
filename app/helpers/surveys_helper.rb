@@ -73,12 +73,12 @@ module SurveysHelper
     case dimension
     when :age
       options[:dimension] = AgeGroup.all + [AgeGroup.new(:id => nil, :description => 'Unknown' )]
-      options[:data] = Survey.new_report(parameter_col, :age_group_id, 5)  #bad magic number - for setting the starting option
+      options[:data] = Survey.works(parameter_col, :age_group_id, 5)  #bad magic number - for setting the starting option
       options[:dimension_key_method] = :id
       options[:dimension_label_method] = :description
     when :gender
       options[:dimension] = ['Male','Female',nil]
-      options[:data] = Survey.new_report(parameter_col, :gender, 'Male')  #magic word for first setup
+      options[:data] = Survey.works(parameter_col, :gender, 'Male')  #magic word for first setup
       options[:dimension_key_method] = :to_s
       options[:dimension_label_method] = :to_s
     else
