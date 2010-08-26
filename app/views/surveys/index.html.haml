@@ -20,5 +20,5 @@
         %a{ :class => (parameter.to_s == summarize_parameter) ? 'yah' : '', :href => url_for(:p => parameter) }
           = parameter_to_drake_component parameter
 
-  = render :partial => 'parameter_results', :locals => {:options => chart_options(:n, :age)}
+  = render :partial => 'dynamic', :locals => {:options => chart_options(:n, :age)}
 

@@ -82,7 +82,7 @@ module SurveysHelper
       options[:dimension_key_method] = :to_s
       options[:dimension_label_method] = :to_s
     else
-      raise 'Invalid dimension'
+      raise 'Invalid dimension in chart_options()'
     end  
     #options[:rational_options] ||= options[:data][:rational_options].sort_by{|k| k.to_s.split('over').last.split('-').first.to_i}
     return options
@@ -100,6 +100,10 @@ module SurveysHelper
     else
       return "%0.2f" % num.to_f
     end
+  end
+  
+  def chart_helper(param, dim, sel)
+	Survey.new_report( param.to_s, dim.to_s, sel).split(",").collect{|e| e.to_i}.inspect 
   end
 end
 

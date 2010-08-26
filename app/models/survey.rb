@@ -22,7 +22,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 class Survey < ActiveRecord::Base
-
+  
   class << self
     def parameter_columns
       [:r_star, :fp, :ne, :fl, :fi, :fc, :l]
@@ -53,7 +53,7 @@ class Survey < ActiveRecord::Base
         :l => "How many years can an advanced society survive?"
       }[p.to_sym]
     end
-
+    
     def next_parameter(requested_parameter)
       return parameter_columns.first if requested_parameter.nil?
       requested_parameter = requested_parameter.to_sym
@@ -61,108 +61,54 @@ class Survey < ActiveRecord::Base
       index = parameter_columns.index(requested_parameter)
       parameter_columns[index+1]
     end
-
+    
     def options_for(parameter)
       send("#{parameter}_options")
     end
-
+    
     def r_star_options
       RationalOption.integers.quotient_gte(0).quotient_lte(100)
     end
-
+    
     def fp_options
       RationalOption.quotient_gte((10**-6).to_f).quotient_lte(1)
     end
-
+    
     def ne_options
       RationalOption.quotient_gte((10**-2).to_f).quotient_lte(10)
     end
-
+    
     alias fl_options :fp_options
     alias fi_options :fp_options
     alias fc_options :fp_options
-
+    
     def l_options
       RationalOption.quotient_gte(1).quotient_lte(10**6).reject{|o| Math.log10(o.quotient) % 1 != 0}
     end
-	
-	#select r_star, count(*) as count  from surveys where age_group_id = 5  group by floor(log10(n))
-	def new_report(param, dimension, selection)
-		
-		p = Survey.find(:all, :conditions=>["#{param} >0  and #{dimension} = ?", selection])
-		q = p.collect{|e| e.n.to_f}
-		r = q.inject(Array.new(4,0)){ |h,e| h[Math.log10(e).to_i] +=1  if e < 10000; h}
-	end #def
-	
-	#returns all the data from the surveys table for the particular param with that dimension
-	#whichGroup is either an :age_group_id or :gender
-	#     Survey.find(:all, :conditions=>["#{param} and age_group_id = #{age}"]) this works in the console
-	def report  param, dimension, selection
-		if dimension == :age
-			if selection
-				res = Survey.find(:all, :conditions => ["#{param}>0 and age_group_id = #{selection}"])
-			else
-				res = Survey.find(:all, :conditions => ["#{param} >0 and age_group_id is NULL"])
-			end
-		elsif dimension == :gender 
-			if selection
-				res = Survey.find(:all, :conditions => ["#{param} >0 and gender = '#{selection}'"])
-			else
-				res = Survey.find(:all, :conditions => ["#{param} > 0  and gender is NULL"])
-			end
-		elsif dimension == :all
-			res = Survey.find(:all, :conditions => ["#{param} > 0"])
-		end
-		p =res.collect {|e| Survey.get_param(param, e)}
-		if !p
-			raise "Bad Array"
-		end
-		
-		Survey.counts(p,param).join(',')
-	end
-	############
-	def get_param param, inp
-		case param
-			when 'n'; 		inp.n
-			when 'r_star': 	inp.r_star
-			when 'fp':		inp.fp
-			when 'ne': 		inp.ne
-			when 'fl':		inp.fl
-			when 'fi':		inp.fi
-			when 'fc':		inp.fc
-			when 'l':		inp.l
-			else			"Invalid parameter"
-		end
-	end
-	
-	def counts data, param	#data is an array of Surveys
-		data.inject(Array.new(4,0)) do |h,e|
-			if 	e > 0 and e <= 10
-				h[0] +=1
-			elsif e<= 100
-				h[1]+=1
-			elsif e <=1000
-				h[2] +=1
-			elsif e <= 10000
-				h[3] += 1
-			end	
-			h
-		end
-	end   
-	
-	
-end
-
-
-	
-	
+    
+    def works(param,dim,sel)
+      all=Survey.find(:all, 
+        :conditions=>["#{param} > 0 and #{dim} = '#{sel}'"],
+        :select=> "#{param}")
+      nx = Survey.send_test(all, param)
+      r =nx.inject(Array.new(4,0)){ |h,e| h[Math.log10(e).to_i] +=1  if e < 10000;h}
+    end
+        
+    def send_test collection, param
+      collection.map{|c| c.send("#{param}").to_f}
+    end
+    
+  end
+  
+  
+  
   belongs_to :survey_group
   belongs_to :age_group
-    
+  
   validates_numericality_of parameter_columns, :n, :greater_than_or_equal_to => 0, :allow_nil => true
   validates_presence_of :slug
   validates_uniqueness_of :slug, :on => :create
-
+  
   before_validation_on_create :set_slug
   before_validation :strip_at_from_twitter_username
   before_save :store_group_demigraphics
@@ -171,10 +117,10 @@ end
   
   attr_accessible *(parameter_columns.map{|p| "#{p}_rational_id".to_sym })
   attr_accessible :city, :state, :country, :age_group_id, :gender, :activity_id, :lit_type_id, :twitter_username
-
+  
   belongs_to :lit_type
   belongs_to :activity
-
+  
   belongs_to :r_star_rational, :class_name => 'RationalOption'
   belongs_to :fp_rational, :class_name => 'RationalOption'
   belongs_to :ne_rational, :class_name => 'RationalOption'
@@ -195,7 +141,7 @@ end
     "#{self.city}, #{self.state+' '}#{self.country}"
   end
   
- 
+  
   
   private
   
@@ -232,10 +178,5 @@ end
   def cleanup_empty_strings
     self.gender = nil if self.gender == ''
   end
-  
- 
 end
-
-
-
 

@@ -1,0 +1,59 @@
+<div id="container" style="height: 400px"></div>
+
+<button id="button">Add series</button>
+
+<label >Show gender:</label>
+  <select id="gender" >
+	<option disabled="disabled">Choose:</option>
+	<option value="Male" selected="selected">Male</option>
+	<option value="Female">Female</option>
+	<option value="Unknown" >Unknown</option>
+  </select>
+
+<script>
+
+// create the chart
+var chart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container',
+        events: {
+            redraw: function() {
+				alert ('The chart was just redrawn');				
+            }
+        }        
+    },
+    xAxis: {
+        categories: ['1-9', '10-99', '100-999', '1000-9999']
+    },
+    
+    series: [{
+        data: [2.9, 7.5, 10.64, 12.9]        
+    }]
+});
+
+
+String.prototype.print = function() {
+	document.write(this);
+}
+
+
+$('#gender').change(function(){
+	var selection = this.value;
+	var rcall = "Survey.new_report('n', 'gender', '" + selection + "')";
+	alert(rcall);
+	
+	//var localStr = "<%= Survey.new_report("n", "gender", "Female") %>"
+	var localStr = "<%= rcall %>"
+	
+	var arr = localStr.split(",")
+	alert(this.value);
+	arr = arr.map(function(i){return parseInt(i);}) 
+	 chart.addSeries({
+        data: arr
+    });
+});
+
+
+
+
+</script>

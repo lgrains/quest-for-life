@@ -1,6 +1,11 @@
 <div class="tab-body">
 
+
 <% prmtr = !params[:p] ?options[:parameter] : params[:p]%>
+
+<% javascript_tag do %>
+      var my_param = '<%= !params[:p] ?options[:parameter] : params[:p]%>'
+<% end %>
 
   <h2><%= Survey.title_for_parameter( prmtr.to_s) %></h2>
   <h3><%= Survey.question_for_parameter( prmtr.to_s )%></h3>
@@ -9,17 +14,34 @@
   
   
 	<BR>&nbsp;<BR>&nbsp;<BR>
+	
+	<label for "age">Show age:</label>
+	<%=
+		@ageGroups = AgeGroup.find(:all).map {|e| [ e.description, e.id]}
+		@ageGroups << ['Unknown', nil]
+		@selected_ageGroup = @ageGroups[5][1]
+		select('age',:description, @ageGroups, :selected=>5, :onclick => "requestData( prmtr, 'age');")
+		
+	%>
 	<div id="ages-group" style="width: 650px; height: 300px;"></div>
 	
 	<BR>&nbsp;<BR>&nbsp;<BR>
 	
-	 
+	 <label >Show gender:</label>
+	  <select id="gender" onclick="requestData( prmtr, gender.selected); " >
+	  <option disabled="disabled">Choose:</option>
+		<option value="Male" selected="selected">Male</option>
+		<option value="Female">Female</option>
+		<option value="Unknown" >Unknown</option>
+	  </select>
 
 	<div id="gender-group" style="width: 650px; height: 300px;"></div>
 
 	<BR>&nbsp;<BR>&nbsp;<BR>
 
 	<div id="all" style="width: 650px; height: 300px;"></div>
+	
+	<div id="container" style="width: 650px; height: 300px;"></div>
 
 </div>
 
@@ -33,6 +55,9 @@ $(document).ready(function() {
 			renderTo: 'ages-group',
 			defaultSeriesType: 'column',
 			backgroundColor: '#0A0A0A'
+			events:{
+				load:requestData(my_param,'age_group_id')
+			}
 		},
 		title: {
 			text: "Answers for Age Group "
@@ -52,32 +77,29 @@ $(document).ready(function() {
 		},
 		series: [{
 			name: '11 and under',
-			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 1).inspect%>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 1).split(',').collect{|e| e.to_i}.inspect %>
 		
 		},{
-			name: '12 - 14',
-			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 2).inspect%>
-		},{
 			name: '12-14',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 2).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s , 'age_group_id', 2).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: '15-18',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 3).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 3).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: '19-25',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 4).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 4).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: '26-35',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 5).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 5).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: '36-50',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 6).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 6).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: '50+',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 7).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 7).split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: 'Unknown',
-			data: <%= Survey.report( prmtr.to_s  ,:age, 0).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report( prmtr.to_s  ,'age_group_id', 0).split(',').collect{|e| e.to_i}.inspect %>
 		}]
 	});
 	
@@ -91,6 +113,9 @@ $(document).ready(function() {
 			renderTo: 'gender-group',
 			defaultSeriesType: 'column',
 			backgroundColor: '#0A0A0A',
+			events:{
+				load:requestData
+			}
 		},
 		title: {
 			text: "Answers for Gender"	
@@ -110,13 +135,13 @@ $(document).ready(function() {
 		},
 		series: [{
 			name: 'Males',
-			data: <%= Survey.report(prmtr.to_s ,:gender, "Male").split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report(prmtr.to_s ,'gender', "Male").split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: 'Females',
-			data: <%= Survey.report(prmtr.to_s ,:gender, "Female").split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report(prmtr.to_s ,'gender', "Female").split(',').collect{|e| e.to_i}.inspect %>
 		},{
 			name: 'Unknown',
-			data: <%= Survey.report(prmtr.to_s ,:gender, NIL).split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report(prmtr.to_s ,'gender', NIL).split(',').collect{|e| e.to_i}.inspect %>
 		
 		}]
 	});
@@ -149,27 +174,31 @@ $(document).ready(function() {
 		},
 		series: [{
 			name: 'all',
-			data: <%= Survey.report(prmtr.to_s ,:all, '').split(',').collect{|e| e.to_i}.inspect %>
+			data: <%= Survey.new_report(prmtr.to_s ,:all, '').split(',').collect{|e| e.to_i}.inspect %>
 		}]
 	});
 	
 });
 
-function requestData(pm, whichDim){
+
+function requestData(my_param, whichDim){
 	$.ajax({
-		url:	'surveys/refresh?p=pm&aog=whichDim',
+		url:	'surveys/refresh?p=my_param&aog=whichDim',
+	
 		success:  function(data){
-			if (whichDim == 'age')
+			if (whichDim == 'age_group_id')
 				chart_age.series[0] = data;
 			else
-				chart_gender.series[0] = data;
+				chart_gen.series[0] = data;
 		},
 		cache:	false
 	
 	});
 }
-	
 
+
+	
+	
 
 
 </script>
